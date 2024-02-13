@@ -29,6 +29,44 @@ public class Cliente {
     private int codigoPostal;
     private String estado;
 
+    public Cliente() {
+    }
+
+    public Cliente(String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+        this.contrasenia = contrasenia;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombreUsuario = nombreUsuario;
+        this.Nombre = Nombre;
+        this.apellidoMaterno = apellidoMaterno;
+        this.apellidopaterno = apellidopaterno;
+        this.ciudad = ciudad;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.numExterior = numExterior;
+        this.codigoPostal = codigoPostal;
+        this.estado = estado;
+    }
+
+    
+    
+    public Cliente(int id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+        this.id = id;
+        this.contrasenia = contrasenia;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombreUsuario = nombreUsuario;
+        this.Nombre = Nombre;
+        this.apellidoMaterno = apellidoMaterno;
+        this.apellidopaterno = apellidopaterno;
+        this.ciudad = ciudad;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.numExterior = numExterior;
+        this.codigoPostal = codigoPostal;
+        this.estado = estado;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
