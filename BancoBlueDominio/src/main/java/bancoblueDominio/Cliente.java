@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 public class Cliente {
     
-    private int id;
+    private long id;
     private String contrasenia;
     private LocalDate fechaNacimiento; // Este atributo calcula la edad
     private String nombreUsuario;
@@ -49,7 +49,7 @@ public class Cliente {
 
     
     
-    public Cliente(int id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+    public Cliente(long id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.id = id;
         this.contrasenia = contrasenia;
         this.fechaNacimiento = fechaNacimiento;
@@ -67,11 +67,11 @@ public class Cliente {
 
     
     
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -183,22 +183,24 @@ public class Cliente {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 24 * hash + this.id;
-        hash = 24 * hash + Objects.hashCode(this.contrasenia);
-        hash = 24 * hash + Objects.hashCode(this.fechaNacimiento);
-        hash = 24 * hash + Objects.hashCode(this.nombreUsuario);
-        hash = 24 * hash + Objects.hashCode(this.Nombre);
-        hash = 24 * hash + Objects.hashCode(this.apellidoMaterno);
-        hash = 24 * hash + Objects.hashCode(this.apellidopaterno);
-        hash = 24 * hash + Objects.hashCode(this.ciudad);
-        hash = 24 * hash + Objects.hashCode(this.calle);
-        hash = 24 * hash + Objects.hashCode(this.colonia);
-        hash = 24 * hash + this.numExterior;
-        hash = 24 * hash + this.codigoPostal;
-        hash = 24 * hash + Objects.hashCode(this.estado);
+        int hash = 7;
+        hash = 89 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.contrasenia);
+        hash = 89 * hash + Objects.hashCode(this.fechaNacimiento);
+        hash = 89 * hash + Objects.hashCode(this.nombreUsuario);
+        hash = 89 * hash + Objects.hashCode(this.Nombre);
+        hash = 89 * hash + Objects.hashCode(this.apellidoMaterno);
+        hash = 89 * hash + Objects.hashCode(this.apellidopaterno);
+        hash = 89 * hash + Objects.hashCode(this.ciudad);
+        hash = 89 * hash + Objects.hashCode(this.calle);
+        hash = 89 * hash + Objects.hashCode(this.colonia);
+        hash = 89 * hash + this.numExterior;
+        hash = 89 * hash + this.codigoPostal;
+        hash = 89 * hash + Objects.hashCode(this.estado);
         return hash;
     }
+
+ 
 
     @Override
     public boolean equals(Object obj) {

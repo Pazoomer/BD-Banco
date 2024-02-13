@@ -15,12 +15,12 @@ public class Transferencia extends Operacion {
     public Transferencia() {
     }
 
-    public Transferencia(int numCuentaDestino, long monto, String motivo, LocalDateTime fechaCreacion, int codigoCuenta) {
+    public Transferencia(int numCuentaDestino, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta) {
         super(monto, motivo, fechaCreacion, codigoCuenta);
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Transferencia(int numCuentaDestino, int codigo, long monto, String motivo, LocalDateTime fechaCreacion, int codigoCuenta) {
+    public Transferencia(int numCuentaDestino, long codigo, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta) {
         super(codigo, monto, motivo, fechaCreacion, codigoCuenta);
         this.numCuentaDestino = numCuentaDestino;
     }

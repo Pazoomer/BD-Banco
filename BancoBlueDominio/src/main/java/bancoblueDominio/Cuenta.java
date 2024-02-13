@@ -9,7 +9,7 @@ import java.util.Objects;
  * @author lv1821
  */
 public class Cuenta {
-    private int codigo;
+    private long codigo;
     private long saldo;
     private LocalDateTime fechaApertura;
     private int numeroCuenta;
@@ -27,7 +27,7 @@ public class Cuenta {
     
     
 
-    public Cuenta(int codigo, long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente) {
+    public Cuenta(long codigo, long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente) {
         this.codigo = codigo;
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
@@ -69,24 +69,26 @@ public class Cuenta {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 79 * hash + this.codigo;
-        hash = 79 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
-        hash = 79 * hash + Objects.hashCode(this.fechaApertura);
-        hash = 79 * hash + this.numeroCuenta;
-        hash = 79 * hash + this.idCliente;
+        int hash = 7;
+        hash = 31 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 31 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
+        hash = 31 * hash + Objects.hashCode(this.fechaApertura);
+        hash = 31 * hash + this.numeroCuenta;
+        hash = 31 * hash + this.idCliente;
         return hash;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {

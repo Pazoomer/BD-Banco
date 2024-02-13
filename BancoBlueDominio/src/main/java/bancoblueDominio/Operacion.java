@@ -10,23 +10,23 @@ import java.util.Objects;
  * @author lv1821
  */
 public class Operacion {
-    private int codigo;
+    private long codigo;
     private long monto;
     private String motivo;
     private LocalDateTime fechaCreacion;
-    private int codigoCuenta;
+    private long codigoCuenta;
 
     public Operacion() {
     }
 
-    public Operacion(long monto, String motivo, LocalDateTime fechaCreacion, int codigoCuenta) {
+    public Operacion(long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta) {
         this.monto = monto;
         this.motivo = motivo;
         this.fechaCreacion = fechaCreacion;
         this.codigoCuenta = codigoCuenta;
     }
 
-    public Operacion(int codigo, long monto, String motivo, LocalDateTime fechaCreacion, int codigoCuenta) {
+    public Operacion(long codigo, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -42,19 +42,19 @@ public class Operacion {
         this.motivo = motivo;
     }
 
-    public int getCodigoCuenta() {
+    public long getCodigoCuenta() {
         return codigoCuenta;
     }
 
-    public void setCodigoCuenta(int codigoCuenta) {
+    public void setCodigoCuenta(long codigoCuenta) {
         this.codigoCuenta = codigoCuenta;
     }
     
-    public int getCodigo() {
+    public long getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(long codigo) {
         this.codigo = codigo;
     }
 
@@ -81,14 +81,18 @@ public class Operacion {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.codigo;
-        hash = 37 * hash + (int) (this.monto ^ (this.monto >>> 32));
-        hash = 37 * hash + Objects.hashCode(this.motivo);
-        hash = 37 * hash + Objects.hashCode(this.fechaCreacion);
-        hash = 37 * hash + this.codigoCuenta;
+        int hash = 5;
+        hash = 89 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 89 * hash + (int) (this.monto ^ (this.monto >>> 32));
+        hash = 89 * hash + Objects.hashCode(this.motivo);
+        hash = 89 * hash + Objects.hashCode(this.fechaCreacion);
+        hash = 89 * hash + (int) (this.codigoCuenta ^ (this.codigoCuenta >>> 32));
         return hash;
     }
+
+   
+
+    
 
     @Override
     public boolean equals(Object obj) {

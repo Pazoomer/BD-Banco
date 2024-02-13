@@ -16,14 +16,14 @@ public class RetiroSinCuenta extends Operacion{
     public RetiroSinCuenta() {
     }
 
-    public RetiroSinCuenta(String estado, int folio, String contrasenia, long monto, String motivo, LocalDateTime fechaCreacion, int codigoCuenta) {
+    public RetiroSinCuenta(String estado, int folio, String contrasenia, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta) {
         super(monto, motivo, fechaCreacion, codigoCuenta);
         this.estado = estado;
         this.folio = folio;
         this.contrasenia = contrasenia;
     }
 
-    public RetiroSinCuenta(String estado, int folio, String contrasenia, int codigo, long monto, String motivo, LocalDateTime fechaCreacion, int codigoCuenta) {
+    public RetiroSinCuenta(String estado, int folio, String contrasenia, long codigo, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta) {
         super(codigo, monto, motivo, fechaCreacion, codigoCuenta);
         this.estado = estado;
         this.folio = folio;
