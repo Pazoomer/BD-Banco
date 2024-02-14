@@ -1,7 +1,8 @@
 
 package bancoBluePersistencia.dtos.cuenta;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  *
@@ -9,161 +10,91 @@ import java.time.LocalDate;
  */
 public class CuentaActualizableDTO {
 
-    private long id;
-    private String contrasenia;
-    private LocalDate fechaNacimiento; // Este atributo calcula la edad
-    private String nombreUsuario;
+    private long codigo;
+    private long saldo;
+    private LocalDateTime fechaApertura;
+    private int numeroCuenta;
+    private int idCliente;
 
-    // Los siguientes atributos componen el nombre completo
-    private String Nombre;
-    private String apellidoMaterno;
-    private String apellidopaterno;
-
-    // Los siguientes atributos componen el domicilio
-    private String ciudad;
-    private String calle;
-    private String colonia;
-    private int numExterior;
-    private int codigoPostal;
-    private String estado;
-
-    public long getId() {
-        return id;
+    public long getCodigo() {
+        return codigo;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCodigo(long codigo) {
+        this.codigo = codigo;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public long getSaldo() {
+        return saldo;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setSaldo(long saldo) {
+        this.saldo = saldo;
     }
 
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
+    public LocalDateTime getFechaApertura() {
+        return fechaApertura;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFechaApertura(LocalDateTime fechaApertura) {
+        this.fechaApertura = fechaApertura;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
+    public int getNumeroCuenta() {
+        return numeroCuenta;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
+    public void setNumeroCuenta(int numeroCuenta) {
+        this.numeroCuenta = numeroCuenta;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public int getIdCliente() {
+        return idCliente;
     }
 
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 17 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 17 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
+        hash = 17 * hash + Objects.hashCode(this.fechaApertura);
+        hash = 17 * hash + this.numeroCuenta;
+        hash = 17 * hash + this.idCliente;
+        return hash;
     }
 
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
-    }
-
-    public String getApellidopaterno() {
-        return apellidopaterno;
-    }
-
-    public void setApellidopaterno(String apellidopaterno) {
-        this.apellidopaterno = apellidopaterno;
-    }
-
-    public String getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
-    public String getCalle() {
-        return calle;
-    }
-
-    public void setCalle(String calle) {
-        this.calle = calle;
-    }
-
-    public String getColonia() {
-        return colonia;
-    }
-
-    public void setColonia(String colonia) {
-        this.colonia = colonia;
-    }
-
-    public int getNumExterior() {
-        return numExterior;
-    }
-
-    public void setNumExterior(int numExterior) {
-        this.numExterior = numExterior;
-    }
-
-    public int getCodigoPostal() {
-        return codigoPostal;
-    }
-
-    public void setCodigoPostal(int codigoPostal) {
-        this.codigoPostal = codigoPostal;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    
-    /*
-    public boolean esValido() throws ValidacionDTOException{
-        
-        if (this.nombre==null 
-                || this.nombre.isBlank() 
-                || this.nombre.trim().length()>100) {
-            throw new ValidacionDTOException("Nombre de socio invalido");
-        }
-        
-        String regexTelefono = "^[0-9]{9,15}$";
-        Pattern patternTelefono = Pattern.compile(regexTelefono);
-        Matcher matcherTelefono = patternTelefono.matcher(this.telefono);
-        
-        if (this.telefono == null
-                || this.telefono.isBlank()
-                || this.telefono.trim().length() > 16
-                || !matcherTelefono.matches()) {
-            throw new ValidacionDTOException("Telefono de socio invalido");
-        }
-
-        String regexCorreo = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern patternCorreo = Pattern.compile(regexCorreo);
-        Matcher matcherCorreo = patternCorreo.matcher(this.correo);
-
-        if (this.correo.length()==0) {
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
-        } else if (this.correo.trim().length() > 200
-                || !matcherCorreo.matches()) {
-            throw new ValidacionDTOException("Correo de socio invalido");
         }
-        return true;
-    }*/
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final CuentaActualizableDTO other = (CuentaActualizableDTO) obj;
+        return this.codigo == other.codigo;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("CuentaActualizableDTO{");
+        sb.append("codigo=").append(codigo);
+        sb.append(", saldo=").append(saldo);
+        sb.append(", fechaApertura=").append(fechaApertura);
+        sb.append(", numeroCuenta=").append(numeroCuenta);
+        sb.append(", idCliente=").append(idCliente);
+        sb.append('}');
+        return sb.toString();
+    }
+    
     
     
 }
