@@ -7,6 +7,7 @@ import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 
@@ -56,14 +57,19 @@ public class pruebaPersistencia {
         clienteActualizable.setNombre("b");
         clienteActualizable.setNombreUsuario("b");
         clienteActualizable.setNumExterior(2);
-
+        
+        ClienteInicioSesionDTO clienteInicioSesion=new ClienteInicioSesionDTO();
+        clienteInicioSesion.setContrasenia("cebolla8");
+        clienteInicioSesion.setNombreUsuario("CarlitosMora");
+        
         try {
-            System.out.println(clientesDAO.actualizar(clienteActualizable));
+            System.out.println(clientesDAO.consultar(clienteInicioSesion));
+            //System.out.println(clientesDAO.actualizar(clienteActualizable));
             //System.out.println(clientesDAO.agregar(clienteNuevo));
             //System.out.println(clientesDAO.consultar());
             //System.out.println(clientesDAO.consultar(clienteConsultable));
         } catch (PersistenciaException persistenciaException) {
         }
-
+         
     }
 }

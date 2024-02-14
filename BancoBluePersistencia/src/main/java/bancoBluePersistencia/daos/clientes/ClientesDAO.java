@@ -13,13 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import java.sql.Date;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 
 /**
  *
@@ -285,6 +283,70 @@ public class ClientesDAO implements IClientesDAO {
             logger.log(Level.INFO, "Se consultaron {0} clientes", listaClientes.size());
             return listaClientes;
 
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
+            throw new PersistenciaException("No se pudo consultar el cliente", ex);
+        }
+    }
+
+    @Override
+    public Cliente consultar(ClienteInicioSesionDTO clienteInicioSesion) throws PersistenciaException {
+       String sentenciaSQL = """
+        SELECT c.id,
+        c.contrasenia,
+        c.nombre_usuario,
+        c.fecha_nacimiento,                
+        c.nombres,
+        c.apellido_paterno,
+        c.apellido_materno,
+        d.codigo,
+        d.calle,
+        d.colonia,
+        d.num_exterior,
+        d.codigo_postal,
+        d.ciudad,
+        d.estado
+        FROM clientes c
+        JOIN Domicilios d ON c.id = d.id_cliente
+        WHERE contrasenia=? AND nombre_usuario=?;
+                              """;
+        try (
+            Connection conexion = this.conexionBD.obtenerConexion(); 
+            PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+
+            comando.setString(1, clienteInicioSesion.getContrasenia());
+            comando.setString(2, clienteInicioSesion.getNombreUsuario());
+
+            ResultSet resultados = comando.executeQuery();
+
+            if (resultados.next()) {
+
+                int id_cliente = resultados.getInt("id");
+                String contrasenia = resultados.getString("contrasenia");
+                String nombre_usuario = resultados.getString("nombre_usuario");
+                Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
+                String nombres = resultados.getString("nombres");
+                String apellido_paterno = resultados.getString("apellido_paterno");
+                String apellido_materno = resultados.getString("apellido_materno");
+
+                int codigo_domicilio = resultados.getInt("codigo");
+                String calle = resultados.getString("calle");
+                String colonia = resultados.getString("colonia");
+                int num_exterior = resultados.getInt("num_exterior");
+                int codigo_postal = resultados.getInt("codigo_postal");
+                String ciudad = resultados.getString("ciudad");
+                String estado = resultados.getString("estado");
+
+                Cliente cliente = new Cliente(id_cliente, contrasenia, fecha_nacimiento, nombre_usuario, nombres,
+                        apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
+
+                logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
+                return cliente;
+
+            } else {
+                logger.log(Level.INFO, "No existe el cliente", 1);
+                return null;
+            }
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
