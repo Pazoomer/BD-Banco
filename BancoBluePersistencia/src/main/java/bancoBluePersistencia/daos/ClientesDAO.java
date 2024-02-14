@@ -16,6 +16,9 @@ import bancoBluePersistencia.dtos.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 /**
  *
@@ -197,32 +200,68 @@ public class ClientesDAO implements IClientesDAO {
     }
 
     @Override
-    public List<Cliente> consultar() throws PersistenciaException {
+    public List<Cliente> consultar() throws PersistenciaException Ban{
         String sentenciaSQL = """
-        SELECT id,nombre,telefono,correo
-        FROM socios;
+        SELECT c.id,
+            c.contrasenia,
+            c.nombre_usuario,
+            c.fecha_nacimiento,                
+            c.nombres,
+            c.apellido_paterno,
+            c.apellido_materno,
+            d.codigo,
+            d.calle,
+            d.colonia,
+            d.num_exterior,
+            d.codigo_postal,
+            d.ciudad,
+            d.estado
+        FROM clientes c
+        JOIN Domicilios d ON c.id = d.id_cliente;
                               """;
         try (
-                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+            Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             ResultSet resultados = comando.executeQuery();
 
-            List<Socio> listaSocios = new LinkedList<>();
+            List<Cliente> listaClientes = new LinkedList<>();
 
             while (resultados.next()) {
-                Long id = resultados.getLong("id");
-                String nombre = resultados.getString("nombre");
-                String telefono = resultados.getString("telefono");
-                String correo = resultados.getString("correo");
-                Socio socio = new Socio(id, nombre, telefono, correo);
-                listaSocios.add(socio);
+                
+                int id_cliente = resultados.getInt("id");
+                String contrasenia=resultados.getString("contrasenia");
+                String nombre_usuario=resultados.getString("nombre_usuario");
+                Date fecha_nacimiento=resultados.getDate("fecha_nacimiento");
+                String nombres=resultados.getString("nombres");
+                String apellido_paterno=resultados.getString("apellido_paterno");
+                String apellido_materno=resultados.getString("apellido_materno");
+                
+                int codigo_domicilio=resultados.getInt("codigo");
+                String calle=resultados.getString("calle");
+                String colonia=resultados.getString("colonia");
+                int num_exterior=resultados.getInt("num_exterior");
+                int codigo_postal=resultados.getInt("codigo_postal");
+                String ciudad=resultados.getString("ciudad");
+                String estado=resultados.getString("estado");
+                
+                Cliente cliente = new Cliente(id_cliente, contrasenia,convertirDateALocalDate(fecha_nacimiento), nombre_usuario,nombres,
+                apellido_materno,apellido_paterno,codigo_domicilio,ciudad, calle, colonia,num_exterior, codigo_postal, estado);
+                listaClientes.add(cliente);
             }
-            logger.log(Level.INFO, "Se consultaron {0} socios", listaSocios.size());
-            return listaSocios;
+            logger.log(Level.INFO, "Se consultaron {0} clientes", listaClientes.size());
+            return listaClientes;
 
         } catch (SQLException ex) {
-            logger.log(Level.SEVERE, "No se puede consultar el socio", ex);
-            throw new PersistenciaException("No se pudo consultar el socio", ex);
+            logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
+            throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
+    }
+    
+    public static LocalDate convertirDateALocalDate(Date date) {
+        // Convierte el Date a Instant
+        Instant instant = date.toInstant();
+
+        // Convierte el Instant a LocalDate utilizando la zona horaria predeterminada
+        return instant.atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     

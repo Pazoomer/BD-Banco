@@ -22,6 +22,7 @@ public class Cliente {
     private String apellidopaterno;
     
     // Los siguientes atributos componen el domicilio
+    private long codigoDomicilio;
     private String ciudad;
     private String calle;
     private String colonia;
@@ -31,6 +32,25 @@ public class Cliente {
 
     public Cliente() {
     }
+
+    public Cliente(long id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, long codigoDomicilio, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+        this.id = id;
+        this.contrasenia = contrasenia;
+        this.fechaNacimiento = fechaNacimiento;
+        this.nombreUsuario = nombreUsuario;
+        this.Nombre = Nombre;
+        this.apellidoMaterno = apellidoMaterno;
+        this.apellidopaterno = apellidopaterno;
+        this.codigoDomicilio = codigoDomicilio;
+        this.ciudad = ciudad;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.numExterior = numExterior;
+        this.codigoPostal = codigoPostal;
+        this.estado = estado;
+    }
+    
+    
 
     public Cliente(String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.contrasenia = contrasenia;
@@ -49,14 +69,14 @@ public class Cliente {
 
     
     
-    public Cliente(long id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+    public Cliente(long id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidoPaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.id = id;
         this.contrasenia = contrasenia;
         this.fechaNacimiento = fechaNacimiento;
         this.nombreUsuario = nombreUsuario;
         this.Nombre = Nombre;
         this.apellidoMaterno = apellidoMaterno;
-        this.apellidopaterno = apellidopaterno;
+        this.apellidopaterno = apellidoPaterno;
         this.ciudad = ciudad;
         this.calle = calle;
         this.colonia = colonia;
