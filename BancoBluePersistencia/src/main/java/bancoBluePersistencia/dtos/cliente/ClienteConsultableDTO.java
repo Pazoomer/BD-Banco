@@ -1,5 +1,5 @@
 
-package bancoBluePersistencia.dtos;
+package bancoBluePersistencia.dtos.cliente;
 
 /**
  *

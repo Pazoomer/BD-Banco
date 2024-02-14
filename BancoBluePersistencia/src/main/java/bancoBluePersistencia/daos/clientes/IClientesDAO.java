@@ -1,10 +1,10 @@
 
-package bancoBluePersistencia.daos;
+package bancoBluePersistencia.daos.clientes;
 
 import java.util.List;
-import bancoBluePersistencia.dtos.ClienteActualizableDTO;
-import bancoBluePersistencia.dtos.ClienteConsultableDTO;
-import bancoBluePersistencia.dtos.ClienteNuevoDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 

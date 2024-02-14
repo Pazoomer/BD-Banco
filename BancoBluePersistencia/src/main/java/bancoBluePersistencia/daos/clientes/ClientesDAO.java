@@ -1,6 +1,7 @@
 
-package bancoBluePersistencia.daos;
+package bancoBluePersistencia.daos.clientes;
 
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.conexion.IConexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,9 +12,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import bancoBluePersistencia.dtos.ClienteActualizableDTO;
-import bancoBluePersistencia.dtos.ClienteConsultableDTO;
-import bancoBluePersistencia.dtos.ClienteNuevoDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import java.sql.Date;
