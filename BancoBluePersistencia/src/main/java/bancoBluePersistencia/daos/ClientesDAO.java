@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import bancoBluePersistencia.dtos.ClienteActualizableDTO;
+import bancoBluePersistencia.dtos.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
@@ -171,36 +172,49 @@ public class ClientesDAO implements IClientesDAO {
     }
     
     @Override
-    public Cliente consultar(ClienteNuevoDTO clienteConsultable) throws PersistenciaException {
+    public Cliente consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException {
         String sentenciaSQL = """
-        SELECT id,nombre,telefono,correo
-        FROM socios;
+        SELECT id,contrasenia,nombre_usuario,fecha_nacimiento, nombres, apellido_paterno, apellido_materno
+        FROM Clientes
+        WHERE ID=?;
                               """;
         try (
                 Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+
+            comando.setLong(1, clienteConsultable.getId());
+
             ResultSet resultados = comando.executeQuery();
 
-            List<Socio> listaSocios = new LinkedList<>();
+            int id_cliente = resultados.getInt("id");
+            String contrasenia = resultados.getString("contrasenia");
+            String nombre_usuario = resultados.getString("nombre_usuario");
+            Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
+            String nombres = resultados.getString("nombres");
+            String apellido_paterno = resultados.getString("apellido_paterno");
+            String apellido_materno = resultados.getString("apellido_materno");
 
-            while (resultados.next()) {
-                Long id = resultados.getLong("id");
-                String nombre = resultados.getString("nombre");
-                String telefono = resultados.getString("telefono");
-                String correo = resultados.getString("correo");
-                Socio socio = new Socio(id, nombre, telefono, correo);
-                listaSocios.add(socio);
-            }
-            logger.log(Level.INFO, "Se consultaron {0} socios", listaSocios.size());
-            return listaSocios;
+            int codigo_domicilio = resultados.getInt("codigo");
+            String calle = resultados.getString("calle");
+            String colonia = resultados.getString("colonia");
+            int num_exterior = resultados.getInt("num_exterior");
+            int codigo_postal = resultados.getInt("codigo_postal");
+            String ciudad = resultados.getString("ciudad");
+            String estado = resultados.getString("estado");
+
+            Cliente cliente = new Cliente(id_cliente, contrasenia, convertirDateALocalDate(fecha_nacimiento), nombre_usuario, nombres,
+                    apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
+
+            logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
+            return cliente;
 
         } catch (SQLException ex) {
-            logger.log(Level.SEVERE, "No se puede consultar el socio", ex);
-            throw new PersistenciaException("No se pudo consultar el socio", ex);
+            logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
+            throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
     }
 
     @Override
-    public List<Cliente> consultar() throws PersistenciaException Ban{
+    public List<Cliente> consultar() throws PersistenciaException {
         String sentenciaSQL = """
         SELECT c.id,
             c.contrasenia,
@@ -220,31 +234,31 @@ public class ClientesDAO implements IClientesDAO {
         JOIN Domicilios d ON c.id = d.id_cliente;
                               """;
         try (
-            Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             ResultSet resultados = comando.executeQuery();
 
             List<Cliente> listaClientes = new LinkedList<>();
 
             while (resultados.next()) {
-                
+
                 int id_cliente = resultados.getInt("id");
-                String contrasenia=resultados.getString("contrasenia");
-                String nombre_usuario=resultados.getString("nombre_usuario");
-                Date fecha_nacimiento=resultados.getDate("fecha_nacimiento");
-                String nombres=resultados.getString("nombres");
-                String apellido_paterno=resultados.getString("apellido_paterno");
-                String apellido_materno=resultados.getString("apellido_materno");
-                
-                int codigo_domicilio=resultados.getInt("codigo");
-                String calle=resultados.getString("calle");
-                String colonia=resultados.getString("colonia");
-                int num_exterior=resultados.getInt("num_exterior");
-                int codigo_postal=resultados.getInt("codigo_postal");
-                String ciudad=resultados.getString("ciudad");
-                String estado=resultados.getString("estado");
-                
-                Cliente cliente = new Cliente(id_cliente, contrasenia,convertirDateALocalDate(fecha_nacimiento), nombre_usuario,nombres,
-                apellido_materno,apellido_paterno,codigo_domicilio,ciudad, calle, colonia,num_exterior, codigo_postal, estado);
+                String contrasenia = resultados.getString("contrasenia");
+                String nombre_usuario = resultados.getString("nombre_usuario");
+                Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
+                String nombres = resultados.getString("nombres");
+                String apellido_paterno = resultados.getString("apellido_paterno");
+                String apellido_materno = resultados.getString("apellido_materno");
+
+                int codigo_domicilio = resultados.getInt("codigo");
+                String calle = resultados.getString("calle");
+                String colonia = resultados.getString("colonia");
+                int num_exterior = resultados.getInt("num_exterior");
+                int codigo_postal = resultados.getInt("codigo_postal");
+                String ciudad = resultados.getString("ciudad");
+                String estado = resultados.getString("estado");
+
+                Cliente cliente = new Cliente(id_cliente, contrasenia, convertirDateALocalDate(fecha_nacimiento), nombre_usuario, nombres,
+                        apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
                 listaClientes.add(cliente);
             }
             logger.log(Level.INFO, "Se consultaron {0} clientes", listaClientes.size());

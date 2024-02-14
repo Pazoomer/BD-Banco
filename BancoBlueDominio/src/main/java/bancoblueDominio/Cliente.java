@@ -85,7 +85,13 @@ public class Cliente {
         this.estado = estado;
     }
 
-    
+    public long getCodigoDomicilio() {
+        return codigoDomicilio;
+    }
+
+    public void setCodigoDomicilio(long codigoDomicilio) {
+        this.codigoDomicilio = codigoDomicilio;
+    }
     
     public long getId() {
         return id;
@@ -203,22 +209,25 @@ public class Cliente {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 89 * hash + (int) (this.id ^ (this.id >>> 32));
-        hash = 89 * hash + Objects.hashCode(this.contrasenia);
-        hash = 89 * hash + Objects.hashCode(this.fechaNacimiento);
-        hash = 89 * hash + Objects.hashCode(this.nombreUsuario);
-        hash = 89 * hash + Objects.hashCode(this.Nombre);
-        hash = 89 * hash + Objects.hashCode(this.apellidoMaterno);
-        hash = 89 * hash + Objects.hashCode(this.apellidopaterno);
-        hash = 89 * hash + Objects.hashCode(this.ciudad);
-        hash = 89 * hash + Objects.hashCode(this.calle);
-        hash = 89 * hash + Objects.hashCode(this.colonia);
-        hash = 89 * hash + this.numExterior;
-        hash = 89 * hash + this.codigoPostal;
-        hash = 89 * hash + Objects.hashCode(this.estado);
+        int hash = 3;
+        hash = 43 * hash + (int) (this.id ^ (this.id >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.contrasenia);
+        hash = 43 * hash + Objects.hashCode(this.fechaNacimiento);
+        hash = 43 * hash + Objects.hashCode(this.nombreUsuario);
+        hash = 43 * hash + Objects.hashCode(this.Nombre);
+        hash = 43 * hash + Objects.hashCode(this.apellidoMaterno);
+        hash = 43 * hash + Objects.hashCode(this.apellidopaterno);
+        hash = 43 * hash + (int) (this.codigoDomicilio ^ (this.codigoDomicilio >>> 32));
+        hash = 43 * hash + Objects.hashCode(this.ciudad);
+        hash = 43 * hash + Objects.hashCode(this.calle);
+        hash = 43 * hash + Objects.hashCode(this.colonia);
+        hash = 43 * hash + this.numExterior;
+        hash = 43 * hash + this.codigoPostal;
+        hash = 43 * hash + Objects.hashCode(this.estado);
         return hash;
     }
+
+
 
  
 
@@ -248,6 +257,7 @@ public class Cliente {
         sb.append(", Nombre=").append(Nombre);
         sb.append(", apellidoMaterno=").append(apellidoMaterno);
         sb.append(", apellidopaterno=").append(apellidopaterno);
+        sb.append(", codigoDomicilio=").append(codigoDomicilio);
         sb.append(", ciudad=").append(ciudad);
         sb.append(", calle=").append(calle);
         sb.append(", colonia=").append(colonia);
@@ -257,6 +267,8 @@ public class Cliente {
         sb.append('}');
         return sb.toString();
     }
+
+
     
     
     
