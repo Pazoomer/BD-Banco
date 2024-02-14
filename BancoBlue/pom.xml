@@ -8,19 +8,19 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BancoBlueDominio</artifactId>
+            <artifactId>BancoBluePersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>BancoBluePersistencia</artifactId>
+            <artifactId>BancoBlueDominio</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
         <exec.mainClass>bancoblue.bancoblue.BancoBlue</exec.mainClass>
     </properties>
 </project>
