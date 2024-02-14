@@ -174,8 +174,22 @@ public class ClientesDAO implements IClientesDAO {
     @Override
     public Cliente consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException {
         String sentenciaSQL = """
-        SELECT id,contrasenia,nombre_usuario,fecha_nacimiento, nombres, apellido_paterno, apellido_materno
-        FROM Clientes
+        SELECT c.id,
+        c.contrasenia,
+        c.nombre_usuario,
+        c.fecha_nacimiento,                
+        c.nombres,
+        c.apellido_paterno,
+        c.apellido_materno,
+        d.codigo,
+        d.calle,
+        d.colonia,
+        d.num_exterior,
+        d.codigo_postal,
+        d.ciudad,
+        d.estado
+        FROM clientes c
+        JOIN Domicilios d ON c.id = d.id_cliente
         WHERE ID=?;
                               """;
         try (
@@ -185,28 +199,34 @@ public class ClientesDAO implements IClientesDAO {
 
             ResultSet resultados = comando.executeQuery();
 
-            int id_cliente = resultados.getInt("id");
-            String contrasenia = resultados.getString("contrasenia");
-            String nombre_usuario = resultados.getString("nombre_usuario");
-            Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
-            String nombres = resultados.getString("nombres");
-            String apellido_paterno = resultados.getString("apellido_paterno");
-            String apellido_materno = resultados.getString("apellido_materno");
+            if (resultados.next()) {
 
-            int codigo_domicilio = resultados.getInt("codigo");
-            String calle = resultados.getString("calle");
-            String colonia = resultados.getString("colonia");
-            int num_exterior = resultados.getInt("num_exterior");
-            int codigo_postal = resultados.getInt("codigo_postal");
-            String ciudad = resultados.getString("ciudad");
-            String estado = resultados.getString("estado");
+                int id_cliente = resultados.getInt("id");
+                String contrasenia = resultados.getString("contrasenia");
+                String nombre_usuario = resultados.getString("nombre_usuario");
+                Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
+                String nombres = resultados.getString("nombres");
+                String apellido_paterno = resultados.getString("apellido_paterno");
+                String apellido_materno = resultados.getString("apellido_materno");
 
-            Cliente cliente = new Cliente(id_cliente, contrasenia, fecha_nacimiento, nombre_usuario, nombres,
-                    apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
+                int codigo_domicilio = resultados.getInt("codigo");
+                String calle = resultados.getString("calle");
+                String colonia = resultados.getString("colonia");
+                int num_exterior = resultados.getInt("num_exterior");
+                int codigo_postal = resultados.getInt("codigo_postal");
+                String ciudad = resultados.getString("ciudad");
+                String estado = resultados.getString("estado");
 
-            logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
-            return cliente;
+                Cliente cliente = new Cliente(id_cliente, contrasenia, fecha_nacimiento, nombre_usuario, nombres,
+                        apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
 
+                logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
+                return cliente;
+
+            } else {
+                logger.log(Level.INFO, "No existe el cliente", 1);
+                return null;
+            }
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
