@@ -122,7 +122,7 @@ public class ClientesDAO implements IClientesDAO {
                                        """;
         String sentenciaSQLDomicilio = """
         UPDATE Domicilios SET  calle=?, colonia=?, num_exterior=?, codigo_postal=?, ciudad=?,
-        estado=?, id_cliente=? WHERE id_cliente=?
+        estado=? WHERE id_cliente=?
                                        """;
 
         try (

@@ -5,6 +5,7 @@ import bancoBluePersistencia.conexion.Conexion;
 import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
@@ -40,9 +41,25 @@ public class pruebaPersistencia {
         clienteNuevo.setNombre("a");
         clienteNuevo.setNombreUsuario("a");
         clienteNuevo.setNumExterior(1);
+        
+        ClienteActualizableDTO clienteActualizable=new ClienteActualizableDTO();
+        clienteActualizable.setId(3);
+        clienteActualizable.setApellidoMaterno("b");
+        clienteActualizable.setApellidopaterno("b");
+        clienteActualizable.setCalle("b");
+        clienteActualizable.setCiudad("b");
+        clienteActualizable.setCodigoPostal(2);
+        clienteActualizable.setColonia("b");
+        clienteActualizable.setContrasenia("b");
+        clienteActualizable.setEstado("b");
+        clienteActualizable.setFechaNacimiento(null);
+        clienteActualizable.setNombre("b");
+        clienteActualizable.setNombreUsuario("b");
+        clienteActualizable.setNumExterior(2);
 
         try {
-            System.out.println(clientesDAO.agregar(clienteNuevo));
+            System.out.println(clientesDAO.actualizar(clienteActualizable));
+            //System.out.println(clientesDAO.agregar(clienteNuevo));
             //System.out.println(clientesDAO.consultar());
             //System.out.println(clientesDAO.consultar(clienteConsultable));
         } catch (PersistenciaException persistenciaException) {

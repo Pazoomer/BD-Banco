@@ -2,7 +2,6 @@
 package bancoBluePersistencia.dtos.cliente;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 /**
  *
