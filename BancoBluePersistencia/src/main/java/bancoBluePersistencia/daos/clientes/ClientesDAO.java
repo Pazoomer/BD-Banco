@@ -1,7 +1,6 @@
 
 package bancoBluePersistencia.daos.clientes;
 
-import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.conexion.IConexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,7 +53,7 @@ public class ClientesDAO implements IClientesDAO {
                 
                 comandoCliente.setString(1, clienteNuevo.getContrasenia());
                 comandoCliente.setString(2, clienteNuevo.getNombreUsuario());
-                comandoCliente.setDate(3, Date.valueOf(clienteNuevo.getFechaNacimiento()));
+                comandoCliente.setDate(3, clienteNuevo.getFechaNacimiento());
                 comandoCliente.setString(4, clienteNuevo.getNombre());
                 comandoCliente.setString(5, clienteNuevo.getApellidopaterno());
                 comandoCliente.setString(6, clienteNuevo.getApellidoMaterno());
@@ -136,7 +135,7 @@ public class ClientesDAO implements IClientesDAO {
             // Cliente
             comandoCliente.setString(1, clienteActualizable.getContrasenia());
             comandoCliente.setString(2, clienteActualizable.getNombreUsuario());
-            comandoCliente.setDate(3, Date.valueOf(clienteActualizable.getFechaNacimiento()));
+            comandoCliente.setDate(3, clienteActualizable.getFechaNacimiento());
             comandoCliente.setString(4, clienteActualizable.getNombre());
             comandoCliente.setString(5, clienteActualizable.getApellidopaterno());
             comandoCliente.setString(6, clienteActualizable.getApellidoMaterno());
@@ -202,7 +201,7 @@ public class ClientesDAO implements IClientesDAO {
             String ciudad = resultados.getString("ciudad");
             String estado = resultados.getString("estado");
 
-            Cliente cliente = new Cliente(id_cliente, contrasenia, convertirDateALocalDate(fecha_nacimiento), nombre_usuario, nombres,
+            Cliente cliente = new Cliente(id_cliente, contrasenia, fecha_nacimiento, nombre_usuario, nombres,
                     apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
 
             logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
@@ -235,7 +234,8 @@ public class ClientesDAO implements IClientesDAO {
         JOIN Domicilios d ON c.id = d.id_cliente;
                               """;
         try (
-                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             ResultSet resultados = comando.executeQuery();
 
             List<Cliente> listaClientes = new LinkedList<>();
@@ -258,7 +258,7 @@ public class ClientesDAO implements IClientesDAO {
                 String ciudad = resultados.getString("ciudad");
                 String estado = resultados.getString("estado");
 
-                Cliente cliente = new Cliente(id_cliente, contrasenia, convertirDateALocalDate(fecha_nacimiento), nombre_usuario, nombres,
+                Cliente cliente = new Cliente(id_cliente, contrasenia, fecha_nacimiento, nombre_usuario, nombres,
                         apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
                 listaClientes.add(cliente);
             }
@@ -271,14 +271,4 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
     
-    public static LocalDate convertirDateALocalDate(Date date) {
-        // Convierte el Date a Instant
-        Instant instant = date.toInstant();
-
-        // Convierte el Instant a LocalDate utilizando la zona horaria predeterminada
-        return instant.atZone(ZoneId.systemDefault()).toLocalDate();
-    }
-
-    
-
 }

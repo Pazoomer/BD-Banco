@@ -14,10 +14,11 @@ import bancoBluePersistencia.excepciones.PersistenciaException;
 public class pruebaPersistencia {
 
     public static void main(String[] args) {
-        String cadenaConexion = "jdbc:mysql://localhost/bancoBD";
+        String cadenaConexion = "jdbc:mysql://localhost/bancobd";
         String usuario = "root";
-        String contrasenia = "Itson";
+        String contrasenia = "1234a";
         //1234a
+        //Itson
         IConexion conexion = new Conexion(cadenaConexion, usuario, contrasenia);
         IClientesDAO clientesDAO = new ClientesDAO(conexion);
 

@@ -1,6 +1,7 @@
 
 package bancoblueDominio;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Objects;
@@ -13,7 +14,7 @@ public class Cliente {
     
     private long id;
     private String contrasenia;
-    private LocalDate fechaNacimiento; // Este atributo calcula la edad
+    private Date fechaNacimiento; // Este atributo calcula la edad
     private String nombreUsuario;
     
     // Los siguientes atributos componen el nombre completo
@@ -33,7 +34,7 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(long id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, long codigoDomicilio, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+    public Cliente(long id, String contrasenia, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, long codigoDomicilio, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.id = id;
         this.contrasenia = contrasenia;
         this.fechaNacimiento = fechaNacimiento;
@@ -52,7 +53,7 @@ public class Cliente {
     
     
 
-    public Cliente(String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+    public Cliente(String contrasenia, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.contrasenia = contrasenia;
         this.fechaNacimiento = fechaNacimiento;
         this.nombreUsuario = nombreUsuario;
@@ -69,7 +70,7 @@ public class Cliente {
 
     
     
-    public Cliente(long id, String contrasenia, LocalDate fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidoPaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+    public Cliente(long id, String contrasenia, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidoPaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.id = id;
         this.contrasenia = contrasenia;
         this.fechaNacimiento = fechaNacimiento;
@@ -109,11 +110,11 @@ public class Cliente {
         this.contrasenia = contrasenia;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -198,8 +199,11 @@ public class Cliente {
     }
     
     public int getEdad() {
+        LocalDate fechaNacimientoLocal = fechaNacimiento.toInstant().atZone(java.time.ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaActual = LocalDate.now();
-        Period periodo = Period.between(fechaNacimiento, fechaActual);
+
+        Period periodo = Period.between(fechaNacimientoLocal, fechaActual);
+
         return periodo.getYears();
     }
     

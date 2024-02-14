@@ -1,6 +1,7 @@
 
 package bancoBluePersistencia.dtos.cliente;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 /**
@@ -10,7 +11,7 @@ import java.time.LocalDate;
 public class ClienteNuevoDTO {
     
     private String contrasenia;
-    private LocalDate fechaNacimiento; // Este atributo calcula la edad
+    private Date fechaNacimiento; // Este atributo calcula la edad
     private String nombreUsuario;
 
     // Los siguientes atributos componen el nombre completo
@@ -68,11 +69,11 @@ public class ClienteNuevoDTO {
         this.contrasenia = contrasenia;
     }
 
-    public LocalDate getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
