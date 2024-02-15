@@ -29,11 +29,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="EtqCalle" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                              <Component id="EtqColonia" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -48,7 +48,7 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqMunicipio" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="CmpNumExt" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
                   <Component id="CmpMunicipio" alignment="0" min="-2" pref="119" max="-2" attributes="0"/>
@@ -57,8 +57,8 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="CmpEstado" min="-2" pref="119" max="-2" attributes="0"/>
                   <Component id="CmpCP" min="-2" pref="119" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqCP" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqEstado" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="147" max="32767" attributes="0"/>
           </Group>
@@ -74,9 +74,9 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqCalle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqCP" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -86,9 +86,9 @@
               </Group>
               <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqColonia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqMunicipio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="EtqEstado" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -104,7 +104,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="EtqCalle">
       <Properties>
         <Property name="text" type="java.lang.String" value="CALLE"/>
       </Properties>
@@ -114,22 +114,22 @@
         <Property name="text" type="java.lang.String" value="N&#xda;MERO EXTERIOR"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel3">
+    <Component class="javax.swing.JLabel" name="EtqCP">
       <Properties>
         <Property name="text" type="java.lang.String" value="C.P."/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
+    <Component class="javax.swing.JLabel" name="EtqColonia">
       <Properties>
         <Property name="text" type="java.lang.String" value="COLONIA"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel5">
+    <Component class="javax.swing.JLabel" name="EtqMunicipio">
       <Properties>
         <Property name="text" type="java.lang.String" value="MUNICIPIO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel6">
+    <Component class="javax.swing.JLabel" name="EtqEstado">
       <Properties>
         <Property name="text" type="java.lang.String" value="ESTADO"/>
       </Properties>
