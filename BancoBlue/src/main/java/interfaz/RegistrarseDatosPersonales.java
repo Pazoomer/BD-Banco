@@ -164,7 +164,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 193, 63);
+        btnVolver.setBounds(6, 6, 193, 60);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));

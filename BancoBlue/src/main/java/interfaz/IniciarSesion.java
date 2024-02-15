@@ -39,14 +39,41 @@ public class IniciarSesion extends javax.swing.JFrame {
         CmpContrasenia = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        EtqNombreUsuario.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombreUsuario.setText("NOMBRE DE USUARIO");
+        getContentPane().add(EtqNombreUsuario);
+        EtqNombreUsuario.setBounds(183, 140, 285, 25);
 
+        CmpNombreUsuario.setBackground(new java.awt.Color(17, 20, 44));
+        CmpNombreUsuario.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(CmpNombreUsuario);
+        CmpNombreUsuario.setBounds(183, 177, 285, 36);
+
+        EtqContrasenia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqContrasenia.setForeground(new java.awt.Color(2, 178, 178));
         EtqContrasenia.setText("CONTRASEÑA");
+        getContentPane().add(EtqContrasenia);
+        EtqContrasenia.setBounds(183, 225, 182, 40);
 
-        btnConfirmar.setText("Confirmar");
+        CmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
+        CmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpContrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(CmpContrasenia);
+        CmpContrasenia.setBounds(183, 271, 285, 36);
+
+        btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
+        btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirmar.setText("Inicia sesión");
         btnConfirmar.setMaximumSize(new java.awt.Dimension(193, 63));
         btnConfirmar.setMinimumSize(new java.awt.Dimension(193, 63));
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -54,53 +81,34 @@ public class IniciarSesion extends javax.swing.JFrame {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(229, 325, 193, 63);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(490, 10, 148, 56);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
-                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(58, 58, 58)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(EtqContrasenia)
-                                .addComponent(EtqNombreUsuario)
-                                .addComponent(CmpNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(242, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(EtqNombreUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CmpNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(EtqContrasenia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addGap(28, 28, 28))
-        );
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Bienvenido de nuevo");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(195, 93, 258, 26);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(248, 19, 148, 62);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(-3, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -142,5 +150,8 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel EtqNombreUsuario;
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
