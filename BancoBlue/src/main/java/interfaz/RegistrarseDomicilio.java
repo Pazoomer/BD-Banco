@@ -1,6 +1,7 @@
 
 package interfaz;
 
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import javax.swing.JOptionPane;
 
@@ -11,13 +12,17 @@ import javax.swing.JOptionPane;
 public class RegistrarseDomicilio extends javax.swing.JFrame {
 
     ClienteNuevoDTO cliente;
+    IClientesDAO clientesDAO;
     /**
      * Creates new form RegistrarseDomicilio
+     * @param cliente
+     * @param clientesDAO
      */
-    public RegistrarseDomicilio(ClienteNuevoDTO cliente) {
+    public RegistrarseDomicilio(ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
         this.setUndecorated(true);
         initComponents();
         this.cliente=cliente;
+        this.clientesDAO=clientesDAO;
     }
 
     /**
@@ -42,6 +47,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         CmpMunicipio = new javax.swing.JTextField();
         CmpEstado = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,6 +75,13 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -109,11 +122,17 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
+                .addContainerGap()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqCalle)
                     .addComponent(jLabel2)
@@ -161,10 +180,22 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 && !codigoPostalStr.isEmpty() && !calle.isEmpty() && !colonia.isEmpty()
                 && !estado.isEmpty() && !municipio.isEmpty() && !numExtStr.isEmpty()) {
 
-            // Convertir los valores a enteros
-            int codigoPostal = Integer.parseInt(codigoPostalStr);
-            int numExt = Integer.parseInt(numExtStr);
+            int codigoPostal=0;
+            int numExt=0;
+            try {
+                codigoPostal = Integer.parseInt(this.CmpCP.getText());
+                numExt = Integer.parseInt(this.CmpNumExt.getText());
 
+                // Verificar que ambos valores son números válidos antes de continuar
+                if (codigoPostal < 0 || numExt < 0) {
+                    JOptionPane.showMessageDialog(this, "El código postal y el número exterior deben ser números positivos.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Sale del método si hay un error
+                }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingresa números válidos para el código postal y el número exterior.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
             // Configurar los valores en el objeto cliente
             cliente.setCalle(calle);
             cliente.setColonia(colonia);
@@ -175,7 +206,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
 
             // Realizar la acción si todos los campos son válidos
             if (true) {
-                RegistrarseDomicilio registrar = new RegistrarseDomicilio(cliente);
+                RegistrarseUsuario registrar = new RegistrarseUsuario(cliente, clientesDAO);
                 registrar.setVisible(true);
             }
         } else {
@@ -186,6 +217,9 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CmpCP;
@@ -200,6 +234,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     private javax.swing.JLabel EtqEstado;
     private javax.swing.JLabel EtqMunicipio;
     private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

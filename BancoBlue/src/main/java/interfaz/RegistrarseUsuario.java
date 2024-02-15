@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +12,18 @@ package interfaz;
  */
 public class RegistrarseUsuario extends javax.swing.JFrame {
 
+    ClienteNuevoDTO cliente;
+    IClientesDAO clientesDAO;
     /**
      * Creates new form RegistrarseUsuario
+     * @param cliente
+     * @param clientesDAO
      */
-    public RegistrarseUsuario() {
+    public RegistrarseUsuario(ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
+        this.setUndecorated(true);
         initComponents();
+        this.cliente=cliente;
+        this.clientesDAO=clientesDAO;
     }
 
     /**
@@ -31,8 +40,9 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         CmpNombreUsuario = new javax.swing.JTextField();
         EtqContrasenia = new javax.swing.JLabel();
         CmpContrasenia = new javax.swing.JTextField();
+        btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         btnGuardar.setText("Guardar");
         btnGuardar.setMaximumSize(new java.awt.Dimension(193, 63));
@@ -47,27 +57,42 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
 
         EtqContrasenia.setText("CONTRASEÑA");
 
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(EtqContrasenia)
+                            .addComponent(EtqNombreUsuario)
+                            .addComponent(CmpNombreUsuario)
+                            .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 414, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EtqContrasenia)
-                    .addComponent(EtqNombreUsuario)
-                    .addComponent(CmpNombreUsuario)
-                    .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(420, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(96, 96, 96)
+                .addContainerGap()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(EtqNombreUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CmpNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -81,11 +106,33 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        // TODO add your handling code here:
+        String contrasenia = this.CmpContrasenia.getText();
+        String nombreUsuario = this.CmpNombreUsuario.getText();
+        
+        if (contrasenia != null && !contrasenia.isEmpty() && nombreUsuario != null && !nombreUsuario.isEmpty()) {
+            cliente.setNombreUsuario(nombreUsuario);
+            cliente.setContrasenia(contrasenia);
+            try {
+                clientesDAO.agregar(cliente);
+                JOptionPane.showMessageDialog(this, "Se agrego el socio");
+                this.dispose();
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+        }
+
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -94,5 +141,6 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel EtqContrasenia;
     private javax.swing.JLabel EtqNombreUsuario;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnVolver;
     // End of variables declaration//GEN-END:variables
 }
