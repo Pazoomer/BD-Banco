@@ -6,13 +6,13 @@ package bancoBluePersistencia.dtos.cuenta;
  * @author t1pas
  */
 public class CuentaConsultableUsuarioDTO {
-    private int numeroCuenta;
+    private long numeroCuenta;
 
-    public int getNumeroCuenta() {
+    public long getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(long numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
     

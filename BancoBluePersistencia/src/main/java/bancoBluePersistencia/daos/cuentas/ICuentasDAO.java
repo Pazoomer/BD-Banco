@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author t1pas
  */
-public interface ICuentas {
+public interface ICuentasDAO {
     Cuenta agregar(CuentaNuevaDTO cuentaNuevo) throws PersistenciaException;
     boolean actualizar (CuentaActualizableDTO cuentaActualizable) throws PersistenciaException;
     boolean cancelar (CuentaConsultableDTO cuentaConsultable) throws PersistenciaException;

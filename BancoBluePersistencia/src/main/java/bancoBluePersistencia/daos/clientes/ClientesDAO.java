@@ -15,7 +15,7 @@ import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
-import bancoBluePersistencia.encriptacion.Contraseñas;
+import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import java.security.NoSuchAlgorithmException;
@@ -210,7 +210,7 @@ public class ClientesDAO implements IClientesDAO {
 
             if (resultados.next()) {
 
-                int id_cliente = resultados.getInt("id");
+                long id_cliente = resultados.getLong("id");
                 String contrasenia = resultados.getString("contrasenia");
                 String nombre_usuario = resultados.getString("nombre_usuario");
                 Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
@@ -218,7 +218,7 @@ public class ClientesDAO implements IClientesDAO {
                 String apellido_paterno = resultados.getString("apellido_paterno");
                 String apellido_materno = resultados.getString("apellido_materno");
 
-                int codigo_domicilio = resultados.getInt("codigo");
+                long codigo_domicilio = resultados.getLong("codigo");
                 String calle = resultados.getString("calle");
                 String colonia = resultados.getString("colonia");
                 int num_exterior = resultados.getInt("num_exterior");
@@ -271,7 +271,7 @@ public class ClientesDAO implements IClientesDAO {
 
             while (resultados.next()) {
 
-                int id_cliente = resultados.getInt("id");
+                long id_cliente = resultados.getLong("id");
                 String contrasenia = resultados.getString("contrasenia");
                 String nombre_usuario = resultados.getString("nombre_usuario");
                 Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
@@ -279,7 +279,7 @@ public class ClientesDAO implements IClientesDAO {
                 String apellido_paterno = resultados.getString("apellido_paterno");
                 String apellido_materno = resultados.getString("apellido_materno");
 
-                int codigo_domicilio = resultados.getInt("codigo");
+                long codigo_domicilio = resultados.getLong("codigo");
                 String calle = resultados.getString("calle");
                 String colonia = resultados.getString("colonia");
                 int num_exterior = resultados.getInt("num_exterior");
@@ -332,7 +332,7 @@ public class ClientesDAO implements IClientesDAO {
 
             if (resultados.next()) {
 
-                int id_cliente = resultados.getInt("id");
+                long id_cliente = resultados.getLong("id");
                 String contrasenia = resultados.getString("contrasenia");
                 String nombre_usuario = resultados.getString("nombre_usuario");
                 Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
@@ -340,7 +340,7 @@ public class ClientesDAO implements IClientesDAO {
                 String apellido_paterno = resultados.getString("apellido_paterno");
                 String apellido_materno = resultados.getString("apellido_materno");
 
-                int codigo_domicilio = resultados.getInt("codigo");
+                long codigo_domicilio = resultados.getLong("codigo");
                 String calle = resultados.getString("calle");
                 String colonia = resultados.getString("colonia");
                 int num_exterior = resultados.getInt("num_exterior");
