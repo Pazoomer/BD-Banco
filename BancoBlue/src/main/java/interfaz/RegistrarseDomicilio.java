@@ -26,12 +26,12 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        EtqCalle = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        EtqCP = new javax.swing.JLabel();
+        EtqColonia = new javax.swing.JLabel();
+        EtqMunicipio = new javax.swing.JLabel();
+        EtqEstado = new javax.swing.JLabel();
         CmpCalle = new javax.swing.JTextField();
         CmpNumExt = new javax.swing.JTextField();
         CmpCP = new javax.swing.JTextField();
@@ -42,17 +42,17 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("CALLE");
+        EtqCalle.setText("CALLE");
 
         jLabel2.setText("NÚMERO EXTERIOR");
 
-        jLabel3.setText("C.P.");
+        EtqCP.setText("C.P.");
 
-        jLabel4.setText("COLONIA");
+        EtqColonia.setText("COLONIA");
 
-        jLabel5.setText("MUNICIPIO");
+        EtqMunicipio.setText("MUNICIPIO");
 
-        jLabel6.setText("ESTADO");
+        EtqEstado.setText("ESTADO");
 
         CmpCalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,10 +79,10 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(EtqCalle)
                                 .addGap(137, 137, 137))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(EtqColonia)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(CmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -91,7 +91,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                         .addComponent(CmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
+                    .addComponent(EtqMunicipio)
                     .addComponent(jLabel2)
                     .addComponent(CmpNumExt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CmpMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -99,8 +99,8 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(CmpEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6))
+                    .addComponent(EtqCP)
+                    .addComponent(EtqEstado))
                 .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -112,9 +112,9 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(EtqCalle)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(EtqCP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -122,9 +122,9 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                     .addComponent(CmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(EtqColonia)
+                    .addComponent(EtqMunicipio)
+                    .addComponent(EtqEstado))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(CmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -153,12 +153,12 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     private javax.swing.JTextField CmpEstado;
     private javax.swing.JTextField CmpMunicipio;
     private javax.swing.JTextField CmpNumExt;
+    private javax.swing.JLabel EtqCP;
+    private javax.swing.JLabel EtqCalle;
+    private javax.swing.JLabel EtqColonia;
+    private javax.swing.JLabel EtqEstado;
+    private javax.swing.JLabel EtqMunicipio;
     private javax.swing.JButton btnSiguiente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }
