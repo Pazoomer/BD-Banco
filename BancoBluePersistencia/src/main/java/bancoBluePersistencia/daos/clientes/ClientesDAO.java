@@ -302,63 +302,75 @@ public class ClientesDAO implements IClientesDAO {
 
     @Override
     public Cliente consultar(ClienteInicioSesionDTO clienteInicioSesion) throws PersistenciaException {
-       String sentenciaSQL = """
-        SELECT c.id,
-        c.contrasenia,
-        c.nombre_usuario,
-        c.fecha_nacimiento,                
-        c.nombres,
-        c.apellido_paterno,
-        c.apellido_materno,
-        d.codigo,
-        d.calle,
-        d.colonia,
-        d.num_exterior,
-        d.codigo_postal,
-        d.ciudad,
-        d.estado
-        FROM clientes c
-        JOIN Domicilios d ON c.id = d.id_cliente
-        WHERE contrasenia=? AND nombre_usuario=?;
+        String sentenciaSQL = """
+            SELECT c.id,
+            c.contrasenia,
+            c.sal,                     
+            c.nombre_usuario,                    
+            c.fecha_nacimiento,                
+            c.nombres,
+            c.apellido_paterno,
+            c.apellido_materno,
+            d.codigo,
+            d.calle,
+            d.colonia,
+            d.num_exterior,
+            d.codigo_postal,
+            d.ciudad,
+            d.estado
+            FROM clientes c
+            JOIN Domicilios d ON c.id = d.id_cliente
+            WHERE nombre_usuario=?;
                               """;
-        try (
-            Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+        try (Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
 
-            comando.setString(1, clienteInicioSesion.getContrasenia());
-            comando.setString(2, clienteInicioSesion.getNombreUsuario());
+            comando.setString(1, clienteInicioSesion.getNombreUsuario());
 
-            ResultSet resultados = comando.executeQuery();
+            try (ResultSet resultados = comando.executeQuery()) {
+                if (resultados.next()) {
+                    long id_cliente = resultados.getLong("id");
+                    String contraseniaGuardada = resultados.getString("contrasenia");
+                    String salt = resultados.getString("sal");
 
-            if (resultados.next()) {
+                    try {
+                        if (Contraseñas.verificarContraseña(clienteInicioSesion.getContrasenia(), contraseniaGuardada, salt)) {
+                            // Resto del código para crear y devolver el objeto Cliente
+                            Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
+                            String nombres = resultados.getString("nombres");
+                            String apellido_paterno = resultados.getString("apellido_paterno");
+                            String apellido_materno = resultados.getString("apellido_materno");
 
-                long id_cliente = resultados.getLong("id");
-                String contrasenia = resultados.getString("contrasenia");
-                String nombre_usuario = resultados.getString("nombre_usuario");
-                Date fecha_nacimiento = resultados.getDate("fecha_nacimiento");
-                String nombres = resultados.getString("nombres");
-                String apellido_paterno = resultados.getString("apellido_paterno");
-                String apellido_materno = resultados.getString("apellido_materno");
+                            long codigo_domicilio = resultados.getLong("codigo");
+                            String calle = resultados.getString("calle");
+                            String colonia = resultados.getString("colonia");
+                            int num_exterior = resultados.getInt("num_exterior");
+                            int codigo_postal = resultados.getInt("codigo_postal");
+                            String ciudad = resultados.getString("ciudad");
+                            String estado = resultados.getString("estado");
 
-                long codigo_domicilio = resultados.getLong("codigo");
-                String calle = resultados.getString("calle");
-                String colonia = resultados.getString("colonia");
-                int num_exterior = resultados.getInt("num_exterior");
-                int codigo_postal = resultados.getInt("codigo_postal");
-                String ciudad = resultados.getString("ciudad");
-                String estado = resultados.getString("estado");
+                            Cliente cliente = new Cliente(id_cliente, contraseniaGuardada, fecha_nacimiento, clienteInicioSesion.getNombreUsuario(), nombres,
+                                    apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
 
-                Cliente cliente = new Cliente(id_cliente, contrasenia, fecha_nacimiento, nombre_usuario, nombres,
-                        apellido_materno, apellido_paterno, codigo_domicilio, ciudad, calle, colonia, num_exterior, codigo_postal, estado);
-
-                logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
-                return cliente;
-
-            } else {
-                logger.log(Level.INFO, "No existe el cliente", 1);
-                return null;
+                            logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
+                            return cliente;
+                        } else {
+                            // Contraseña incorrecta
+                            logger.log(Level.INFO, "Contraseña incorrecta para el cliente con nombre de usuario {0}", clienteInicioSesion.getNombreUsuario());
+                            return null;
+                        }
+                    } catch (NoSuchAlgorithmException ex) {
+                        // Manejo de NoSuchAlgorithmException
+                        logger.log(Level.SEVERE, "Error al verificar la contraseña", ex);
+                        throw new PersistenciaException("Error al verificar la contraseña", ex);
+                    }
+                } else {
+                    // Usuario no encontrado
+                    logger.log(Level.INFO, "No existe el cliente con nombre de usuario {0}", clienteInicioSesion.getNombreUsuario());
+                    return null;
+                }
             }
         } catch (SQLException ex) {
+            // Manejo de SQLException
             logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }

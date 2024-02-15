@@ -1,8 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoblueDominio.Cliente;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +13,15 @@ package interfaz;
  */
 public class IniciarSesion extends javax.swing.JFrame {
 
+    IClientesDAO clientesDAO;
     /**
      * Creates new form IniciarSesion
+     * @param clientesDAO
      */
-    public IniciarSesion() {
+    public IniciarSesion(IClientesDAO clientesDAO) {
+        this.setUndecorated(true);
         initComponents();
+        this.clientesDAO=clientesDAO;
     }
 
     /**
@@ -31,6 +38,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         EtqContrasenia = new javax.swing.JLabel();
         CmpContrasenia = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +49,18 @@ public class IniciarSesion extends javax.swing.JFrame {
         btnConfirmar.setText("Confirmar");
         btnConfirmar.setMaximumSize(new java.awt.Dimension(193, 63));
         btnConfirmar.setMinimumSize(new java.awt.Dimension(193, 63));
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -49,21 +69,27 @@ public class IniciarSesion extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EtqContrasenia)
-                            .addComponent(EtqNombreUsuario)
-                            .addComponent(CmpNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(219, 219, 219)
-                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnConfirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(58, 58, 58)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(EtqContrasenia)
+                                .addComponent(EtqNombreUsuario)
+                                .addComponent(CmpNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(242, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addContainerGap()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40)
                 .addComponent(EtqNombreUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CmpNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -72,12 +98,40 @@ public class IniciarSesion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(CmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(79, 79, 79)
-                .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnConfirmar, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addGap(28, 28, 28))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        String contrasenia = this.CmpContrasenia.getText();
+        String nombreUsuario = this.CmpNombreUsuario.getText();
+        
+        if (contrasenia != null && !contrasenia.isEmpty() && nombreUsuario != null && !nombreUsuario.isEmpty()) {
+
+            ClienteInicioSesionDTO cliente=new ClienteInicioSesionDTO();
+            cliente.setContrasenia(contrasenia);
+            cliente.setNombreUsuario(nombreUsuario);
+            try {
+                Cliente clienteExistente=clientesDAO.consultar(cliente);
+                if (clienteExistente!=null) {
+                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso, bienvenido "+clienteExistente.getNombre());
+                }
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CmpContrasenia;
@@ -85,5 +139,6 @@ public class IniciarSesion extends javax.swing.JFrame {
     private javax.swing.JLabel EtqContrasenia;
     private javax.swing.JLabel EtqNombreUsuario;
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnVolver;
     // End of variables declaration//GEN-END:variables
 }
