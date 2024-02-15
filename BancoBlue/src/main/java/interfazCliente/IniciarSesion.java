@@ -1,33 +1,33 @@
 
-package interfaz;
+package interfazCliente;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
-import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoblueDominio.Cliente;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author victo
  */
-public class RegistrarseUsuario extends javax.swing.JFrame {
+public class IniciarSesion extends javax.swing.JFrame {
 
-    ClienteNuevoDTO cliente;
     IClientesDAO clientesDAO;
+    Bienvenida bienvenida;
     /**
-     * Creates new form RegistrarseUsuario
-     * @param cliente
+     * Creates new form IniciarSesion
      * @param clientesDAO
      */
-    public RegistrarseUsuario(ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
+    public IniciarSesion(Bienvenida bienvenida, IClientesDAO clientesDAO) {
         this.setUndecorated(true);
         this.setVisible(true);
         
         initComponents();
-        this.setLocation(400, 200);
-        this.setSize(660, 410);
-        this.cliente=cliente;
         this.clientesDAO=clientesDAO;
+        this.bienvenida=bienvenida;
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -39,56 +39,61 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGuardar = new javax.swing.JButton();
         EtqNombreUsuario = new javax.swing.JLabel();
         CmpNombreUsuario = new javax.swing.JTextField();
         EtqContrasenia = new javax.swing.JLabel();
         CmpContrasenia = new javax.swing.JTextField();
+        btnConfirmar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(654, 403));
-        getContentPane().setLayout(null);
-
-        btnGuardar.setBackground(new java.awt.Color(238, 107, 107));
-        btnGuardar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setMaximumSize(new java.awt.Dimension(193, 63));
-        btnGuardar.setMinimumSize(new java.awt.Dimension(193, 63));
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
             }
         });
-        getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(450, 330, 193, 63);
+        getContentPane().setLayout(null);
 
         EtqNombreUsuario.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombreUsuario.setText("NOMBRE DE USUARIO");
         getContentPane().add(EtqNombreUsuario);
-        EtqNombreUsuario.setBounds(53, 129, 300, 30);
+        EtqNombreUsuario.setBounds(183, 140, 260, 32);
 
         CmpNombreUsuario.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombreUsuario.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmpNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpNombreUsuario);
-        CmpNombreUsuario.setBounds(53, 156, 320, 40);
+        CmpNombreUsuario.setBounds(183, 177, 285, 36);
 
         EtqContrasenia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqContrasenia.setForeground(new java.awt.Color(2, 178, 178));
         EtqContrasenia.setText("CONTRASEÑA");
         getContentPane().add(EtqContrasenia);
-        EtqContrasenia.setBounds(53, 244, 260, 30);
+        EtqContrasenia.setBounds(183, 225, 166, 40);
 
         CmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
         CmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmpContrasenia.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpContrasenia);
-        CmpContrasenia.setBounds(53, 271, 320, 40);
+        CmpContrasenia.setBounds(183, 271, 285, 36);
+
+        btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
+        btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
+        btnConfirmar.setText("Inicia sesión");
+        btnConfirmar.setMaximumSize(new java.awt.Dimension(193, 63));
+        btnConfirmar.setMinimumSize(new java.awt.Dimension(193, 63));
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(229, 325, 193, 63);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -100,44 +105,48 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(10, 10, 191, 63);
+        btnVolver.setBounds(490, 10, 148, 56);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Ingrese la información");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(220, 20, 400, 50);
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Bienvenido de nuevo");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-3, -4, 660, 410);
+        jLabel1.setBounds(195, 93, 257, 26);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(248, 19, 148, 62);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(-3, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         String contrasenia = this.CmpContrasenia.getText();
         String nombreUsuario = this.CmpNombreUsuario.getText();
-
+        
         if (contrasenia != null && !contrasenia.isEmpty() && nombreUsuario != null && !nombreUsuario.isEmpty()) {
-            cliente.setNombreUsuario(nombreUsuario);
+
+            ClienteInicioSesionDTO cliente = new ClienteInicioSesionDTO();
             cliente.setContrasenia(contrasenia);
-            try {
-                if (clientesDAO.validarNombreUsuarios(nombreUsuario)) {
+            cliente.setNombreUsuario(nombreUsuario);
 
-                } else {
-                    JOptionPane.showMessageDialog(this, "Nombre de usuario en uso");
-                    return;
+
+            try {
+                Cliente clienteExistente=clientesDAO.consultar(cliente);
+                if (clienteExistente!=null) {
+                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso, bienvenido "+clienteExistente.getNombre());
+                }else{
+                    JOptionPane.showMessageDialog(this, "No existe el socio");
                 }
-
-            } catch (PersistenciaException ex) {
-                JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
-            }
-            try {
-                clientesDAO.agregar(cliente);
-                JOptionPane.showMessageDialog(this, "Se agrego el socio");
-                this.dispose();
             } catch (PersistenciaException ex) {
                 JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
             }
@@ -145,22 +154,21 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
         }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    }//GEN-LAST:event_btnGuardarActionPerformed
-
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btnVolverActionPerformed
-
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.bienvenida.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CmpContrasenia;
     private javax.swing.JTextField CmpNombreUsuario;
     private javax.swing.JLabel EtqContrasenia;
     private javax.swing.JLabel EtqNombreUsuario;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

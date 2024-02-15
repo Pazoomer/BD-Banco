@@ -1,5 +1,5 @@
 
-package interfaz;
+package interfazCliente;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
@@ -13,12 +13,13 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
 
     ClienteNuevoDTO cliente;
     IClientesDAO clientesDAO;
+    RegistrarseDatosPersonales datosPersonales;
     /**
      * Creates new form RegistrarseDomicilio
      * @param cliente
      * @param clientesDAO
      */
-    public RegistrarseDomicilio(ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
+    public RegistrarseDomicilio(RegistrarseDatosPersonales datosPersonales, ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
         this.setUndecorated(true);
         this.setVisible(true);
         
@@ -27,7 +28,10 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         this.setSize(660, 410);
         this.cliente=cliente;
         this.clientesDAO=clientesDAO;
+        this.datosPersonales=datosPersonales;
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,7 +60,11 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(654, 403));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         EtqCalle.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
@@ -236,7 +244,8 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
 
             // Realizar la acción si todos los campos son válidos
             if (true) {
-                RegistrarseUsuario registrar = new RegistrarseUsuario(cliente, clientesDAO);
+                RegistrarseUsuario registrar = new RegistrarseUsuario(this,cliente, clientesDAO);
+                this.setVisible(false);
                 registrar.setVisible(true);
             }
         } else {
@@ -262,6 +271,10 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     private void CmpNumExtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmpNumExtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CmpNumExtActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CmpCP;

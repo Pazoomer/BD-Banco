@@ -1,5 +1,5 @@
 
-package interfaz;
+package interfazCliente;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
@@ -14,19 +14,23 @@ import javax.swing.JOptionPane;
 public class RegistrarseDatosPersonales extends javax.swing.JFrame {
 
     IClientesDAO clientesDAO;
+    Bienvenida bienvenida;
     /**
      * Creates new form RegistrarseDatosPersonales
      * @param clientesDAO
      */
-    public RegistrarseDatosPersonales(IClientesDAO clientesDAO) {
+    public RegistrarseDatosPersonales(Bienvenida bienvenida, IClientesDAO clientesDAO) {
         this.setUndecorated(true);
         this.setVisible(true);
+        
         
         initComponents();
         this.setLocation(400, 200);
         this.setSize(660, 410);
         this.clientesDAO=clientesDAO;
+        this.bienvenida=bienvenida;
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +57,11 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(654, 403));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         EtqNombre.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
@@ -238,7 +246,8 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
 
             try {
                 if (cliente.validarDatosPersonales()) {
-                    RegistrarseDomicilio registrar = new RegistrarseDomicilio(cliente, clientesDAO);
+                    RegistrarseDomicilio registrar = new RegistrarseDomicilio(this, cliente, clientesDAO);
+                    this.setVisible(false);
                     registrar.setVisible(true);
                 }
 
@@ -254,6 +263,10 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
        this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       bienvenida.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

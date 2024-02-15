@@ -1,10 +1,13 @@
 
-package interfaz;
+package interfazCliente;
 
 import bancoBluePersistencia.conexion.Conexion;
 import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,6 +16,7 @@ import bancoBluePersistencia.daos.clientes.IClientesDAO;
 public class Bienvenida extends javax.swing.JFrame {
 
     IClientesDAO clientesDAO;
+    IConexion conexion;
     /**
      * Creates new form Bienvenida
      */
@@ -27,9 +31,10 @@ public class Bienvenida extends javax.swing.JFrame {
         String contrasenia = "1234a";
         //1234a
         //Itson
-        IConexion conexion = new Conexion(cadenaConexion, usuario, contrasenia);
+        conexion = new Conexion(cadenaConexion, usuario, contrasenia);
         clientesDAO = new ClientesDAO(conexion);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,6 +57,11 @@ public class Bienvenida extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         btnIniciarSesion.setBackground(new java.awt.Color(238, 107, 107));
@@ -150,18 +160,30 @@ public class Bienvenida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCobrarRetiroActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        RegistrarseDatosPersonales registrar=new RegistrarseDatosPersonales(clientesDAO);
+        RegistrarseDatosPersonales registrar=new RegistrarseDatosPersonales(this,clientesDAO);
+        this.setVisible(false);
         registrar.setVisible(true);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        IniciarSesion registrar=new IniciarSesion(clientesDAO);
+        IniciarSesion registrar=new IniciarSesion(this,clientesDAO);
+        this.setVisible(false);
         registrar.setVisible(true);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        if (conexion!=null) {
+            try {
+                conexion.obtenerConexion().close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Bienvenida.class.getName()).log(Level.SEVERE, "No se pudo cerrar la conexion", ex);
+            }
+        }
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
