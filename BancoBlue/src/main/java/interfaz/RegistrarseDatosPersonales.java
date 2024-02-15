@@ -45,50 +45,99 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         CmbxAnio = new javax.swing.JComboBox<>();
         btnSiguiente = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(654, 403));
+        getContentPane().setLayout(null);
 
+        EtqNombre.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqNombre.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombre.setText("NOMBRE(S)");
+        getContentPane().add(EtqNombre);
+        EtqNombre.setBounds(20, 110, 150, 25);
 
+        EtqApellidoPaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqApellidoPaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoPaterno.setText("APELLIDO PATERNO");
+        getContentPane().add(EtqApellidoPaterno);
+        EtqApellidoPaterno.setBounds(310, 110, 262, 25);
 
+        EtqApellidoMaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqApellidoMaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoMaterno.setText("APELLIDO MATERNO");
+        getContentPane().add(EtqApellidoMaterno);
+        EtqApellidoMaterno.setBounds(20, 220, 269, 25);
 
+        EtqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         EtqFechaNacimiento.setText("FECHA DE NACIMIENTO");
+        getContentPane().add(EtqFechaNacimiento);
+        EtqFechaNacimiento.setBounds(310, 220, 309, 25);
 
+        CmpNombre.setBackground(new java.awt.Color(17, 20, 44));
+        CmpNombre.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpNombre.setForeground(new java.awt.Color(255, 255, 255));
         CmpNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmpNombreActionPerformed(evt);
             }
         });
+        getContentPane().add(CmpNombre);
+        CmpNombre.setBounds(20, 140, 222, 36);
 
+        CmpApellidoMaterno.setBackground(new java.awt.Color(17, 20, 44));
+        CmpApellidoMaterno.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpApellidoMaterno.setForeground(new java.awt.Color(255, 255, 255));
         CmpApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmpApellidoMaternoActionPerformed(evt);
             }
         });
+        getContentPane().add(CmpApellidoMaterno);
+        CmpApellidoMaterno.setBounds(20, 250, 222, 36);
 
+        CmpApellidoPaterno.setBackground(new java.awt.Color(17, 20, 44));
+        CmpApellidoPaterno.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpApellidoPaterno.setForeground(new java.awt.Color(255, 255, 255));
         CmpApellidoPaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmpApellidoPaternoActionPerformed(evt);
             }
         });
+        getContentPane().add(CmpApellidoPaterno);
+        CmpApellidoPaterno.setBounds(310, 140, 222, 36);
 
+        CmbxDia.setBackground(new java.awt.Color(17, 20, 44));
+        CmbxDia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmbxDia.setForeground(new java.awt.Color(255, 255, 255));
         CmbxDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         CmbxDia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbxDiaActionPerformed(evt);
             }
         });
+        getContentPane().add(CmbxDia);
+        CmbxDia.setBounds(310, 250, 82, 36);
 
+        CmbxMes.setBackground(new java.awt.Color(17, 20, 44));
+        CmbxMes.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmbxMes.setForeground(new java.awt.Color(255, 255, 255));
         CmbxMes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
         CmbxMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbxMesActionPerformed(evt);
             }
         });
+        getContentPane().add(CmbxMes);
+        CmbxMes.setBounds(400, 250, 82, 36);
 
+        CmbxAnio.setBackground(new java.awt.Color(17, 20, 44));
+        CmbxAnio.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmbxAnio.setForeground(new java.awt.Color(255, 255, 255));
         CmbxAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        getContentPane().add(CmbxAnio);
+        CmbxAnio.setBounds(490, 250, 106, 36);
 
         btnSiguiente.setBackground(new java.awt.Color(238, 107, 107));
         btnSiguiente.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -101,6 +150,8 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSiguiente);
+        btnSiguiente.setBounds(450, 330, 193, 63);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -111,68 +162,12 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 6, 193, 63);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(EtqApellidoMaterno)
-                            .addComponent(EtqNombre)
-                            .addComponent(CmpNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CmpApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(184, 184, 184)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CmpApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EtqApellidoPaterno)
-                            .addComponent(EtqFechaNacimiento)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(CmbxDia, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CmbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CmbxAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 86, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtqNombre)
-                    .addComponent(EtqApellidoPaterno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CmpNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpApellidoPaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtqApellidoMaterno)
-                    .addComponent(EtqFechaNacimiento))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CmpApellidoMaterno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmbxDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmbxMes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmbxAnio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(-3, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -263,5 +258,6 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     private javax.swing.JLabel EtqNombre;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

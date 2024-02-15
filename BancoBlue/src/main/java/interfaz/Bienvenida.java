@@ -63,7 +63,7 @@ public class Bienvenida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnIniciarSesion);
-        btnIniciarSesion.setBounds(100, 310, 193, 63);
+        btnIniciarSesion.setBounds(90, 310, 193, 63);
 
         btnCobrarRetiro.setBackground(new java.awt.Color(238, 107, 107));
         btnCobrarRetiro.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
