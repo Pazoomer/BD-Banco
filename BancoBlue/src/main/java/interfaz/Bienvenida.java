@@ -41,9 +41,19 @@ public class Bienvenida extends javax.swing.JFrame {
         btnCobrarRetiro = new javax.swing.JButton();
         btnRegistrarse = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        btnIniciarSesion.setBackground(new java.awt.Color(238, 107, 107));
+        btnIniciarSesion.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciarSesion.setText("Iniciar sesión");
         btnIniciarSesion.setMaximumSize(new java.awt.Dimension(193, 63));
         btnIniciarSesion.setMinimumSize(new java.awt.Dimension(193, 63));
@@ -52,7 +62,12 @@ public class Bienvenida extends javax.swing.JFrame {
                 btnIniciarSesionActionPerformed(evt);
             }
         });
+        getContentPane().add(btnIniciarSesion);
+        btnIniciarSesion.setBounds(100, 310, 193, 63);
 
+        btnCobrarRetiro.setBackground(new java.awt.Color(238, 107, 107));
+        btnCobrarRetiro.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnCobrarRetiro.setForeground(new java.awt.Color(255, 255, 255));
         btnCobrarRetiro.setText("Cobrar retiro");
         btnCobrarRetiro.setMaximumSize(new java.awt.Dimension(193, 63));
         btnCobrarRetiro.setMinimumSize(new java.awt.Dimension(193, 63));
@@ -61,7 +76,12 @@ public class Bienvenida extends javax.swing.JFrame {
                 btnCobrarRetiroActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCobrarRetiro);
+        btnCobrarRetiro.setBounds(450, 10, 193, 63);
 
+        btnRegistrarse.setBackground(new java.awt.Color(238, 107, 107));
+        btnRegistrarse.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
         btnRegistrarse.setText("Regístrate");
         btnRegistrarse.setMaximumSize(new java.awt.Dimension(193, 63));
         btnRegistrarse.setMinimumSize(new java.awt.Dimension(193, 63));
@@ -70,44 +90,53 @@ public class Bienvenida extends javax.swing.JFrame {
                 btnRegistrarseActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRegistrarse);
+        btnRegistrarse.setBounds(370, 310, 193, 63);
 
+        btnCerrar.setBackground(new java.awt.Color(238, 107, 107));
+        btnCerrar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrar.setText("Cerrar");
         btnCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrar);
+        btnCerrar.setBounds(10, 10, 193, 63);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCobrarRetiro, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(77, 77, 77)
-                .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCobrarRetiro, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                    .addComponent(btnCerrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(235, 235, 235)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrarse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIniciarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
-        );
+        jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel3.setText("Hola!");
+        jLabel3.setToolTipText("");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(260, 150, 130, 60);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(250, 60, 140, 80);
+
+        jLabel4.setFont(new java.awt.Font("Corbel", 1, 36)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Bienvenido");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(240, 210, 180, 40);
+
+        jLabel5.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("¿Nuevo aquí?");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(370, 290, 120, 20);
+
+        jLabel6.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Ó");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(320, 330, 20, 40);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-3, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -171,5 +200,11 @@ public class Bienvenida extends javax.swing.JFrame {
     private javax.swing.JButton btnCobrarRetiro;
     private javax.swing.JButton btnIniciarSesion;
     private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

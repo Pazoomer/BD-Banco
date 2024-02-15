@@ -69,6 +69,9 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
 
+        btnSiguiente.setBackground(new java.awt.Color(238, 107, 107));
+        btnSiguiente.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
         btnSiguiente.setText("Siguiente");
         btnSiguiente.setMaximumSize(new java.awt.Dimension(193, 63));
         btnSiguiente.setMinimumSize(new java.awt.Dimension(193, 63));
@@ -78,6 +81,9 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,16 +129,16 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
+                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(EtqCalle)
                     .addComponent(jLabel2)
