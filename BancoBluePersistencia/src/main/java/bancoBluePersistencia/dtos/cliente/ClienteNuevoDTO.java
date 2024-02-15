@@ -155,5 +155,12 @@ public class ClienteNuevoDTO {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+    
+    public boolean validar(){
+        //Validar edad
+        //Espacios en blanco
+        return false;
+        
+    }
 
 }

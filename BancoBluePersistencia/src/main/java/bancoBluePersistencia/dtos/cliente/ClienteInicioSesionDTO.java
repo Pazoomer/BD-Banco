@@ -25,5 +25,12 @@ public class ClienteInicioSesionDTO {
         this.nombreUsuario = nombreUsuario;
     }
     
+    public boolean validar(){
+        //Nombre d euduario repetido
+        //Espacios en blanco
+        return false;
+        
+    }
+    
     
 }
