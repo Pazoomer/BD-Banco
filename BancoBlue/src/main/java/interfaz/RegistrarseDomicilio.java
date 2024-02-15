@@ -48,26 +48,102 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         CmpEstado = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
+        EtqCalle.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqCalle.setForeground(new java.awt.Color(2, 178, 178));
         EtqCalle.setText("CALLE");
+        getContentPane().add(EtqCalle);
+        EtqCalle.setBounds(21, 104, 84, 25);
 
-        jLabel2.setText("NÚMERO EXTERIOR");
+        jLabel2.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel2.setText("NÚM. exterior");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(260, 98, 206, 36);
 
+        EtqCP.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqCP.setForeground(new java.awt.Color(2, 178, 178));
         EtqCP.setText("C.P.");
+        getContentPane().add(EtqCP);
+        EtqCP.setBounds(484, 104, 48, 25);
 
+        EtqColonia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqColonia.setForeground(new java.awt.Color(2, 178, 178));
         EtqColonia.setText("COLONIA");
+        getContentPane().add(EtqColonia);
+        EtqColonia.setBounds(15, 232, 121, 25);
 
+        EtqMunicipio.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqMunicipio.setForeground(new java.awt.Color(2, 178, 178));
         EtqMunicipio.setText("MUNICIPIO");
+        getContentPane().add(EtqMunicipio);
+        EtqMunicipio.setBounds(260, 232, 143, 25);
 
+        EtqEstado.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqEstado.setForeground(new java.awt.Color(2, 178, 178));
         EtqEstado.setText("ESTADO");
+        getContentPane().add(EtqEstado);
+        EtqEstado.setBounds(453, 232, 105, 25);
 
+        CmpCalle.setBackground(new java.awt.Color(17, 20, 44));
+        CmpCalle.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpCalle.setForeground(new java.awt.Color(255, 255, 255));
         CmpCalle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmpCalleActionPerformed(evt);
             }
         });
+        getContentPane().add(CmpCalle);
+        CmpCalle.setBounds(21, 137, 221, 36);
+
+        CmpNumExt.setBackground(new java.awt.Color(17, 20, 44));
+        CmpNumExt.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpNumExt.setForeground(new java.awt.Color(255, 255, 255));
+        CmpNumExt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmpNumExtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CmpNumExt);
+        CmpNumExt.setBounds(260, 137, 143, 36);
+
+        CmpCP.setBackground(new java.awt.Color(17, 20, 44));
+        CmpCP.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpCP.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(CmpCP);
+        CmpCP.setBounds(484, 137, 136, 36);
+
+        CmpColonia.setBackground(new java.awt.Color(17, 20, 44));
+        CmpColonia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpColonia.setForeground(new java.awt.Color(255, 255, 255));
+        CmpColonia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmpColoniaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CmpColonia);
+        CmpColonia.setBounds(15, 263, 227, 36);
+
+        CmpMunicipio.setBackground(new java.awt.Color(17, 20, 44));
+        CmpMunicipio.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpMunicipio.setForeground(new java.awt.Color(255, 255, 255));
+        CmpMunicipio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CmpMunicipioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CmpMunicipio);
+        CmpMunicipio.setBounds(260, 263, 175, 36);
+
+        CmpEstado.setBackground(new java.awt.Color(17, 20, 44));
+        CmpEstado.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpEstado.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(CmpEstado);
+        CmpEstado.setBounds(453, 263, 167, 36);
 
         btnSiguiente.setBackground(new java.awt.Color(238, 107, 107));
         btnSiguiente.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -80,6 +156,8 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
+        getContentPane().add(btnSiguiente);
+        btnSiguiente.setBounds(447, 335, 192, 62);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -90,78 +168,12 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 6, 192, 62);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(EtqCalle)
-                                .addGap(137, 137, 137))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(EtqColonia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(CmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(52, 52, 52)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(CmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(52, 52, 52)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(EtqMunicipio)
-                    .addComponent(jLabel2)
-                    .addComponent(CmpNumExt, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CmpEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(EtqCP)
-                    .addComponent(EtqEstado))
-                .addContainerGap(147, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtqCalle)
-                    .addComponent(jLabel2)
-                    .addComponent(EtqCP))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpNumExt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EtqColonia)
-                    .addComponent(EtqMunicipio)
-                    .addComponent(EtqEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpMunicipio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CmpEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(49, 49, 49)
-                .addComponent(btnSiguiente, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-3, -4, 650, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -227,6 +239,18 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    private void CmpColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmpColoniaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmpColoniaActionPerformed
+
+    private void CmpMunicipioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmpMunicipioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmpMunicipioActionPerformed
+
+    private void CmpNumExtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmpNumExtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CmpNumExtActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CmpCP;
     private javax.swing.JTextField CmpCalle;
@@ -241,6 +265,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     private javax.swing.JLabel EtqMunicipio;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
