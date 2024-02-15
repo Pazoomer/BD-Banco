@@ -15,6 +15,7 @@ import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import bancoBluePersistencia.encriptacion.Contraseñas;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import java.sql.Date;
@@ -83,7 +84,7 @@ public class ClientesDAO implements IClientesDAO {
                 }
 
                 conexion.commit();
-                Cliente cliente = new Cliente(idClienteGenerado, clienteNuevo.getContrasenia(), clienteNuevo.getFechaNacimiento(), clienteNuevo.getNombreUsuario(), clienteNuevo.getNombre(), clienteNuevo.getApellidopaterno(), clienteNuevo.getApellidoMaterno(), clienteNuevo.getCiudad(), clienteNuevo.getCalle(), clienteNuevo.getColonia(), clienteNuevo.getNumExterior(), clienteNuevo.getCodigoPostal(), clienteNuevo.getEstado());
+                Cliente cliente = new Cliente(idClienteGenerado, clienteNuevo.getContrasenia(), Contraseñas.generarSal(), clienteNuevo.getFechaNacimiento(), clienteNuevo.getNombreUsuario(), clienteNuevo.getNombre(), clienteNuevo.getApellidopaterno(), clienteNuevo.getApellidoMaterno(), clienteNuevo.getCiudad(), clienteNuevo.getCalle(), clienteNuevo.getColonia(), clienteNuevo.getNumExterior(), clienteNuevo.getCodigoPostal(), clienteNuevo.getEstado());
                 return cliente;
             }
             //Si algo falla devuelva la base de datos a un estado seguro

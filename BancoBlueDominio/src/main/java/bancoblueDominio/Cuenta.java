@@ -14,29 +14,38 @@ public class Cuenta {
     private LocalDateTime fechaApertura;
     private int numeroCuenta;
     private int idCliente;
+    private String estado;
 
     public Cuenta() {
     }
 
-    public Cuenta(long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente) {
+    public Cuenta(long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente, String estado) {
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
         this.numeroCuenta = numeroCuenta;
         this.idCliente = idCliente;
+        this.estado=estado;
     }
     
     
 
-    public Cuenta(long codigo, long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente) {
+    public Cuenta(long codigo, long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente, String estado) {
         this.codigo = codigo;
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
         this.numeroCuenta = numeroCuenta;
         this.idCliente = idCliente;
+        this.estado=estado;
     }
 
-    
-    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     public int getIdCliente() {
         return idCliente;
     }

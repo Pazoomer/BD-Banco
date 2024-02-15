@@ -4,6 +4,7 @@ package bancoBluePersistencia.daos.cuentas;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaActualizableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cuenta;
@@ -26,12 +27,12 @@ public class Cuentas implements ICuentas{
     }
 
     @Override
-    public boolean eliminar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException {
+    public boolean cancelar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Cuenta consultar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException {
+    public Cuenta consultar(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -26,11 +26,6 @@ public class Operaciones implements IOperaciones{
     }
 
     @Override
-    public Operacion consultar(OperacionConsultableDTO operacionConsultable) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Operacion> consultar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }

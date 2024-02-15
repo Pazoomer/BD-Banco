@@ -15,6 +15,15 @@ public class CuentaActualizableDTO {
     private LocalDateTime fechaApertura;
     private int numeroCuenta;
     private int idCliente;
+    String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public long getCodigo() {
         return codigo;

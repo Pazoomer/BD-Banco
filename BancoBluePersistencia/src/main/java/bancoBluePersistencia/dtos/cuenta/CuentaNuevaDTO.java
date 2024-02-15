@@ -9,12 +9,20 @@ import java.util.Objects;
  * @author t1pas
  */
 public class CuentaNuevaDTO {
-    
-
+   
     private long saldo;
     private LocalDateTime fechaApertura;
     private int numeroCuenta;
     private int idCliente;
+    String estado="abierta";
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public long getSaldo() {
         return saldo;
