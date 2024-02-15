@@ -48,9 +48,11 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         CmpEstado = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(654, 403));
         getContentPane().setLayout(null);
 
         EtqCalle.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
@@ -171,6 +173,12 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         getContentPane().add(btnVolver);
         btnVolver.setBounds(6, 6, 192, 62);
 
+        jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Ingrese su domicilio");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(220, 20, 360, 40);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-3, -4, 650, 410);
@@ -267,5 +275,6 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

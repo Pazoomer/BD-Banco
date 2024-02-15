@@ -45,6 +45,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         CmbxAnio = new javax.swing.JComboBox<>();
         btnSiguiente = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -165,6 +166,12 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         getContentPane().add(btnVolver);
         btnVolver.setBounds(6, 6, 193, 63);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Ingrese sus datos");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(220, 20, 360, 40);
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(-3, -4, 660, 410);
@@ -258,6 +265,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     private javax.swing.JLabel EtqNombre;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

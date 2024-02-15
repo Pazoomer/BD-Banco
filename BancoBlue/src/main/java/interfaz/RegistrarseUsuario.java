@@ -41,9 +41,11 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         EtqContrasenia = new javax.swing.JLabel();
         CmpContrasenia = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(654, 403));
         getContentPane().setLayout(null);
 
         btnGuardar.setBackground(new java.awt.Color(238, 107, 107));
@@ -95,6 +97,12 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnVolver);
         btnVolver.setBounds(10, 10, 191, 63);
+
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Ingrese la información");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(220, 20, 400, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -149,5 +157,6 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
