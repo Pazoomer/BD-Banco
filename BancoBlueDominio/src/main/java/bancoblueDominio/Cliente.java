@@ -14,7 +14,6 @@ public class Cliente {
     
     private long id;
     private String contrasenia;
-    private String sal;
     private Date fechaNacimiento; // Este atributo calcula la edad
     private String nombreUsuario;
     
@@ -52,31 +51,10 @@ public class Cliente {
         this.estado = estado;
     }
     
-    
+ 
 
-    public Cliente(long id, String contrasenia, String sal, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, long codigoDomicilio, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
-        this.id = id;
-        this.sal=sal;
+    public Cliente(String contrasenia, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.contrasenia = contrasenia;
-        this.fechaNacimiento = fechaNacimiento;
-        this.nombreUsuario = nombreUsuario;
-        this.Nombre = Nombre;
-        this.apellidoMaterno = apellidoMaterno;
-        this.apellidopaterno = apellidopaterno;
-        this.codigoDomicilio = codigoDomicilio;
-        this.ciudad = ciudad;
-        this.calle = calle;
-        this.colonia = colonia;
-        this.numExterior = numExterior;
-        this.codigoPostal = codigoPostal;
-        this.estado = estado;
-    }
-    
-    
-
-    public Cliente(String contrasenia, String sal, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidopaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
-        this.contrasenia = contrasenia;
-        this.sal=sal;
         this.fechaNacimiento = fechaNacimiento;
         this.nombreUsuario = nombreUsuario;
         this.Nombre = Nombre;
@@ -92,10 +70,9 @@ public class Cliente {
 
     
     
-    public Cliente(long id, String contrasenia, String sal, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidoPaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
+    public Cliente(long id, String contrasenia, Date fechaNacimiento, String nombreUsuario, String Nombre, String apellidoMaterno, String apellidoPaterno, String ciudad, String calle, String colonia, int numExterior, int codigoPostal, String estado) {
         this.id = id;
         this.contrasenia = contrasenia;
-        this.sal=sal;
         this.fechaNacimiento = fechaNacimiento;
         this.nombreUsuario = nombreUsuario;
         this.Nombre = Nombre;

@@ -18,6 +18,7 @@ import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.encriptacion.Contraseñas;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
 /**
@@ -44,18 +45,27 @@ public class ClientesDAO implements IClientesDAO {
 
             // Insertar datos del cliente
             String sentenciaClienteSQL = """
-            INSERT INTO Clientes (contrasenia, nombre_usuario, fecha_nacimiento, nombres, apellido_paterno, apellido_materno)
-            VALUES (?,?,?,?,?,?);
+            INSERT INTO Clientes (contrasenia, sal, nombre_usuario, fecha_nacimiento, nombres, apellido_paterno, apellido_materno)
+            VALUES (?,?,?,?,?,?,?);
         """;
             //Comando para añadir al cliente
             try (PreparedStatement comandoCliente = conexion.prepareStatement(sentenciaClienteSQL, Statement.RETURN_GENERATED_KEYS)) {
                 
-                comandoCliente.setString(1, clienteNuevo.getContrasenia());
-                comandoCliente.setString(2, clienteNuevo.getNombreUsuario());
-                comandoCliente.setDate(3, clienteNuevo.getFechaNacimiento());
-                comandoCliente.setString(4, clienteNuevo.getNombre());
-                comandoCliente.setString(5, clienteNuevo.getApellidopaterno());
-                comandoCliente.setString(6, clienteNuevo.getApellidoMaterno());
+                String sal=Contraseñas.generarSal();
+                String contraseniaConSal;
+                try {
+                    contraseniaConSal=Contraseñas.encriptarContraseña(clienteNuevo.getContrasenia(), sal);
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new PersistenciaException("Sistema desactualizado, actualize su version para seguir", ex);
+                }
+                
+                comandoCliente.setString(1, contraseniaConSal);
+                comandoCliente.setString(2, sal);
+                comandoCliente.setString(3, clienteNuevo.getNombreUsuario());
+                comandoCliente.setDate(4, clienteNuevo.getFechaNacimiento());
+                comandoCliente.setString(5, clienteNuevo.getNombre());
+                comandoCliente.setString(6, clienteNuevo.getApellidopaterno());
+                comandoCliente.setString(7, clienteNuevo.getApellidoMaterno());
 
                 int numRegistrosInsertadosCliente = comandoCliente.executeUpdate();
                 logger.log(Level.INFO, "Se agregaron {0} clientes", numRegistrosInsertadosCliente);
@@ -84,7 +94,7 @@ public class ClientesDAO implements IClientesDAO {
                 }
 
                 conexion.commit();
-                Cliente cliente = new Cliente(idClienteGenerado, clienteNuevo.getContrasenia(), Contraseñas.generarSal(), clienteNuevo.getFechaNacimiento(), clienteNuevo.getNombreUsuario(), clienteNuevo.getNombre(), clienteNuevo.getApellidopaterno(), clienteNuevo.getApellidoMaterno(), clienteNuevo.getCiudad(), clienteNuevo.getCalle(), clienteNuevo.getColonia(), clienteNuevo.getNumExterior(), clienteNuevo.getCodigoPostal(), clienteNuevo.getEstado());
+                Cliente cliente = new Cliente(idClienteGenerado, clienteNuevo.getContrasenia(), clienteNuevo.getFechaNacimiento(), clienteNuevo.getNombreUsuario(), clienteNuevo.getNombre(), clienteNuevo.getApellidopaterno(), clienteNuevo.getApellidoMaterno(), clienteNuevo.getCiudad(), clienteNuevo.getCalle(), clienteNuevo.getColonia(), clienteNuevo.getNumExterior(), clienteNuevo.getCodigoPostal(), clienteNuevo.getEstado());
                 return cliente;
             }
             //Si algo falla devuelva la base de datos a un estado seguro

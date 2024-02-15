@@ -61,16 +61,16 @@ public class pruebaPersistencia {
         ClienteInicioSesionDTO clienteInicioSesion = new ClienteInicioSesionDTO();
         clienteInicioSesion.setContrasenia("cebolla8");
         clienteInicioSesion.setNombreUsuario("CarlitosMora");
-        /*
+        
         try {
-            //System.out.println(clientesDAO.validarNombreUsuarios("CarlitosMora"));
-            //System.out.println(clientesDAO.consultar(clienteInicioSesion));
-            //System.out.println(clientesDAO.actualizar(clienteActualizable));
-            //System.out.println(clientesDAO.agregar(clienteNuevo));
-            //System.out.println(clientesDAO.consultar());
-            //System.out.println(clientesDAO.consultar(clienteConsultable));
+            System.out.println(clientesDAO.validarNombreUsuarios("CarlitosMora"));
+            System.out.println(clientesDAO.consultar(clienteInicioSesion));
+            System.out.println(clientesDAO.actualizar(clienteActualizable));
+            System.out.println(clientesDAO.agregar(clienteNuevo));
+            System.out.println(clientesDAO.consultar());
+            System.out.println(clientesDAO.consultar(clienteConsultable));
         } catch (PersistenciaException persistenciaException) {
-        }*/
+        }
          
 
     }
