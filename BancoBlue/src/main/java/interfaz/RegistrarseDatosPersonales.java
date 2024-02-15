@@ -1,8 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
+
+import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import java.sql.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,6 +16,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
      * Creates new form RegistrarseDatosPersonales
      */
     public RegistrarseDatosPersonales() {
+        this.setUndecorated(true);
         initComponents();
     }
 
@@ -38,7 +41,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         CmbxAnio = new javax.swing.JComboBox<>();
         btnSiguiente = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         EtqNombre.setText("NOMBRE(S)");
 
@@ -146,6 +149,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CmpApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmpApellidoMaternoActionPerformed
@@ -169,7 +173,50 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     }//GEN-LAST:event_CmbxMesActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
+
+        // Obtener valores de los campos
+        String anioStr = (String) this.CmbxAnio.getSelectedItem();
+        String diaStr = (String) this.CmbxDia.getSelectedItem();
+        String mesStr = (String) this.CmbxMes.getSelectedItem();
+
+        // Comprobar que ningún campo sea null
+        if (anioStr != null && diaStr != null && mesStr != null
+                && !anioStr.isEmpty() && !diaStr.isEmpty() && !mesStr.isEmpty()
+                && this.CmpApellidoMaterno.getText() != null && this.CmpApellidoPaterno.getText() != null
+                && this.CmpNombre.getText() != null
+                && !this.CmpApellidoMaterno.getText().isEmpty() && !this.CmpApellidoPaterno.getText().isEmpty()
+                && !this.CmpNombre.getText().isEmpty()) {
+            
+        // Convertir los valores a enteros
+        int anio = Integer.parseInt(anioStr);
+        int dia = Integer.parseInt(diaStr);
+        int mes = Integer.parseInt(mesStr);
+
+        Date fechaNacimiento = new Date(anio - 1900, mes - 1, dia);
+
+            String apellidoMaterno = this.CmpApellidoMaterno.getText();
+            String apellidoPaterno = this.CmpApellidoPaterno.getText();
+            String nombre = this.CmpNombre.getText();
+
+            ClienteNuevoDTO cliente = new ClienteNuevoDTO();
+            cliente.setApellidoMaterno(apellidoMaterno);
+            cliente.setApellidopaterno(apellidoPaterno);
+            cliente.setFechaNacimiento(fechaNacimiento);
+            cliente.setNombre(nombre);
+
+            try {
+                if (cliente.validarDatosPersonales()) {
+                    RegistrarseDomicilio registrar = new RegistrarseDomicilio(cliente);
+                    registrar.setVisible(true);
+                }
+
+            } catch (ValidacionDTOException validacionDTOException) {
+                JOptionPane.showMessageDialog(this, "Debe ser mayor de edad");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 
