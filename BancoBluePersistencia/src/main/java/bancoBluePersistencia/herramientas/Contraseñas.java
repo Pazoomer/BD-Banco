@@ -1,4 +1,4 @@
-package bancoBluePersistencia.encriptacion;
+package bancoBluePersistencia.herramientas;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -45,26 +45,5 @@ public class Contraseñas {
         return contraseñaGuardada.equals(enteredPasswordHash);
     }
 
-    public static void main(String[] args) {
-        try {
-            // Registro de un nuevo usuario
-            String password = "password123";
-            String salt = generarSal();
-            String hashedPassword = encriptarContraseña(password, salt);
-
-            System.out.println("Password: " + password);
-            System.out.println("Salt: " + salt);
-            System.out.println("Hashed Password: " + hashedPassword);
-
-            // Verificación de la contraseña ingresada por un usuario
-            String enteredPassword = "password123";
-            if (verificarContraseña(enteredPassword, hashedPassword, salt)) {
-                System.out.println("Contraseña correcta");
-            } else {
-                System.out.println("Contraseña incorrecta");
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-    }
+   
 }

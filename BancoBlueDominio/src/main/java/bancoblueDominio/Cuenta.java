@@ -2,7 +2,6 @@
 package bancoblueDominio;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  *
@@ -12,14 +11,14 @@ public class Cuenta {
     private long codigo;
     private long saldo;
     private LocalDateTime fechaApertura;
-    private int numeroCuenta;
+    private long numeroCuenta;
     private int idCliente;
     private String estado;
 
     public Cuenta() {
     }
 
-    public Cuenta(long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente, String estado) {
+    public Cuenta(long saldo, LocalDateTime fechaApertura, long numeroCuenta, int idCliente, String estado) {
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
         this.numeroCuenta = numeroCuenta;
@@ -29,7 +28,7 @@ public class Cuenta {
     
     
 
-    public Cuenta(long codigo, long saldo, LocalDateTime fechaApertura, int numeroCuenta, int idCliente, String estado) {
+    public Cuenta(long codigo, long saldo, LocalDateTime fechaApertura, long numeroCuenta, int idCliente, String estado) {
         this.codigo = codigo;
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
@@ -70,11 +69,11 @@ public class Cuenta {
         this.fechaApertura = fechaApertura;
     }
 
-    public int getNumeroCuenta() {
+    public long getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(long numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
@@ -84,17 +83,6 @@ public class Cuenta {
 
     public void setCodigo(long codigo) {
         this.codigo = codigo;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 31 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
-        hash = 31 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
-        hash = 31 * hash + Objects.hashCode(this.fechaApertura);
-        hash = 31 * hash + this.numeroCuenta;
-        hash = 31 * hash + this.idCliente;
-        return hash;
     }
 
 

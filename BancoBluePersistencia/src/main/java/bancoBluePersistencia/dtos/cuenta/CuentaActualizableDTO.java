@@ -13,7 +13,7 @@ public class CuentaActualizableDTO {
     private long codigo;
     private long saldo;
     private LocalDateTime fechaApertura;
-    private int numeroCuenta;
+    private long numeroCuenta;
     private int idCliente;
     String estado;
 
@@ -49,11 +49,11 @@ public class CuentaActualizableDTO {
         this.fechaApertura = fechaApertura;
     }
 
-    public int getNumeroCuenta() {
+    public long getNumeroCuenta() {
         return numeroCuenta;
     }
 
-    public void setNumeroCuenta(int numeroCuenta) {
+    public void setNumeroCuenta(long numeroCuenta) {
         this.numeroCuenta = numeroCuenta;
     }
 
@@ -68,13 +68,16 @@ public class CuentaActualizableDTO {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
-        hash = 17 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
-        hash = 17 * hash + Objects.hashCode(this.fechaApertura);
-        hash = 17 * hash + this.numeroCuenta;
-        hash = 17 * hash + this.idCliente;
+        hash = 97 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
+        hash = 97 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
+        hash = 97 * hash + Objects.hashCode(this.fechaApertura);
+        hash = 97 * hash + (int) (this.numeroCuenta ^ (this.numeroCuenta >>> 32));
+        hash = 97 * hash + this.idCliente;
+        hash = 97 * hash + Objects.hashCode(this.estado);
         return hash;
     }
+
+
 
     @Override
     public boolean equals(Object obj) {

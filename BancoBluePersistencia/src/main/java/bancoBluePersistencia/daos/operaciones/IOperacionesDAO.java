@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author t1pas
  */
-public interface IOperaciones {
+public interface IOperacionesDAO {
     Operacion agregar(OperacionNuevaDTO operacionNueva) throws PersistenciaException;
     boolean actualizar (OperacionActualizableDTO operacionActualizable) throws PersistenciaException;
     List<Operacion> consultar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException;

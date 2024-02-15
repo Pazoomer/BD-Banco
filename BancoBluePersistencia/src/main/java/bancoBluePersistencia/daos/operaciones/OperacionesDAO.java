@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author t1pas
  */
-public class Operaciones implements IOperaciones{
+public class OperacionesDAO implements IOperacionesDAO{
 
     @Override
     public Operacion agregar(OperacionNuevaDTO operacionNueva) throws PersistenciaException {
