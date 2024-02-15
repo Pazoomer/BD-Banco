@@ -1,6 +1,8 @@
 
 package bancoBluePersistencia.dtos.cliente;
 
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
+
 /**
  *
  * @author t1pas
@@ -45,6 +47,16 @@ public class ClienteConsultableDTO {
         sb.append("id=").append(id);
         sb.append('}');
         return sb.toString();
+    }
+    
+    public boolean validar() throws ValidacionDTOException{
+        // Validar que todos los atributos no sean ni null ni 0
+        if (id == 0 ) {
+            throw new ValidacionDTOException("Los campos no pueden estar vacios");
+        }
+
+            return true;
+
     }
     
     

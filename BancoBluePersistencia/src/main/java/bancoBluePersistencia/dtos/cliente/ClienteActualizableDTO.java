@@ -1,7 +1,9 @@
 
 package bancoBluePersistencia.dtos.cliente;
 
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import java.sql.Date;
+import java.util.Calendar;
 
 /**
  *
@@ -132,38 +134,39 @@ public class ClienteActualizableDTO {
     }
 
     
-    /*
-    public boolean esValido() throws ValidacionDTOException{
-        
-        if (this.nombre==null 
-                || this.nombre.isBlank() 
-                || this.nombre.trim().length()>100) {
-            throw new ValidacionDTOException("Nombre de socio invalido");
-        }
-        
-        String regexTelefono = "^[0-9]{9,15}$";
-        Pattern patternTelefono = Pattern.compile(regexTelefono);
-        Matcher matcherTelefono = patternTelefono.matcher(this.telefono);
-        
-        if (this.telefono == null
-                || this.telefono.isBlank()
-                || this.telefono.trim().length() > 16
-                || !matcherTelefono.matches()) {
-            throw new ValidacionDTOException("Telefono de socio invalido");
+    public boolean validar() throws ValidacionDTOException{
+        // Validar que todos los atributos no sean ni null ni 0
+        if (contrasenia == null || fechaNacimiento == null || nombreUsuario == null ||
+            Nombre == null || apellidoMaterno == null || apellidopaterno == null ||
+            ciudad == null || calle == null || colonia == null || estado == null) {
+            throw new ValidacionDTOException("Los campos no pueden estar vacios");
         }
 
-        String regexCorreo = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-        Pattern patternCorreo = Pattern.compile(regexCorreo);
-        Matcher matcherCorreo = patternCorreo.matcher(this.correo);
+        // Validar que numExterior y codigoPostal no sean 0
+        if (numExterior == 0 || codigoPostal == 0 || id == 0) {
+            throw new ValidacionDTOException("Los numerosn pueden ser 0");
+        }
 
-        if (this.correo.length()==0) {
+        // Calcular la edad a partir de la fecha de nacimiento
+        int edadMinima = 18;
+        Calendar calendarNacimiento = Calendar.getInstance();
+        calendarNacimiento.setTime(fechaNacimiento);
+        Calendar calendarActual = Calendar.getInstance();
+
+        int diferenciaAnios = calendarActual.get(Calendar.YEAR) - calendarNacimiento.get(Calendar.YEAR);
+
+        // Ajuste para verificar si ya cumplió años en el año actual
+        if (calendarActual.get(Calendar.DAY_OF_YEAR) < calendarNacimiento.get(Calendar.DAY_OF_YEAR)) {
+            diferenciaAnios--;
+        }
+
+        // Verificar que la edad sea mayor o igual a 18
+        if (diferenciaAnios >= edadMinima) {
             return true;
-        } else if (this.correo.trim().length() > 200
-                || !matcherCorreo.matches()) {
-            throw new ValidacionDTOException("Correo de socio invalido");
         }
-        return true;
-    }*/
+        throw new ValidacionDTOException("Debe ser mayor de edad");
+        
+    }
     
     
 }

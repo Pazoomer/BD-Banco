@@ -19,6 +19,7 @@ public interface IClientesDAO {
     Cliente consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException;
     Cliente consultar(ClienteInicioSesionDTO clienteInicioSesion) throws PersistenciaException;
     List<Cliente> consultar() throws PersistenciaException;
+    boolean validarNombreUsuarios(String nombreConsultable) throws PersistenciaException;
     //boolean eliminar(ClienteEliminableDTO clienteEliminable) throws PersistenciaException; NO SE PUEDE ELIMINAR CLIENTES
     
 }

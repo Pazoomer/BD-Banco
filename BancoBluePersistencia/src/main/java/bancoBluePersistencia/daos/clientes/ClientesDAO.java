@@ -352,5 +352,37 @@ public class ClientesDAO implements IClientesDAO {
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
     }
+
+    @Override
+    public boolean validarNombreUsuarios(String nombreConsultable) throws PersistenciaException {
+        String sentenciaSQL = """
+        SELECT nombre_usuario    
+        FROM clientes
+                              """;
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+            ResultSet resultados = comando.executeQuery();
+
+            List<String> listaNombresUsuario = new LinkedList<>();
+
+            while (resultados.next()) {
+
+                String nombre_usuario = resultados.getString("nombre_usuario");
+
+                listaNombresUsuario.add(nombre_usuario);
+            }
+            logger.log(Level.INFO, "Se consultaron {0} clientes", listaNombresUsuario.size());
+
+            if (listaNombresUsuario.contains(nombreConsultable)) {
+                return false;
+            }
+            return true;
+
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
+            throw new PersistenciaException("No se pudo consultar el cliente", ex);
+        }
+    }
     
 }

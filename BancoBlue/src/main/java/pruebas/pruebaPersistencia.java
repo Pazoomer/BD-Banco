@@ -29,7 +29,7 @@ public class pruebaPersistencia {
         ClienteConsultableDTO clienteConsultable=new ClienteConsultableDTO();
         clienteConsultable.setId(1);
         
-        ClienteNuevoDTO clienteNuevo=new ClienteNuevoDTO();
+        ClienteNuevoDTO clienteNuevo=new ClienteNuevoDTO(clientesDAO);
         clienteNuevo.setApellidoMaterno("a");
         clienteNuevo.setApellidopaterno("a");
         clienteNuevo.setCalle("a");
@@ -63,14 +63,15 @@ public class pruebaPersistencia {
         clienteInicioSesion.setNombreUsuario("CarlitosMora");
         /*
         try {
+            //System.out.println(clientesDAO.validarNombreUsuarios("CarlitosMora"));
             //System.out.println(clientesDAO.consultar(clienteInicioSesion));
             //System.out.println(clientesDAO.actualizar(clienteActualizable));
             //System.out.println(clientesDAO.agregar(clienteNuevo));
             //System.out.println(clientesDAO.consultar());
             //System.out.println(clientesDAO.consultar(clienteConsultable));
         } catch (PersistenciaException persistenciaException) {
-        }
-         */
+        }*/
+         
 
     }
 }
