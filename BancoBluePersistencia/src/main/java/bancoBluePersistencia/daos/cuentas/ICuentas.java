@@ -16,6 +16,7 @@ import java.util.List;
 public interface ICuentas {
     Cuenta agregar(CuentaNuevaDTO cuentaNuevo) throws PersistenciaException;
     boolean actualizar (CuentaActualizableDTO cuentaActualizable) throws PersistenciaException;
+    boolean eliminar (CuentaConsultableDTO cuentaConsultable) throws PersistenciaException;
     Cuenta consultar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException;
     List<Cuenta> consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException;
 }
