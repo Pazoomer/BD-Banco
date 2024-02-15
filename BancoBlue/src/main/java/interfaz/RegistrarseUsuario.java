@@ -112,10 +112,21 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         String contrasenia = this.CmpContrasenia.getText();
         String nombreUsuario = this.CmpNombreUsuario.getText();
-        
+
         if (contrasenia != null && !contrasenia.isEmpty() && nombreUsuario != null && !nombreUsuario.isEmpty()) {
             cliente.setNombreUsuario(nombreUsuario);
             cliente.setContrasenia(contrasenia);
+            try {
+                if (clientesDAO.validarNombreUsuarios(nombreUsuario)) {
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Nombre de usuario en uso");
+                    return;
+                }
+
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
+            }
             try {
                 clientesDAO.agregar(cliente);
                 JOptionPane.showMessageDialog(this, "Se agrego el socio");

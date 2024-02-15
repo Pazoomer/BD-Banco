@@ -116,9 +116,11 @@ public class IniciarSesion extends javax.swing.JFrame {
         
         if (contrasenia != null && !contrasenia.isEmpty() && nombreUsuario != null && !nombreUsuario.isEmpty()) {
 
-            ClienteInicioSesionDTO cliente=new ClienteInicioSesionDTO();
+            ClienteInicioSesionDTO cliente = new ClienteInicioSesionDTO();
             cliente.setContrasenia(contrasenia);
             cliente.setNombreUsuario(nombreUsuario);
+
+
             try {
                 Cliente clienteExistente=clientesDAO.consultar(cliente);
                 if (clienteExistente!=null) {
