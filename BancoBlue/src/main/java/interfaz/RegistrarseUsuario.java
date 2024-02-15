@@ -41,6 +41,7 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         EtqContrasenia = new javax.swing.JLabel();
         CmpContrasenia = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -59,17 +60,29 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         getContentPane().add(btnGuardar);
         btnGuardar.setBounds(450, 330, 193, 63);
 
+        EtqNombreUsuario.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombreUsuario.setText("NOMBRE DE USUARIO");
         getContentPane().add(EtqNombreUsuario);
-        EtqNombreUsuario.setBounds(53, 134, 118, 16);
-        getContentPane().add(CmpNombreUsuario);
-        CmpNombreUsuario.setBounds(53, 156, 184, 22);
+        EtqNombreUsuario.setBounds(53, 129, 300, 30);
 
+        CmpNombreUsuario.setBackground(new java.awt.Color(17, 20, 44));
+        CmpNombreUsuario.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(CmpNombreUsuario);
+        CmpNombreUsuario.setBounds(53, 156, 320, 40);
+
+        EtqContrasenia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        EtqContrasenia.setForeground(new java.awt.Color(2, 178, 178));
         EtqContrasenia.setText("CONTRASEÑA");
         getContentPane().add(EtqContrasenia);
-        EtqContrasenia.setBounds(53, 249, 76, 16);
+        EtqContrasenia.setBounds(53, 244, 260, 30);
+
+        CmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
+        CmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        CmpContrasenia.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpContrasenia);
-        CmpContrasenia.setBounds(53, 271, 184, 22);
+        CmpContrasenia.setBounds(53, 271, 320, 40);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -82,6 +95,10 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         });
         getContentPane().add(btnVolver);
         btnVolver.setBounds(10, 10, 191, 63);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(-3, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -131,5 +148,6 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel EtqNombreUsuario;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
