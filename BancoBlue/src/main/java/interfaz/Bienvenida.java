@@ -19,6 +19,9 @@ public class Bienvenida extends javax.swing.JFrame {
     public Bienvenida() {
         this.setUndecorated(true);
         initComponents();
+        this.setVisible(true);
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
         String cadenaConexion = "jdbc:mysql://localhost/bancobd";
         String usuario = "root";
         String contrasenia = "1234a";
@@ -136,7 +139,7 @@ public class Bienvenida extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(-3, -4, 660, 410);
+        jLabel1.setBounds(0, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);

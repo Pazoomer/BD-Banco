@@ -20,8 +20,12 @@ public class IniciarSesion extends javax.swing.JFrame {
      */
     public IniciarSesion(IClientesDAO clientesDAO) {
         this.setUndecorated(true);
+        this.setVisible(true);
+        
         initComponents();
         this.clientesDAO=clientesDAO;
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**

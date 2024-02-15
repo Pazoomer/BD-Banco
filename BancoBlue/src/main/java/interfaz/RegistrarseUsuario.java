@@ -21,7 +21,11 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
      */
     public RegistrarseUsuario(ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
         this.setUndecorated(true);
+        this.setVisible(true);
+        
         initComponents();
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
         this.cliente=cliente;
         this.clientesDAO=clientesDAO;
     }

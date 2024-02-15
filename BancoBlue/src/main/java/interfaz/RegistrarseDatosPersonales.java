@@ -20,7 +20,11 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
      */
     public RegistrarseDatosPersonales(IClientesDAO clientesDAO) {
         this.setUndecorated(true);
+        this.setVisible(true);
+        
         initComponents();
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
         this.clientesDAO=clientesDAO;
     }
 
@@ -56,25 +60,25 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         EtqNombre.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombre.setText("NOMBRE(S)");
         getContentPane().add(EtqNombre);
-        EtqNombre.setBounds(20, 110, 150, 25);
+        EtqNombre.setBounds(20, 110, 138, 32);
 
         EtqApellidoPaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoPaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoPaterno.setText("APELLIDO PATERNO");
         getContentPane().add(EtqApellidoPaterno);
-        EtqApellidoPaterno.setBounds(310, 110, 262, 25);
+        EtqApellidoPaterno.setBounds(310, 110, 238, 32);
 
         EtqApellidoMaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoMaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoMaterno.setText("APELLIDO MATERNO");
         getContentPane().add(EtqApellidoMaterno);
-        EtqApellidoMaterno.setBounds(20, 220, 269, 25);
+        EtqApellidoMaterno.setBounds(20, 220, 242, 32);
 
         EtqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         EtqFechaNacimiento.setText("FECHA DE NACIMIENTO");
         getContentPane().add(EtqFechaNacimiento);
-        EtqFechaNacimiento.setBounds(310, 220, 309, 25);
+        EtqFechaNacimiento.setBounds(310, 220, 276, 32);
 
         CmpNombre.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombre.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
