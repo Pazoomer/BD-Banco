@@ -29,7 +29,7 @@ public class pruebaPersistencia {
         ClienteConsultableDTO clienteConsultable=new ClienteConsultableDTO();
         clienteConsultable.setId(1);
         
-        ClienteNuevoDTO clienteNuevo=new ClienteNuevoDTO(clientesDAO);
+        ClienteNuevoDTO clienteNuevo=new ClienteNuevoDTO();
         clienteNuevo.setApellidoMaterno("a");
         clienteNuevo.setApellidopaterno("a");
         clienteNuevo.setCalle("a");

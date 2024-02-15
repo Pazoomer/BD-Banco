@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
+
+import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +10,14 @@ package interfaz;
  */
 public class RegistrarseDomicilio extends javax.swing.JFrame {
 
+    ClienteNuevoDTO cliente;
     /**
      * Creates new form RegistrarseDomicilio
      */
-    public RegistrarseDomicilio() {
+    public RegistrarseDomicilio(ClienteNuevoDTO cliente) {
+        this.setUndecorated(true);
         initComponents();
+        this.cliente=cliente;
     }
 
     /**
@@ -40,7 +43,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         CmpEstado = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("CALLE");
 
@@ -136,6 +139,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void CmpCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmpCalleActionPerformed
@@ -143,43 +147,45 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     }//GEN-LAST:event_CmpCalleActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        // TODO add your handling code here:
+        // Obtener valores de los campos
+        String codigoPostalStr = this.CmpCP.getText();
+        String calle = this.CmpCalle.getText();
+        String colonia = this.CmpColonia.getText();
+        String estado = this.CmpEstado.getText();
+        String municipio = this.CmpMunicipio.getText();
+        String numExtStr = this.CmpNumExt.getText();
+
+        // Comprobar que ningún campo sea null o esté vacío
+        if (codigoPostalStr != null && calle != null && colonia != null
+                && estado != null && municipio != null && numExtStr != null
+                && !codigoPostalStr.isEmpty() && !calle.isEmpty() && !colonia.isEmpty()
+                && !estado.isEmpty() && !municipio.isEmpty() && !numExtStr.isEmpty()) {
+
+            // Convertir los valores a enteros
+            int codigoPostal = Integer.parseInt(codigoPostalStr);
+            int numExt = Integer.parseInt(numExtStr);
+
+            // Configurar los valores en el objeto cliente
+            cliente.setCalle(calle);
+            cliente.setColonia(colonia);
+            cliente.setCodigoPostal(codigoPostal);
+            cliente.setEstado(estado);
+            cliente.setCiudad(municipio);
+            cliente.setNumExterior(numExt);
+
+            // Realizar la acción si todos los campos son válidos
+            if (true) {
+                RegistrarseDomicilio registrar = new RegistrarseDomicilio(cliente);
+                registrar.setVisible(true);
+            }
+        } else {
+            // Mostrar un mensaje de error o realizar alguna otra acción
+            // porque algunos campos son null o están vacíos
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+        }
+
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarseDomicilio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarseDomicilio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarseDomicilio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarseDomicilio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarseDomicilio().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CmpCP;

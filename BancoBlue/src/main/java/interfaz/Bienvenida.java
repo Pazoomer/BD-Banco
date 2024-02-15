@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz;
 
 /**
@@ -14,7 +11,9 @@ public class Bienvenida extends javax.swing.JFrame {
      * Creates new form Bienvenida
      */
     public Bienvenida() {
+        this.setUndecorated(true);
         initComponents();
+        
     }
 
     /**
@@ -31,11 +30,15 @@ public class Bienvenida extends javax.swing.JFrame {
         btnRegistrarse = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(654, 403));
 
         btnIniciarSesion.setText("Iniciar sesión");
         btnIniciarSesion.setMaximumSize(new java.awt.Dimension(193, 63));
         btnIniciarSesion.setMinimumSize(new java.awt.Dimension(193, 63));
+        btnIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSesionActionPerformed(evt);
+            }
+        });
 
         btnCobrarRetiro.setText("Cobrar retiro");
         btnCobrarRetiro.setMaximumSize(new java.awt.Dimension(193, 63));
@@ -49,6 +52,11 @@ public class Bienvenida extends javax.swing.JFrame {
         btnRegistrarse.setText("Regístrate");
         btnRegistrarse.setMaximumSize(new java.awt.Dimension(193, 63));
         btnRegistrarse.setMinimumSize(new java.awt.Dimension(193, 63));
+        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,6 +92,15 @@ public class Bienvenida extends javax.swing.JFrame {
     private void btnCobrarRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarRetiroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCobrarRetiroActionPerformed
+
+    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+        RegistrarseDatosPersonales registrar=new RegistrarseDatosPersonales();
+        registrar.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarseActionPerformed
+
+    private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     /**
      * @param args the command line arguments

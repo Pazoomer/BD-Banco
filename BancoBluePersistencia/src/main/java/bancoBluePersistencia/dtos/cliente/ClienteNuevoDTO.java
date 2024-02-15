@@ -1,9 +1,6 @@
 
 package bancoBluePersistencia.dtos.cliente;
 
-import bancoBluePersistencia.daos.clientes.ClientesDAO;
-import bancoBluePersistencia.daos.clientes.IClientesDAO;
-import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import java.sql.Date;
 import java.util.Calendar;
@@ -30,13 +27,7 @@ public class ClienteNuevoDTO {
     private int numExterior;
     private int codigoPostal;
     private String estado;
-    
-    //Conexion con la base de datos
-    IClientesDAO clientesDAO;
 
-    public ClienteNuevoDTO(IClientesDAO clientesDAO) {
-        this.clientesDAO = clientesDAO;
-    }
 
     public String getContrasenia() {
         return contrasenia;
@@ -132,6 +123,33 @@ public class ClienteNuevoDTO {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+    
+    public boolean validarDatosPersonales() throws ValidacionDTOException{
+        
+        // Validar que todos los atributos no sean ni null ni 0
+        if (fechaNacimiento == null|| Nombre == null || apellidoMaterno == null || apellidopaterno == null ) {
+            throw new ValidacionDTOException("Los campos no pueden estar vacios");
+        }
+        
+        // Calcular la edad a partir de la fecha de nacimiento
+        int edadMinima = 18;
+        Calendar calendarNacimiento = Calendar.getInstance();
+        calendarNacimiento.setTime(fechaNacimiento);
+        Calendar calendarActual = Calendar.getInstance();
+
+        int diferenciaAnios = calendarActual.get(Calendar.YEAR) - calendarNacimiento.get(Calendar.YEAR);
+
+        // Ajuste para verificar si ya cumplió años en el año actual
+        if (calendarActual.get(Calendar.DAY_OF_YEAR) < calendarNacimiento.get(Calendar.DAY_OF_YEAR)) {
+            diferenciaAnios--;
+        }
+
+        // Verificar que la edad sea mayor o igual a 18
+        if (diferenciaAnios >= edadMinima) {
+            return true;
+        }
+        throw new ValidacionDTOException("Debe ser mayor de edad");
     }
 
     public boolean validar() throws ValidacionDTOException{
