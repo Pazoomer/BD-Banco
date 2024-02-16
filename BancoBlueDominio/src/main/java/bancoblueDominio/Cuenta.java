@@ -18,6 +18,15 @@ public class Cuenta {
     public Cuenta() {
     }
 
+    public Cuenta(long saldo, LocalDateTime fechaApertura, long numeroCuenta, String estado) {
+        this.saldo = saldo;
+        this.fechaApertura = fechaApertura;
+        this.numeroCuenta = numeroCuenta;
+        this.estado = estado;
+    }
+    
+    
+
     public Cuenta(long saldo, LocalDateTime fechaApertura, long numeroCuenta, int idCliente, String estado) {
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;

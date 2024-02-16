@@ -2,7 +2,6 @@
 package bancoblueDominio;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  *
@@ -14,6 +13,7 @@ public class Operacion {
     private long codigo;
     private long monto;
     private String motivo;
+    private String tipo;
     private LocalDateTime fechaCreacion;
     private long codigoCuenta;
     
@@ -28,51 +28,36 @@ public class Operacion {
     public Operacion() {
     }
 
-    public Operacion(long codigo) {
-        this.codigo = codigo;
-    }
-
-    public Operacion(String estado, int folio, String contrasenia) {
-        this.estado = estado;
-        this.folio = folio;
-        this.contrasenia = contrasenia;
-    }
-
-    public Operacion(int numCuentaDestino) {
-        this.numCuentaDestino = numCuentaDestino;
-    }
-
-    public Operacion(long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
-        this.monto = monto;
-        this.motivo = motivo;
-        this.fechaCreacion = fechaCreacion;
-        this.codigoCuenta = codigoCuenta;
-        this.numCuentaDestino = numCuentaDestino;
-    }
-
-    public Operacion(long codigo, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
+    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia, int numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
-        this.fechaCreacion = fechaCreacion;
-        this.codigoCuenta = codigoCuenta;
-        this.numCuentaDestino = numCuentaDestino;
-    }
-
-    public Operacion(long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia) {
-        this.monto = monto;
-        this.motivo = motivo;
+        this.tipo = tipo;
         this.fechaCreacion = fechaCreacion;
         this.codigoCuenta = codigoCuenta;
         this.estado = estado;
         this.folio = folio;
         this.contrasenia = contrasenia;
+        this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long codigo, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia) {
+    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia, int numCuentaDestino) {
+        this.monto = monto;
+        this.motivo = motivo;
+        this.tipo = tipo;
+        this.fechaCreacion = fechaCreacion;
+        this.codigoCuenta = codigoCuenta;
+        this.estado = estado;
+        this.folio = folio;
+        this.contrasenia = contrasenia;
+        this.numCuentaDestino = numCuentaDestino;
+    }
+
+    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
+        this.tipo = tipo;
         this.fechaCreacion = fechaCreacion;
         this.codigoCuenta = codigoCuenta;
         this.estado = estado;
@@ -80,28 +65,47 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia, int numCuentaDestino) {
+    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia) {
         this.monto = monto;
         this.motivo = motivo;
+        this.tipo = tipo;
         this.fechaCreacion = fechaCreacion;
         this.codigoCuenta = codigoCuenta;
         this.estado = estado;
         this.folio = folio;
         this.contrasenia = contrasenia;
-        this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long codigo, long monto, String motivo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia, int numCuentaDestino) {
+    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
+        this.tipo = tipo;
         this.fechaCreacion = fechaCreacion;
         this.codigoCuenta = codigoCuenta;
-        this.estado = estado;
-        this.folio = folio;
-        this.contrasenia = contrasenia;
         this.numCuentaDestino = numCuentaDestino;
     }
+
+    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
+        this.monto = monto;
+        this.motivo = motivo;
+        this.tipo = tipo;
+        this.fechaCreacion = fechaCreacion;
+        this.codigoCuenta = codigoCuenta;
+        this.numCuentaDestino = numCuentaDestino;
+    }
+
+    
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
+    
 
     public long getCodigo() {
         return codigo;
@@ -175,52 +179,6 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
-        hash = 67 * hash + (int) (this.monto ^ (this.monto >>> 32));
-        hash = 67 * hash + Objects.hashCode(this.motivo);
-        hash = 67 * hash + Objects.hashCode(this.fechaCreacion);
-        hash = 67 * hash + (int) (this.codigoCuenta ^ (this.codigoCuenta >>> 32));
-        hash = 67 * hash + Objects.hashCode(this.estado);
-        hash = 67 * hash + this.folio;
-        hash = 67 * hash + Objects.hashCode(this.contrasenia);
-        hash = 67 * hash + this.numCuentaDestino;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Operacion other = (Operacion) obj;
-        return this.codigo == other.codigo;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Operacion{");
-        sb.append("codigo=").append(codigo);
-        sb.append(", monto=").append(monto);
-        sb.append(", motivo=").append(motivo);
-        sb.append(", fechaCreacion=").append(fechaCreacion);
-        sb.append(", codigoCuenta=").append(codigoCuenta);
-        sb.append(", estado=").append(estado);
-        sb.append(", folio=").append(folio);
-        sb.append(", contrasenia=").append(contrasenia);
-        sb.append(", numCuentaDestino=").append(numCuentaDestino);
-        sb.append('}');
-        return sb.toString();
-    }
 
     
 }
