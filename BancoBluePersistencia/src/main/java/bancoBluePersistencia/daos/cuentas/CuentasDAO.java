@@ -8,6 +8,7 @@ import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
 import bancoblueDominio.Cuenta;
@@ -113,8 +114,7 @@ public class CuentasDAO implements ICuentasDAO{
                               """;
 
         try (
-                Connection conexion = this.conexionBD.obtenerConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS)) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS)) {
 
             long nuevoNumCuenta;
 
@@ -147,12 +147,11 @@ public class CuentasDAO implements ICuentasDAO{
         }
     }
 
-    private boolean comprobarExistenciaCuenta(long numCuenta) throws SQLException {
+    private boolean comprobarExistenciaCuenta(long numCuenta) throws PersistenciaException {
         String consultaSQL = "SELECT COUNT(*) AS cuenta_existente FROM cuentas WHERE num_cuenta = ?";
 
         try (
-            Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comando = conexion.prepareStatement(consultaSQL)) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(consultaSQL)) {
             comando.setLong(1, numCuenta);
 
             ResultSet resultados = comando.executeQuery();
@@ -160,12 +159,15 @@ public class CuentasDAO implements ICuentasDAO{
 
             int cuentaExistente = resultados.getInt("cuenta_existente");
             return cuentaExistente > 0;
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede acceder a la base de datos", ex);
+            throw new PersistenciaException("No se pudo acceder a la base de datos", ex);
         }
 
     }
 
     @Override
-    public Cuenta consultar(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
+    public Cuenta consultar(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException, ValidacionDTOException {
         String sentenciaSQL = """
         SELECT codigo, fecha_apertura, saldo, estado, id_cliente
         FROM cuentas
@@ -187,6 +189,9 @@ public class CuentasDAO implements ICuentasDAO{
                 String estado = resultados.getString("estado");
                 long id_cliente = resultados.getLong("id_cliente");
 
+                if (estado.equalsIgnoreCase("cancelada")) {
+                    throw new ValidacionDTOException("No se pudo consultar la cuenta");
+                }
 
                 Cuenta cuenta = new Cuenta(codigo, saldo, Fechas.convertidorLocalDateTime(fecha_apertura), cuentaConsultableUsuario.getNumeroCuenta(), id_cliente, estado);
                 logger.log(Level.INFO, "Se consultaron {0} cuentas", 1);
@@ -195,11 +200,16 @@ public class CuentasDAO implements ICuentasDAO{
                 logger.log(Level.INFO, "No existe la cuenta", 1);
                 return null;
             }
-        
+
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "No se puede consultar la cuenta", ex);
             throw new PersistenciaException("No se pudo consultar la cuenta", ex);
+        } catch (ValidacionDTOException ex) {
+            logger.log(Level.INFO, "La cuenta fue cancelada");
+            throw new ValidacionDTOException("La cuenta fue cancelada");
         }
     }
+    
+    
 
 }

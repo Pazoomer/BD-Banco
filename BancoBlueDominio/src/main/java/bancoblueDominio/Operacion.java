@@ -20,16 +20,26 @@ public class Operacion {
     //Atributos del retiro sin cuenta
     private String estado;
     private int folio;
-    private String contrasenia;
+    private int contrasenia;
 
     //Atributos de la transferencia
     private int numCuentaDestino;
 
     public Operacion() {
     }
-
-    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia, int numCuentaDestino) {
+    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, String estado, int folio, int contrasenia, int numCuentaDestino) {
         this.codigo = codigo;
+        this.monto = monto;
+        this.motivo = motivo;
+        this.tipo = tipo;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+        this.folio = folio;
+        this.contrasenia = contrasenia;
+        this.numCuentaDestino = numCuentaDestino;
+    }
+
+    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, int contrasenia, int numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -41,19 +51,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia, int numCuentaDestino) {
-        this.monto = monto;
-        this.motivo = motivo;
-        this.tipo = tipo;
-        this.fechaCreacion = fechaCreacion;
-        this.codigoCuenta = codigoCuenta;
-        this.estado = estado;
-        this.folio = folio;
-        this.contrasenia = contrasenia;
-        this.numCuentaDestino = numCuentaDestino;
-    }
-
-    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia) {
+    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, int contrasenia) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -65,7 +63,7 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, String contrasenia) {
+    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, int contrasenia) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -163,11 +161,11 @@ public class Operacion {
         this.folio = folio;
     }
 
-    public String getContrasenia() {
+    public int getContrasenia() {
         return contrasenia;
     }
 
-    public void setContrasenia(String contrasenia) {
+    public void setContrasenia(int contrasenia) {
         this.contrasenia = contrasenia;
     }
 

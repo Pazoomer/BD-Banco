@@ -7,15 +7,44 @@ import java.time.LocalDateTime;
  *
  * @author t1pas
  */
-public class OperacionTransferenciaNuevaDTO {
+public class OperacionNuevaDTO {
     
     private long monto;
     private String motivo;
-    private LocalDateTime fechaCreacion;
+
     private long codigoCuenta;
     private int numCuentaOrigen;
     private int numCuentaDestino;
+    private String tipo;
+    private int contraseña;
+    private long folio;
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(int contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public long getFolio() {
+        return folio;
+    }
+
+    public void setFolio(long folio) {
+        this.folio = folio;
+    }
+
+    
+    
     public long getMonto() {
         return monto;
     }
@@ -32,13 +61,6 @@ public class OperacionTransferenciaNuevaDTO {
         this.motivo = motivo;
     }
 
-    public LocalDateTime getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
 
     public long getCodigoCuenta() {
         return codigoCuenta;
