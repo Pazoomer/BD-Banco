@@ -109,8 +109,8 @@ public class CuentasDAO implements ICuentasDAO{
     @Override
     public Cuenta agregar(CuentaNuevaDTO cuentaNueva) throws PersistenciaException {
         String sentenciaSQL = """
-        INSERT INTO cuentas (num_cuenta, saldo, fecha_apertura, id_cliente, estado)
-        VALUES (?, 0.0, ?, ?, 'abierta');
+        INSERT INTO cuentas (num_cuenta, saldo, id_cliente, estado)
+        VALUES (?, 0.0, ?, 'abierta');
                               """;
 
         try (
@@ -125,8 +125,7 @@ public class CuentasDAO implements ICuentasDAO{
 
             Date fechaAhora = Date.valueOf(LocalDate.now());
 
-            comando.setDate(2, fechaAhora);
-            comando.setInt(3, cuentaNueva.getIdCliente());
+            comando.setInt(2, cuentaNueva.getIdCliente());
 
             int numRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} cuentas", numRegistrosInsertados);

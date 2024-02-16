@@ -9,15 +9,14 @@ import java.time.LocalDateTime;
  */
 public class OperacionNuevaDTO {
     
-    private long monto;
+    private double monto;
     private String motivo;
 
     private long codigoCuenta;
     private int numCuentaOrigen;
     private int numCuentaDestino;
     private String tipo;
-    private int contraseña;
-    private long folio;
+
 
     public String getTipo() {
         return tipo;
@@ -27,29 +26,11 @@ public class OperacionNuevaDTO {
         this.tipo = tipo;
     }
 
-    public int getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(int contraseña) {
-        this.contraseña = contraseña;
-    }
-
-    public long getFolio() {
-        return folio;
-    }
-
-    public void setFolio(long folio) {
-        this.folio = folio;
-    }
-
-    
-    
-    public long getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(long monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 

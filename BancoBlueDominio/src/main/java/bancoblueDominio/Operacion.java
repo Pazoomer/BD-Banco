@@ -11,7 +11,7 @@ public class Operacion {
     
     //Atributos de la operacion
     private long codigo;
-    private long monto;
+    private double monto;
     private String motivo;
     private String tipo;
     private LocalDateTime fechaCreacion;
@@ -19,7 +19,7 @@ public class Operacion {
     
     //Atributos del retiro sin cuenta
     private String estado;
-    private int folio;
+    private long folio;
     private int contrasenia;
 
     //Atributos de la transferencia
@@ -27,7 +27,22 @@ public class Operacion {
 
     public Operacion() {
     }
-    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, String estado, int folio, int contrasenia, int numCuentaDestino) {
+
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, int numCuentaDestino) {
+        this.codigo = codigo;
+        this.monto = monto;
+        this.motivo = motivo;
+        this.tipo = tipo;
+        this.fechaCreacion = fechaCreacion;
+        this.codigoCuenta = codigoCuenta;
+        this.estado = estado;
+        this.folio = folio;
+        this.contrasenia = contrasenia;
+        this.numCuentaDestino = numCuentaDestino;
+    }
+    
+    
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, String estado, long folio, int contrasenia, int numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -39,7 +54,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, int contrasenia, int numCuentaDestino) {
+    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, int numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -51,7 +66,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, int contrasenia) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -63,7 +78,7 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, int folio, int contrasenia) {
+    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -74,7 +89,7 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(long codigo, long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -84,7 +99,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
+    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -113,11 +128,11 @@ public class Operacion {
         this.codigo = codigo;
     }
 
-    public long getMonto() {
+    public double getMonto() {
         return monto;
     }
 
-    public void setMonto(long monto) {
+    public void setMonto(double monto) {
         this.monto = monto;
     }
 
@@ -153,11 +168,11 @@ public class Operacion {
         this.estado = estado;
     }
 
-    public int getFolio() {
+    public long getFolio() {
         return folio;
     }
 
-    public void setFolio(int folio) {
+    public void setFolio(long folio) {
         this.folio = folio;
     }
 

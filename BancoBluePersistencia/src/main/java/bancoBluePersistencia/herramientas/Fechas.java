@@ -4,6 +4,7 @@
  */
 package bancoBluePersistencia.herramientas;
 
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,5 +23,10 @@ public class Fechas {
     
     public static LocalDateTime convertidorLocalDateTime(Date date){
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+    }
+    
+    public static LocalDateTime convertirTimestampALocalDateTime(Timestamp timestamp) {
+        Instant instant = timestamp.toInstant();
+        return instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 }

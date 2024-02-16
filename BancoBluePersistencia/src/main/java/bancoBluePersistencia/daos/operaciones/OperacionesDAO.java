@@ -5,19 +5,23 @@ import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionActualizableDTO;
-import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
-import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
@@ -39,12 +43,14 @@ public class OperacionesDAO implements IOperacionesDAO{
 
     public Operacion agregarOperacion(OperacionNuevaDTO operacionNueva) throws PersistenciaException {
         String sentenciaSQL = """
-            INSERT INTO Operaciones (monto, motivo, fecha_creacion, codigoCuenta, tipo)
-            VALUES (?, ?, ?, ?, 'Transferencia');
+            INSERT INTO Operaciones (monto, motivo, codigoCuenta, tipo)
+            VALUES (?, ?, ?, ?);
                               """;
 
         Connection conexion = null; // Declarar la variable fuera del bloque try
-
+        long folio=-1;
+        int contrasenia=-1;
+        String estado="";
         try {
             conexion = this.conexionBD.obtenerConexion();
             conexion.setAutoCommit(false); // Desactivar la confirmación automática
@@ -53,10 +59,10 @@ public class OperacionesDAO implements IOperacionesDAO{
 
                 Date fechaAhora = Date.valueOf(LocalDate.now());
 
-                comando.setLong(1, operacionNueva.getMonto());
+                comando.setDouble(1, operacionNueva.getMonto());
                 comando.setString(2, operacionNueva.getMotivo());
-                comando.setDate(3, fechaAhora);
-                comando.setLong(4, operacionNueva.getCodigoCuenta());
+                comando.setLong(3, operacionNueva.getCodigoCuenta());
+                comando.setString(3, operacionNueva.getTipo());
 
                 int numRegistrosInsertados = comando.executeUpdate();
                 logger.log(Level.INFO, "Se agregaron {0} operaciones", numRegistrosInsertados);
@@ -66,7 +72,7 @@ public class OperacionesDAO implements IOperacionesDAO{
 
                 long idOperacionGenerado = idsGenerado.getLong(1);
 
-                Operacion operacion = new Operacion(idOperacionGenerado, operacionNueva.getMonto(), operacionNueva.getMotivo(), "Transferencia", Fechas.convertidorLocalDateTime(fechaAhora), operacionNueva.getCodigoCuenta(), operacionNueva.getNumCuentaDestino());
+                
 
                 logger.log(Level.INFO, "Se agregó la operación con ID {0}", idOperacionGenerado);
 
@@ -74,7 +80,10 @@ public class OperacionesDAO implements IOperacionesDAO{
                     // Intentar agregar la transferencia
                     agregarTransferencia(idOperacionGenerado, operacionNueva.getNumCuentaDestino());
                 } else if (operacionNueva.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
-                    agregarRetiroSinCuenta(idOperacionGenerado, operacionNueva.getFolio(), operacionNueva.getContraseña(),fechaAhora);
+                    folio=generarFolio();
+                    contrasenia=GeneradorNumeros.generarNumeroAleatorio8Digitos();
+                    estado="disponible";
+                    agregarRetiroSinCuenta(idOperacionGenerado,fechaAhora,folio,contrasenia);
                 } else {
                     logger.log(Level.SEVERE, "El tipo de operacion no es valido");
                     throw new PersistenciaException("El tipo de operacion no es valido");
@@ -86,6 +95,7 @@ public class OperacionesDAO implements IOperacionesDAO{
                 conexion.commit();
                 conexion.setAutoCommit(true); // Reestablecer la confirmación automática
 
+                Operacion operacion = new Operacion(idOperacionGenerado, operacionNueva.getMonto(), operacionNueva.getMotivo(), operacionNueva.getTipo(), Fechas.convertidorLocalDateTime(fechaAhora), operacionNueva.getCodigoCuenta(),estado,folio,contrasenia, operacionNueva.getNumCuentaDestino());
                 return operacion;
 
             } catch (SQLException ex) {
@@ -137,21 +147,30 @@ public class OperacionesDAO implements IOperacionesDAO{
         }
     }
     
-    private void agregarRetiroSinCuenta(long codigoOperacion, long folio, int contrasenia, Date caducidad) throws PersistenciaException {
+    private void agregarRetiroSinCuenta(long codigoOperacion, Date caducidad, long folio, int contrasenia) throws PersistenciaException {
         String sentenciaSQL = """
-            INSERT INTO Retiros_sin_cuenta (codigo, num_folio, contrasenia, estado, fecha_hora_caducidad)
-            VALUES (?, ?,?,"disponible",?);
+            INSERT INTO Retiros_sin_cuenta (codigo, num_folio, contrasenia,sal, estado, fecha_hora_caducidad)
+            VALUES (?, ?,?,?,"disponible",?);
                               """;
 
         try (Connection conexion = this.conexionBD.obtenerConexion(); 
                 PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
+            
+            String sal=Contraseñas.generarSal();
+                String contraseniaConSal;
+                try {
+                    contraseniaConSal=Contraseñas.encriptarContraseña(String.valueOf(contrasenia), sal);
+                } catch (NoSuchAlgorithmException ex) {
+                    throw new PersistenciaException("Sistema desactualizado, actualize su version para seguir", ex);
+                }
 
             comando.setLong(1, codigoOperacion);
             comando.setLong(2, folio);
-            comando.setInt(3, contrasenia);
+            comando.setString(3, contraseniaConSal);
+            comando.setString(4, sal);
             
             //En la base de datos se le va a aumentar 10 min a la caducidad
-            comando.setDate(4, caducidad);
+            comando.setDate(5, caducidad);
 
             int numRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} Retiros_sin_cuenta", numRegistrosInsertados);
@@ -160,6 +179,25 @@ public class OperacionesDAO implements IOperacionesDAO{
             logger.log(Level.SEVERE, "No se pudo agregar la Retiros_sin_cuenta", ex);
             throw new PersistenciaException("No se pudo agregar la Retiros_sin_cuenta", ex);
         }
+    }
+    
+    private long generarFolio() throws PersistenciaException {
+        String consultaSQL = "SELECT COUNT(*) AS folios_existentes FROM Retiros_sin_cuenta";
+
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(consultaSQL)) {
+
+            ResultSet resultados = comando.executeQuery();
+            resultados.next();
+
+            int cuentaExistente = resultados.getInt("folios_existentes");
+            return cuentaExistente+1;
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede acceder a la base de datos", ex);
+            throw new PersistenciaException("No se pudo acceder a la base de datos", ex);
+        }
+
     }
 
     private void agregarCuentaOperacion(long codigoOperacion, long codigoCuenta) throws PersistenciaException {
@@ -259,8 +297,122 @@ public class OperacionesDAO implements IOperacionesDAO{
     }
 
     @Override
-    public boolean cobrar(OperacionConsultableDTO operacionConsultableDTO) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean cambiarEstado(OperacionEstadoDTO operacionEstado) throws PersistenciaException {
+        String sentenciaSQLCliente = """
+        UPDATE Retiros_sin_cuenta SET estado = ? 
+        WHERE codigo = ?
+                                     """;
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comandoCliente = conexion.prepareStatement(sentenciaSQLCliente);) {
+
+            comandoCliente.setString(1, operacionEstado.getEstado());
+            comandoCliente.setLong(2, operacionEstado.getCodigo());
+
+            // Ejecutar actualizaciones
+            int filasAfectadasCliente = comandoCliente.executeUpdate();
+
+            // Confirmar o revertir transacción
+            if (filasAfectadasCliente > 0) {
+                logger.log(Level.INFO, "Se cambio el estado");
+                return true;
+            }
+            return false;
+        } catch (SQLException ex) {
+            // Manejar la excepción y revertir la transacción
+            logger.log(Level.SEVERE, "No se puede cambiar el estado", ex);
+            throw new PersistenciaException("No se pudo cambiar el estado", ex);
+        }
+    }
+
+    @Override
+    public Operacion consultar(OperacionConsultableRetiroDTO operacionConsultableRetiro) throws PersistenciaException, ValidacionDTOException {
+       String sentenciaSQL = """
+            SELECT o.codigo,
+            o.tipo,
+            o.motivo,                     
+            o.fecha_hora_creacion,                    
+            o.monto,                
+            o.codigo_cuenta,
+            r.contrasenia,
+            r.sal,
+            r.estado,
+            r.fecha_hora_caducidad
+            FROM Operaciones o
+            JOIN Retiros_sin_cuenta r ON o.codigo = r.codigo
+            WHERE num_folio=?;
+                              """;
+        try (Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
+
+            comando.setLong(1, operacionConsultableRetiro.getFolio());
+
+            try (ResultSet resultados = comando.executeQuery()) {
+                if (resultados.next()) {
+                    
+                    String contraseniaGuardada = resultados.getString("contrasenia");
+                    String salt = resultados.getString("sal");
+                    String estado = resultados.getString("estado");
+
+                    Timestamp fecha_hora_caducidad = resultados.getTimestamp("fecha_hora_caducidad");
+
+                    // Obtener la fecha y hora actuales 
+                    Timestamp timestampActual = new Timestamp(System.currentTimeMillis());
+
+                    String tipo = resultados.getString("tipo");
+
+                    try {
+                        if (!estado.equalsIgnoreCase("cobrada")) {
+                            logger.log(Level.INFO, "El retiro ya ha sido cobrada");
+                            throw new ValidacionDTOException("El retiro ya ha sido cobrada");
+                            
+                        }else if (!estado.equalsIgnoreCase("vencida")) {
+                            logger.log(Level.INFO, "El retiro vencio");
+                            throw new ValidacionDTOException("El retiro vencio");
+                            
+                        }else if (!tipo.equalsIgnoreCase("Retiro sin cuenta")) {
+                            logger.log(Level.INFO, "El retiro de esta operacion no es posible");
+                            throw new ValidacionDTOException("El retiro de esta operacion no es posible");
+                            
+                        }else if (!fecha_hora_caducidad.after(timestampActual))  {
+                            logger.log(Level.INFO, "El retiro vencio");
+                            throw new ValidacionDTOException("El retiro vencio");
+                        }
+                        if (Contraseñas.verificarContraseña(String.valueOf(operacionConsultableRetiro.getContrasenia()), contraseniaGuardada, salt)) {
+
+                            Long codigo_operacion = resultados.getLong("codigo");
+                            String motivo = resultados.getString("motivo");
+                            
+                            Double monto = resultados.getDouble("monto");
+                            Long codigo_cuenta = resultados.getLong("codigo_cuenta");
+                            
+                            Timestamp fecha_hora_creacion = resultados.getTimestamp("fecha_hora_creacion");
+                            
+                            Operacion operacion = new Operacion(codigo_operacion, monto, motivo, tipo, Fechas.convertirTimestampALocalDateTime(fecha_hora_creacion), codigo_cuenta,estado,operacionConsultableRetiro.getFolio(),operacionConsultableRetiro.getContrasenia());
+
+                            logger.log(Level.INFO, "Se consultaron {0} operaciones", 1);
+                            return operacion;
+                        } else {
+                            // Contraseña incorrecta
+                            logger.log(Level.INFO, "Folio o contraseña incorrecta");
+                            return null;
+                        }
+                    } catch (NoSuchAlgorithmException ex) {
+                        // Manejo de NoSuchAlgorithmException
+                        logger.log(Level.SEVERE, "Error al verificar el folio", ex);
+                        throw new PersistenciaException("Error al verificar el folio", ex);
+                    }
+                } else {
+                    // Usuario no encontrado
+                    logger.log(Level.INFO, "No existe el folio");
+                    return null;
+                }
+            }
+        } catch (SQLException ex) {
+            // Manejo de SQLException
+            logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
+            throw new PersistenciaException("No se pudo consultar el cliente", ex);
+        }
     }
 
 }

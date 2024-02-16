@@ -15,4 +15,9 @@ public class GeneradorNumeros {
         numeroAleatorio = numeroAleatorio % 1_000_000_000_000_000L; // Limita a 16 dígitos
         return numeroAleatorio;
     }
+    
+     public static int generarNumeroAleatorio8Digitos() {
+        Random random = new Random();
+        return 100_000_00 + random.nextInt(900_000_00);
+    }
 }
