@@ -164,4 +164,42 @@ public class CuentasDAO implements ICuentasDAO{
 
     }
 
+    @Override
+    public Cuenta consultar(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
+        String sentenciaSQL = """
+        SELECT codigo, fecha_apertura, saldo, estado, id_cliente
+        FROM cuentas
+        WHERE num_cuenta=?;
+                              """;
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+
+            comando.setLong(1, cuentaConsultableUsuario.getNumeroCuenta());
+
+            ResultSet resultados = comando.executeQuery();
+            
+            if (resultados.next()) {
+
+                long codigo = resultados.getLong("codigo");
+                Date fecha_apertura = resultados.getDate("fecha_apertura");
+                long saldo = resultados.getLong("saldo");
+                String estado = resultados.getString("estado");
+                long id_cliente = resultados.getLong("id_cliente");
+
+
+                Cuenta cuenta = new Cuenta(codigo, saldo, Fechas.convertidorLocalDateTime(fecha_apertura), cuentaConsultableUsuario.getNumeroCuenta(), id_cliente, estado);
+                logger.log(Level.INFO, "Se consultaron {0} cuentas", 1);
+                return cuenta;
+            } else {
+                logger.log(Level.INFO, "No existe la cuenta", 1);
+                return null;
+            }
+        
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede consultar la cuenta", ex);
+            throw new PersistenciaException("No se pudo consultar la cuenta", ex);
+        }
+    }
+
 }

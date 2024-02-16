@@ -9,6 +9,7 @@ import bancoBluePersistencia.daos.cuentas.CuentasDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 
@@ -36,9 +37,13 @@ public class PruebasCuentas {
         
         CuentaCerrableDTO cuentaCerrableDTO=new CuentaCerrableDTO();
         cuentaCerrableDTO.setNumeroCuenta(128572707638894l);
-       
+        
+        CuentaConsultableUsuarioDTO cuentaConsultableUsuario=new CuentaConsultableUsuarioDTO();
+        cuentaConsultableUsuario.setNumeroCuenta(128572707638894l);
+        
         try {
-            System.out.println(cuentasDAO.cancelar(cuentaCerrableDTO));
+            System.out.println(cuentasDAO.consultar(cuentaConsultableUsuario));
+            //System.out.println(cuentasDAO.cancelar(cuentaCerrableDTO));
             //System.out.println(cuentasDAO.consultar(clienteConsultable));
             //cuentasDAO.agregar(cuentaNueva);
         } catch (PersistenciaException persistenciaException) {

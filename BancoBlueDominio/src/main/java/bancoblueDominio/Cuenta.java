@@ -17,6 +17,8 @@ public class Cuenta {
 
     public Cuenta() {
     }
+    
+    
 
     public Cuenta(double saldo, LocalDateTime fechaApertura, long numeroCuenta, String estado) {
         this.saldo = saldo;
