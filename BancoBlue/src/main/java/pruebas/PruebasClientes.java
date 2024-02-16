@@ -15,7 +15,7 @@ import bancoBluePersistencia.excepciones.PersistenciaException;
  *
  * @author t1pas
  */
-public class pruebaPersistencia {
+public class PruebasClientes {
 
     public static void main(String[] args) {
         String cadenaConexion = "jdbc:mysql://localhost/bancobd";

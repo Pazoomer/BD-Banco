@@ -9,16 +9,16 @@ import java.time.LocalDateTime;
  */
 public class Cuenta {
     private long codigo;
-    private long saldo;
+    private double saldo;
     private LocalDateTime fechaApertura;
     private long numeroCuenta;
-    private int idCliente;
+    private long idCliente;
     private String estado;
 
     public Cuenta() {
     }
 
-    public Cuenta(long saldo, LocalDateTime fechaApertura, long numeroCuenta, String estado) {
+    public Cuenta(double saldo, LocalDateTime fechaApertura, long numeroCuenta, String estado) {
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
         this.numeroCuenta = numeroCuenta;
@@ -27,7 +27,7 @@ public class Cuenta {
     
     
 
-    public Cuenta(long saldo, LocalDateTime fechaApertura, long numeroCuenta, int idCliente, String estado) {
+    public Cuenta(double saldo, LocalDateTime fechaApertura, long numeroCuenta, long idCliente, String estado) {
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
         this.numeroCuenta = numeroCuenta;
@@ -35,9 +35,7 @@ public class Cuenta {
         this.estado=estado;
     }
     
-    
-
-    public Cuenta(long codigo, long saldo, LocalDateTime fechaApertura, long numeroCuenta, int idCliente, String estado) {
+    public Cuenta(long codigo, double saldo, LocalDateTime fechaApertura, long numeroCuenta, long idCliente, String estado) {
         this.codigo = codigo;
         this.saldo = saldo;
         this.fechaApertura = fechaApertura;
@@ -54,19 +52,19 @@ public class Cuenta {
         this.estado = estado;
     }
 
-    public int getIdCliente() {
+    public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
 
-    public long getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(long saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
@@ -94,23 +92,6 @@ public class Cuenta {
         this.codigo = codigo;
     }
 
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Cuenta other = (Cuenta) obj;
-        return this.codigo == other.codigo;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -120,11 +101,9 @@ public class Cuenta {
         sb.append(", fechaApertura=").append(fechaApertura);
         sb.append(", numeroCuenta=").append(numeroCuenta);
         sb.append(", idCliente=").append(idCliente);
+        sb.append(", estado=").append(estado);
         sb.append('}');
         return sb.toString();
     }
-
- 
-    
     
 }

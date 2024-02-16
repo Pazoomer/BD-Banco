@@ -4,14 +4,12 @@ package bancoBluePersistencia.daos.cuentas;
 import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
-import bancoBluePersistencia.dtos.cuenta.CuentaActualizableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
-import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.herramientas.Fechas;
-import bancoblueDominio.Cliente;
+import bancoBluePersistencia.herramientas.GeneradorNumeros;
 import bancoblueDominio.Cuenta;
 import java.sql.Connection;
 import java.sql.Date;
@@ -35,38 +33,6 @@ public class CuentasDAO implements ICuentasDAO{
 
     public CuentasDAO(IConexion conexionBD) {
         this.conexionBD = conexionBD;
-    }
-    
-    @Override
-    public Cuenta agregar(CuentaNuevaDTO cuentaNuevo) throws PersistenciaException {
-        String sentenciaSQL = """
-        INSERT INTO cuentas (num_cuenta,fecha_apertura, id_cliente,estado)
-        values(?,?,?,?);
-                              """;
-        try (
-                Connection conexion = this.conexionBD.obtenerConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS);) {
-
-            Date fecha_ahora=Date.valueOf(LocalDate.now());
-            
-            comando.setLong(1, cuentaNuevo.getNumeroCuenta());
-            comando.setDate(2, fecha_ahora);
-            comando.setInt(3, cuentaNuevo.getIdCliente());
-            comando.setString(4, cuentaNuevo.getEstado());
-
-            int numRegistrosInsertados = comando.executeUpdate();
-            logger.log(Level.INFO, "Se agregaron {0} cuentas", numRegistrosInsertados);
-
-            ResultSet idsGenerado = comando.getGeneratedKeys();
-            idsGenerado.next();
-            
-            Cuenta cuenta = new Cuenta(idsGenerado.getLong("id"),0, Fechas.convertidorLocalDateTime(fecha_ahora),cuentaNuevo.getNumeroCuenta(),cuentaNuevo.getIdCliente(),cuentaNuevo.getEstado());
-            return cuenta;
-            
-        } catch (SQLException ex) {
-            logger.log(Level.SEVERE, "No se puede guardar la cuenta", ex);
-            throw new PersistenciaException("No se pudo guardar la cuenta", ex);
-        }
     }
 
     @Override
@@ -99,20 +65,17 @@ public class CuentasDAO implements ICuentasDAO{
     }
 
     @Override
-    public Cuenta consultar(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Cuenta> consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException {
         String sentenciaSQL = """
-        SELECT num_cuenta, fecha_apertura, saldo, estado
+        SELECT num_cuenta, fecha_apertura, saldo, estado, codigo
         FROM Cuentas
         WHERE id_cliente = ?;
                               """;
         try (
                 Connection conexion = this.conexionBD.obtenerConexion(); 
                 PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+            
+            comando.setLong(1, clienteConsultable.getId());
             ResultSet resultados = comando.executeQuery();
 
             List<Cuenta> listaCuentas = new LinkedList<>();
@@ -123,21 +86,82 @@ public class CuentasDAO implements ICuentasDAO{
                 Date fecha_apertura = resultados.getDate("fecha_apertura");
                 long saldo = resultados.getLong("saldo");
                 String estado = resultados.getString("estado");
+                long codigo=resultados.getLong("codigo");
 
-                Cuenta cuenta = new Cuenta(saldo, Fechas.convertidorLocalDateTime(fecha_apertura), num_cuenta, estado);
+                Cuenta cuenta = new Cuenta(codigo,saldo, Fechas.convertidorLocalDateTime(fecha_apertura), num_cuenta,clienteConsultable.getId(), estado);
                 listaCuentas.add(cuenta);
 
             }
             if (listaCuentas.isEmpty()) {
-                logger.log(Level.INFO, "Se consultaron {0} cuentas", listaCuentas.size());
-                return listaCuentas;
+                logger.log(Level.INFO, "Se consultaron 0 cuentas");
+                return null;
             }
-            return null;
+            logger.log(Level.INFO, "Se consultaron {0} cuentas", listaCuentas.size());
+            return listaCuentas;
 
         } catch (SQLException ex) {
             logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
+    }
+
+    @Override
+    public Cuenta agregar(CuentaNuevaDTO cuentaNueva) throws PersistenciaException {
+        String sentenciaSQL = """
+        INSERT INTO cuentas (num_cuenta, saldo, fecha_apertura, id_cliente, estado)
+        VALUES (?, 0.0, ?, ?, 'abierta');
+                              """;
+
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS)) {
+
+            long nuevoNumCuenta;
+
+            do {
+                nuevoNumCuenta = GeneradorNumeros.generarNumeroAleatorio16Digitos();
+                comando.setLong(1, nuevoNumCuenta);
+            } while (comprobarExistenciaCuenta(nuevoNumCuenta));  // Comprobar si el número ya existe
+
+            Date fechaAhora = Date.valueOf(LocalDate.now());
+
+            comando.setDate(2, fechaAhora);
+            comando.setInt(3, cuentaNueva.getIdCliente());
+
+            int numRegistrosInsertados = comando.executeUpdate();
+            logger.log(Level.INFO, "Se agregaron {0} cuentas", numRegistrosInsertados);
+
+            ResultSet idsGenerado = comando.getGeneratedKeys();
+            idsGenerado.next();
+
+            long idCuentaGenerado = idsGenerado.getLong(1);
+
+            Cuenta cuenta = new Cuenta(idCuentaGenerado, 0.0, Fechas.convertidorLocalDateTime(fechaAhora), nuevoNumCuenta, cuentaNueva.getIdCliente(), "abierta");
+
+            logger.log(Level.INFO, "Se agregó la cuenta con ID {0}", idCuentaGenerado);
+            return cuenta;
+
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se pudo agregar la cuenta", ex);
+            throw new PersistenciaException("No se pudo agregar la cuenta", ex);
+        }
+    }
+
+    private boolean comprobarExistenciaCuenta(long numCuenta) throws SQLException {
+        String consultaSQL = "SELECT COUNT(*) AS cuenta_existente FROM cuentas WHERE num_cuenta = ?";
+
+        try (
+            Connection conexion = this.conexionBD.obtenerConexion(); 
+            PreparedStatement comando = conexion.prepareStatement(consultaSQL)) {
+            comando.setLong(1, numCuenta);
+
+            ResultSet resultados = comando.executeQuery();
+            resultados.next();
+
+            int cuentaExistente = resultados.getInt("cuenta_existente");
+            return cuentaExistente > 0;
+        }
+
     }
 
 }
