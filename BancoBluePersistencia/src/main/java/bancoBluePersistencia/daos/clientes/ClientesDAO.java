@@ -15,9 +15,11 @@ import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
@@ -407,5 +409,6 @@ public class ClientesDAO implements IClientesDAO {
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
     }
+
     
 }

@@ -1,5 +1,5 @@
 
-package interfazCliente;
+package interfaz.registro;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;

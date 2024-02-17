@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfazCliente;
+package interfaz.transferencia;
 
+import interfaz.transferencia.TransferenciaMonto;
+import interfaz.transferencia.TransferenciaNumeroBeneficiario;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;

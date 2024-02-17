@@ -1,6 +1,8 @@
 
-package interfazCliente;
+package interfaz.cliente;
 
+import interfaz.registro.IniciarSesion;
+import interfaz.cuenta.MenuCuenta;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
@@ -10,11 +12,14 @@ import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
+import interfaz.tablas.TablaCuentas;
+import interfaz.tablas.TablaOperaciones;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -166,11 +171,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    /*
     private void menuCuenta(){
         MenuCuenta menuCuenta=new MenuCuenta(this, cliente, cuenta, clientesDAO, cuentasDAO,operacionesDAO);
         this.setVisible(false);
         menuCuenta.setVisible(true);
-    }
+    }*/
     
     private void agregarCuenta(){
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de crear una nueva cuenta?, esta accion no se puede revertir", "Crear nueva cuenta", JOptionPane.YES_NO_OPTION);
@@ -198,6 +204,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo actualizar la informacion debido a un error en la base de datos");
         }
+        TablaCuentas tablaModel = new TablaCuentas(listaCuentas, cuentasDAO, operacionesDAO, clientesDAO);
+        tablaCuentas= new JTable(tablaModel);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

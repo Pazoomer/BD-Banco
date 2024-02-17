@@ -1,8 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package interfazCliente;
+
+package interfaz.cuenta;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.herramientas.Fechas;
+import bancoblueDominio.Cuenta;
+import bancoblueDominio.Operacion;
+import interfaz.tablas.TablaOperaciones;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -10,11 +24,25 @@ package interfazCliente;
  */
 public class HistorialOperaciones extends javax.swing.JFrame {
 
+    private final MenuCuenta menuCuenta;
+    private final Cuenta cuenta;
+    private final IClientesDAO clientesDAO;
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
+    private List<Operacion> listaOperaciones;
     /**
      * Creates new form HistorialOperaciones
+     * @param menuCuenta
+     * @param cuenta
      */
-    public HistorialOperaciones() {
+    public HistorialOperaciones(MenuCuenta menuCuenta, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         initComponents();
+        this.menuCuenta = menuCuenta;
+        this.cuenta=cuenta;
+        this.clientesDAO=clientesDAO;
+        this.cuentasDAO=cuentasDAO;
+        this.operacionesDAO=operacionesDAO;
+        actualizarInformacion();
     }
 
     /**
@@ -40,10 +68,19 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         cmbxOperaciones = new javax.swing.JTable();
         btnActualizar = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         etqTitulo.setText("Historial de operaciones");
 
@@ -77,6 +114,11 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         jScrollPane1.setViewportView(cmbxOperaciones);
 
         btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,6 +188,61 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.menuCuenta.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizarInformacion();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    private void acualizarTabla() {
+        TablaOperaciones tablaModel = new TablaOperaciones(listaOperaciones, cuentasDAO, operacionesDAO, clientesDAO);
+        cmbxOperaciones= new JTable(tablaModel);
+    }
+    
+    private void actualizarInformacion(){
+        
+        String anioStr = (String) this.cmbxAnio.getSelectedItem();
+        String diaStr = (String) this.cmbxDia.getSelectedItem();
+        String mesStr = (String) this.cmbxFecha.getSelectedItem();
+        
+        // Convertir los valores a enteros
+        int anio = Integer.parseInt(anioStr);
+        int dia = Integer.parseInt(diaStr);
+        int mes = Integer.parseInt(mesStr);
+
+        Date fechaFiltro = new Date(anio - 1900, mes - 1, dia);
+        
+        LocalDateTime fecha=Fechas.convertidorLocalDateTime(fechaFiltro);
+        
+        CuentaConsultableDTO cuentaConsultable=new CuentaConsultableDTO();
+        
+        cuentaConsultable.setCodigo(cuenta.getCodigo());
+        
+        try {
+           List<Operacion>listaAuxiliar =operacionesDAO.consultar(cuentaConsultable);
+
+        // Filtrar las operaciones según la fecha y el tipo seleccionado
+        for (Operacion operacion : listaAuxiliar) {
+            if (operacion.getFechaCreacion().isAfter(fecha)) {
+                if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
+                    listaOperaciones.add(operacion);
+                } else if (this.radiobtnTransferencia.isSelected() && operacion.getTipo().equalsIgnoreCase("transferencia")) {
+                    listaOperaciones.add(operacion);
+                }
+            }
+        }
+
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos"); 
+        }
+        acualizarTabla();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnActualizar;

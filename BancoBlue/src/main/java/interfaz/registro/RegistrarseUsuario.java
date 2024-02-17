@@ -1,6 +1,7 @@
 
-package interfazCliente;
+package interfaz.registro;
 
+import interfaz.registro.RegistrarseDomicilio;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;

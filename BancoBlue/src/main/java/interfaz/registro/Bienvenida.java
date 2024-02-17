@@ -1,5 +1,5 @@
 
-package interfazCliente;
+package interfaz.registro;
 
 import bancoBluePersistencia.conexion.Conexion;
 import bancoBluePersistencia.conexion.IConexion;

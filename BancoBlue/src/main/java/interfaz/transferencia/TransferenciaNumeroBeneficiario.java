@@ -1,6 +1,7 @@
 
-package interfazCliente;
+package interfaz.transferencia;
 
+import interfaz.cuenta.MenuCuenta;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;

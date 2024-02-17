@@ -3,11 +3,13 @@ package bancoBluePersistencia.daos.operaciones;
 
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionActualizableDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import java.util.List;
 
@@ -22,4 +24,5 @@ public interface IOperacionesDAO {
     List<Operacion> consultar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException;
     Operacion consultar(OperacionConsultableRetiroDTO operacionConsultableRetiro) throws PersistenciaException,ValidacionDTOException;
     Operacion agregarOperacion(OperacionNuevaDTO operacionNueva) throws PersistenciaException;
+    Cuenta consultarCuenta(OperacionConsultableDTO operacionConsultable)throws PersistenciaException;
 }

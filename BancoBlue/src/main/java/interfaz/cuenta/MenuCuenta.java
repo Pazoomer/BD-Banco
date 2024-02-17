@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package interfazCliente;
+package interfaz.cuenta;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
@@ -15,6 +15,8 @@ import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
+import interfaz.cliente.MenuPrincipal;
+import interfaz.transferencia.TransferenciaNumeroBeneficiario;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.logging.Level;
@@ -92,6 +94,11 @@ public class MenuCuenta extends javax.swing.JFrame {
         });
 
         btnHistorialOperaciones.setText("Historial de operaciones");
+        btnHistorialOperaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialOperacionesActionPerformed(evt);
+            }
+        });
 
         btnRetiroSinCuenta.setText("Retiros sin cuenta");
         btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -193,6 +200,12 @@ public class MenuCuenta extends javax.swing.JFrame {
     private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
         retiroSinCuenta();
     }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
+
+    private void btnHistorialOperacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialOperacionesActionPerformed
+        HistorialOperaciones historialOperaciones=new HistorialOperaciones(this, cuenta, clientesDAO, cuentasDAO, operacionesDAO);
+        this.setVisible(false);
+        historialOperaciones.setVisible(true);
+    }//GEN-LAST:event_btnHistorialOperacionesActionPerformed
 
     private void retiroSinCuenta() {
 

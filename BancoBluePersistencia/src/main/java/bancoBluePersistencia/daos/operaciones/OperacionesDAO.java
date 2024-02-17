@@ -5,6 +5,7 @@ import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionActualizableDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
@@ -13,6 +14,7 @@ import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
+import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
@@ -416,4 +418,43 @@ public class OperacionesDAO implements IOperacionesDAO{
         }
     }
 
+    @Override
+    public Cuenta consultarCuenta(OperacionConsultableDTO operacionConsultable) throws PersistenciaException {
+        String sentenciaSQL = """
+        SELECT codigo, num_cuenta, fecha_apertura, saldo, estado, id_cliente
+        FROM Cuentas C
+        JOIN Operaciones O ON O.codigo_cuenta = C.codigo
+        WHERE O.codigo_cuenta = ?;
+                              """;
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+
+            comando.setLong(1, operacionConsultable.getCodigo());
+
+            ResultSet resultados = comando.executeQuery();
+
+            if (resultados.next()) {
+
+                long codigo = resultados.getLong("codigo");
+                long num_cuenta = resultados.getLong("num_cuenta");
+                Timestamp fecha_apertura = resultados.getTimestamp("fecha_apertura");
+                long saldo = resultados.getLong("saldo");
+                String estado = resultados.getString("estado");
+                long id_cliente = resultados.getLong("id_cliente");
+
+                Cuenta cuenta = new Cuenta(codigo, saldo, Fechas.convertirTimestampALocalDateTime(fecha_apertura), num_cuenta, id_cliente, estado);
+
+                logger.log(Level.INFO, "Se consultaron {0} cuentas", 1);
+                return cuenta;
+
+            } else {
+                logger.log(Level.INFO, "No existe el cliente", 1);
+                return null;
+            }
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede consultar la cuenta", ex);
+            throw new PersistenciaException("No se pudo consultar la cuenta", ex);
+        }
+    }
 }
+

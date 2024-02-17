@@ -1,6 +1,7 @@
 
-package interfazCliente;
+package interfaz.registro;
 
+import interfaz.registro.Bienvenida;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.CuentasDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
@@ -8,6 +9,7 @@ import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
+import interfaz.cliente.MenuPrincipal;
 import javax.swing.JOptionPane;
 
 /**

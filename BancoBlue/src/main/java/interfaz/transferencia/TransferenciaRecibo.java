@@ -1,5 +1,5 @@
 
-package interfazCliente;
+package interfaz.transferencia;
 
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;

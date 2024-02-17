@@ -1,5 +1,5 @@
 
-package interfazCliente;
+package interfaz.cliente;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;

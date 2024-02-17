@@ -6,8 +6,10 @@ import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
 
 /**
  *
@@ -20,6 +22,7 @@ public interface IClientesDAO {
     Cliente consultar(ClienteInicioSesionDTO clienteInicioSesion) throws PersistenciaException;
     List<Cliente> consultar() throws PersistenciaException;
     boolean validarNombreUsuarios(String nombreConsultable) throws PersistenciaException;
+    
     //boolean eliminar(ClienteEliminableDTO clienteEliminable) throws PersistenciaException; NO SE PUEDE ELIMINAR CLIENTES
     
 }
