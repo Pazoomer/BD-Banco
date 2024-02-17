@@ -28,11 +28,67 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="etqFechaNacimiento" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="etqFechaNacimientoDinamico" alignment="0" min="-2" pref="229" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="etqInformacionUsuario" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="etqCalle" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etqColonia" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etqCalleDinamico" max="32767" attributes="0"/>
+                                  <Component id="etqColoniaDinamico" alignment="0" pref="183" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="etqMunicipioDinamico" pref="173" max="32767" attributes="0"/>
+                                      <Component id="etqNumExterior" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="etqNumExteriorDinamico" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="etqMunicipio" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="etqCP" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etqCPDinamico" min="-2" pref="186" max="-2" attributes="0"/>
+                                  <Component id="etqEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etqEstadoDinamico" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etqNombreCompletoDinamico" alignment="0" min="-2" pref="300" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="35" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="etqNombreUsuario" min="-2" max="-2" attributes="0"/>
+                                  <Component id="etqNombreUsuarioDinamico" min="-2" pref="275" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace pref="608" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -40,23 +96,159 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="294" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="etqInformacionUsuario" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etqNombreCompletoDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqNombreUsuarioDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="etqFechaNacimiento" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="etqFechaNacimientoDinamico" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etqCalle" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqNumExterior" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqCP" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etqCalleDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqNumExteriorDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqCPDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etqColonia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqMunicipio" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etqColoniaDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqMunicipioDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqEstadoDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="27" max="32767" attributes="0"/>
+              <Component id="btnActualizar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="etqInformacionUsuario">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel1"/>
+        <Property name="text" type="java.lang.String" value="Informaci&#xf3;n del Usuario"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jLabel2"/>
+        <Property name="text" type="java.lang.String" value="Nombre completo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqNombreUsuario">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre de usuario"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqNombreCompletoDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqNombreUsuarioDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel5"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqFechaNacimiento">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha de nacimiento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqFechaNacimientoDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel7"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqCalle">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Calle"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqCalleDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel9"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqNumExterior">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="N&#xfa;m. Exterior"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqNumExteriorDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel11"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqCP">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C.P."/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqCPDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel13"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqColonia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Colonia"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqColoniaDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel15"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqMunicipio">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Municipio"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqMunicipioDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel17"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqEstado">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Estado"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="etqEstadoDinamico">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel19"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnVolver">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Volver"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnActualizar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Actualizar informaci&#xf3;n"/>
       </Properties>
     </Component>
   </SubComponents>

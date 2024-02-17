@@ -26,15 +26,72 @@ public class PerfilCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        etqInformacionUsuario = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        etqNombreUsuario = new javax.swing.JLabel();
+        etqNombreCompletoDinamico = new javax.swing.JLabel();
+        etqNombreUsuarioDinamico = new javax.swing.JLabel();
+        etqFechaNacimiento = new javax.swing.JLabel();
+        etqFechaNacimientoDinamico = new javax.swing.JLabel();
+        etqCalle = new javax.swing.JLabel();
+        etqCalleDinamico = new javax.swing.JLabel();
+        etqNumExterior = new javax.swing.JLabel();
+        etqNumExteriorDinamico = new javax.swing.JLabel();
+        etqCP = new javax.swing.JLabel();
+        etqCPDinamico = new javax.swing.JLabel();
+        etqColonia = new javax.swing.JLabel();
+        etqColoniaDinamico = new javax.swing.JLabel();
+        etqMunicipio = new javax.swing.JLabel();
+        etqMunicipioDinamico = new javax.swing.JLabel();
+        etqEstado = new javax.swing.JLabel();
+        etqEstadoDinamico = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(0, 0));
 
-        jLabel1.setText("jLabel1");
+        etqInformacionUsuario.setText("Información del Usuario");
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Nombre completo");
+
+        etqNombreUsuario.setText("Nombre de usuario");
+
+        etqNombreCompletoDinamico.setText("jLabel4");
+
+        etqNombreUsuarioDinamico.setText("jLabel5");
+
+        etqFechaNacimiento.setText("Fecha de nacimiento");
+
+        etqFechaNacimientoDinamico.setText("jLabel7");
+
+        etqCalle.setText("Calle");
+
+        etqCalleDinamico.setText("jLabel9");
+
+        etqNumExterior.setText("Núm. Exterior");
+
+        etqNumExteriorDinamico.setText("jLabel11");
+
+        etqCP.setText("C.P.");
+
+        etqCPDinamico.setText("jLabel13");
+
+        etqColonia.setText("Colonia");
+
+        etqColoniaDinamico.setText("jLabel15");
+
+        etqMunicipio.setText("Municipio");
+
+        etqMunicipioDinamico.setText("jLabel17");
+
+        etqEstado.setText("Estado");
+
+        etqEstadoDinamico.setText("jLabel19");
+
+        btnVolver.setText("Volver");
+
+        btnActualizar.setText("Actualizar información");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -42,19 +99,95 @@ public class PerfilCliente extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addContainerGap(608, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etqFechaNacimiento)
+                            .addComponent(etqFechaNacimientoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(etqInformacionUsuario)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnVolver))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(etqCalle)
+                                    .addComponent(etqColonia)
+                                    .addComponent(etqCalleDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(etqColoniaDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(etqMunicipioDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+                                        .addComponent(etqNumExterior, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(etqNumExteriorDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(etqMunicipio))
+                                .addGap(38, 38, 38)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etqCP)
+                                    .addComponent(etqCPDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(etqEstado)
+                                    .addComponent(etqEstadoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(etqNombreCompletoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etqNombreUsuario)
+                                    .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(29, 29, 29)))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnActualizar)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(71, 71, 71)
-                .addComponent(jLabel2)
-                .addContainerGap(294, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(etqInformacionUsuario)
+                    .addComponent(btnVolver))
+                .addGap(64, 64, 64)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(etqNombreUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqNombreCompletoDinamico)
+                    .addComponent(etqNombreUsuarioDinamico))
+                .addGap(35, 35, 35)
+                .addComponent(etqFechaNacimiento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etqFechaNacimientoDinamico)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqCalle)
+                    .addComponent(etqNumExterior)
+                    .addComponent(etqCP))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqCalleDinamico)
+                    .addComponent(etqNumExteriorDinamico)
+                    .addComponent(etqCPDinamico))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqColonia)
+                    .addComponent(etqMunicipio)
+                    .addComponent(etqEstado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqColoniaDinamico)
+                    .addComponent(etqMunicipioDinamico)
+                    .addComponent(etqEstadoDinamico))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addComponent(btnActualizar)
+                .addContainerGap())
         );
 
         pack();
@@ -96,7 +229,26 @@ public class PerfilCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnActualizar;
+    private javax.swing.JButton btnVolver;
+    private javax.swing.JLabel etqCP;
+    private javax.swing.JLabel etqCPDinamico;
+    private javax.swing.JLabel etqCalle;
+    private javax.swing.JLabel etqCalleDinamico;
+    private javax.swing.JLabel etqColonia;
+    private javax.swing.JLabel etqColoniaDinamico;
+    private javax.swing.JLabel etqEstado;
+    private javax.swing.JLabel etqEstadoDinamico;
+    private javax.swing.JLabel etqFechaNacimiento;
+    private javax.swing.JLabel etqFechaNacimientoDinamico;
+    private javax.swing.JLabel etqInformacionUsuario;
+    private javax.swing.JLabel etqMunicipio;
+    private javax.swing.JLabel etqMunicipioDinamico;
+    private javax.swing.JLabel etqNombreCompletoDinamico;
+    private javax.swing.JLabel etqNombreUsuario;
+    private javax.swing.JLabel etqNombreUsuarioDinamico;
+    private javax.swing.JLabel etqNumExterior;
+    private javax.swing.JLabel etqNumExteriorDinamico;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
