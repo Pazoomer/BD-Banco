@@ -67,6 +67,7 @@ public class MenuCuenta extends javax.swing.JFrame {
         btnRetiroSinCuenta = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnDesactivarCuenta = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -107,6 +108,11 @@ public class MenuCuenta extends javax.swing.JFrame {
         });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         btnDesactivarCuenta.setText("Desactivar cuenta");
         btnDesactivarCuenta.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +120,8 @@ public class MenuCuenta extends javax.swing.JFrame {
                 btnDesactivarCuentaActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Numero de cuenta");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,23 +153,27 @@ public class MenuCuenta extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(etqSaldo)
-                                .addGap(18, 18, 18)
-                                .addComponent(etqSaldoActualDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(225, 225, 225))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(etqNumeroTarjetaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(189, 189, 189)))))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(etqSaldo)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(etqSaldoActualDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(225, 225, 225))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(etqNumeroTarjetaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(189, 189, 189))))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(btnDesactivarCuenta))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnVolver)
+                        .addComponent(btnDesactivarCuenta))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(etqNumeroTarjetaDinamico)
                 .addGap(14, 14, 14)
@@ -186,7 +198,7 @@ public class MenuCuenta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.menuPrincipal.setVisible(false);
+        this.menuPrincipal.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
     private void btnDesactivarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactivarCuentaActionPerformed
@@ -206,6 +218,10 @@ public class MenuCuenta extends javax.swing.JFrame {
         this.setVisible(false);
         historialOperaciones.setVisible(true);
     }//GEN-LAST:event_btnHistorialOperacionesActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void retiroSinCuenta() {
 
@@ -277,5 +293,6 @@ public class MenuCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel etqNumeroTarjetaDinamico;
     private javax.swing.JLabel etqSaldo;
     private javax.swing.JLabel etqSaldoActualDinamico;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

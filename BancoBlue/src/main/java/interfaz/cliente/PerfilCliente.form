@@ -57,23 +57,18 @@
                                           <Component id="etqFechaNacimientoDinamico" alignment="0" min="-2" pref="155" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="etqNumExterior" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="etqMunicipio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="etqNumExteriorDinamico" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="etqMunicipioDinamico" alignment="0" pref="173" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="etqCP" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="etqEstado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="etqCPDinamico" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="etqEstadoDinamico" alignment="0" pref="186" max="32767" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Component id="cmpContraseña" min="-2" pref="275" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="etqNumExterior" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="etqMunicipio" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="etqNumExteriorDinamico" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="etqMunicipioDinamico" alignment="0" pref="173" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="etqCP" min="-2" max="-2" attributes="0"/>
+                                          <Component id="etqEstado" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="etqCPDinamico" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="etqEstadoDinamico" alignment="0" pref="186" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
@@ -86,7 +81,6 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="etqNombreUsuario" min="-2" max="-2" attributes="0"/>
                                           <Component id="etqNombreUsuarioDinamico" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
-                                          <Component id="labContraseña" alignment="0" min="-2" pref="117" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -108,33 +102,20 @@
                   <Component id="btnVolver" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etqNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="etqNombreUsuarioDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="etqNombreCompletoDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Component id="etqFechaNacimiento" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="labContraseña" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqNombreUsuario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="etqFechaNacimientoDinamico" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="cmpContraseña" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  </Group>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="etqNombreUsuarioDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="etqNombreCompletoDinamico" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Component id="etqFechaNacimiento" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="etqFechaNacimientoDinamico" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="etqCalle" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="etqNumExterior" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -260,13 +241,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRecargarActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="cmpContrase&#xf1;a">
-    </Component>
-    <Component class="javax.swing.JLabel" name="labContrase&#xf1;a">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Contrase&#xf1;a"/>
-      </Properties>
     </Component>
   </SubComponents>
 </Form>

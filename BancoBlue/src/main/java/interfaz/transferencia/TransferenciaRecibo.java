@@ -52,11 +52,9 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         etqNumTarjetaBeneficiarioDinamico = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         etqNumCuentaDinamico = new javax.swing.JLabel();
-        etqNumReferenciaDinamico = new javax.swing.JLabel();
         etqMotivoDinamico = new javax.swing.JLabel();
         etqCantidadTotalDinamico = new javax.swing.JLabel();
         btnTerminar = new javax.swing.JButton();
@@ -87,15 +85,11 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
 
         jLabel9.setText("Número de cuenta:");
 
-        jLabel10.setText("Número de referencia:");
-
         jLabel11.setText("Motivo:");
 
         jLabel12.setText("Cantidad Total:");
 
         etqNumCuentaDinamico.setText("jLabel2");
-
-        etqNumReferenciaDinamico.setText("jLabel4");
 
         etqMotivoDinamico.setText("jLabel6");
 
@@ -126,10 +120,6 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(etqCantidadTotalDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(etqNumReferenciaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -195,11 +185,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(etqNumCuentaDinamico))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(etqNumReferenciaDinamico))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(etqMotivoDinamico))
@@ -250,10 +236,8 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel etqMotivoDinamico;
     private javax.swing.JLabel etqNombreBeneficiarioDinamico;
     private javax.swing.JLabel etqNumCuentaDinamico;
-    private javax.swing.JLabel etqNumReferenciaDinamico;
     private javax.swing.JLabel etqNumTarjetaBeneficiarioDinamico;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel3;

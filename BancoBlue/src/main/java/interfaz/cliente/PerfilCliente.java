@@ -67,8 +67,6 @@ public class PerfilCliente extends javax.swing.JFrame {
         etqMunicipioDinamico = new javax.swing.JTextField();
         etqColoniaDinamico = new javax.swing.JTextField();
         btnRecargar = new javax.swing.JButton();
-        cmpContraseña = new javax.swing.JPasswordField();
-        labContraseña = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -118,8 +116,6 @@ public class PerfilCliente extends javax.swing.JFrame {
             }
         });
 
-        labContraseña.setText("Contraseña");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,20 +147,17 @@ public class PerfilCliente extends javax.swing.JFrame {
                                             .addComponent(etqColoniaDinamico, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(etqFechaNacimientoDinamico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(etqNumExterior)
-                                                    .addComponent(etqMunicipio)
-                                                    .addComponent(etqNumExteriorDinamico)
-                                                    .addComponent(etqMunicipioDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                                                .addGap(38, 38, 38)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(etqCP)
-                                                    .addComponent(etqEstado)
-                                                    .addComponent(etqCPDinamico)
-                                                    .addComponent(etqEstadoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))
-                                            .addComponent(cmpContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(etqNumExterior)
+                                            .addComponent(etqMunicipio)
+                                            .addComponent(etqNumExteriorDinamico)
+                                            .addComponent(etqMunicipioDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
+                                        .addGap(38, 38, 38)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(etqCP)
+                                            .addComponent(etqEstado)
+                                            .addComponent(etqCPDinamico)
+                                            .addComponent(etqEstadoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +166,7 @@ public class PerfilCliente extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(etqNombreUsuario)
-                                            .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(labContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGap(29, 29, 29)))
                         .addContainerGap())))
         );
@@ -186,26 +178,18 @@ public class PerfilCliente extends javax.swing.JFrame {
                     .addComponent(etqInformacionUsuario)
                     .addComponent(btnVolver))
                 .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(etqNombreUsuario))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(etqNombreCompletoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(35, 35, 35)
-                        .addComponent(etqFechaNacimiento))
-                    .addComponent(labContraseña))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(etqNombreUsuario))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(etqFechaNacimientoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cmpContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(etqNombreCompletoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(etqFechaNacimiento)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(etqFechaNacimientoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(etqCalle)
                     .addComponent(etqNumExterior)
@@ -257,6 +241,8 @@ public class PerfilCliente extends javax.swing.JFrame {
         RegistrarseDatosPersonales registrar=new RegistrarseDatosPersonales(null, this,clientesDAO,cliente.getId());
         this.setVisible(false);
         registrar.setVisible(true);
+        
+        actualizarInformacion();
        
     }
     
@@ -302,7 +288,6 @@ public class PerfilCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnCambiar;
     private javax.swing.JButton btnRecargar;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JPasswordField cmpContraseña;
     private javax.swing.JLabel etqCP;
     private javax.swing.JTextField etqCPDinamico;
     private javax.swing.JLabel etqCalle;
@@ -322,6 +307,5 @@ public class PerfilCliente extends javax.swing.JFrame {
     private javax.swing.JLabel etqNumExterior;
     private javax.swing.JTextField etqNumExteriorDinamico;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel labContraseña;
     // End of variables declaration//GEN-END:variables
 }

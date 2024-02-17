@@ -158,6 +158,11 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Lo ingresado debe ser un numero de 16 digitos");
             return;
         }
+        
+        if (numBeneficiario==cuenta.getNumeroCuenta()) {
+            JOptionPane.showMessageDialog(this, "No puedes hacer una transferencia a la misma cuenta");
+            return;
+        }
 
         CuentaConsultableUsuarioDTO cuentaConsultableUsuario = new CuentaConsultableUsuarioDTO();
         cuentaConsultableUsuario.setNumeroCuenta(numBeneficiario);
@@ -174,6 +179,8 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
             TransferenciaConfirmacion registrar = new TransferenciaConfirmacion(this, cliente, cuenta, cuentaConsultable, clientesDAO, cuentasDAO, operacionesDAO);
             this.setVisible(false);
             registrar.setVisible(true);
+        }else{
+           JOptionPane.showMessageDialog(this, "El numero no pertenece a ninguna cuenta");
         }
     }
 

@@ -1,4 +1,3 @@
-
 package bancoBluePersistencia.daos.operaciones;
 
 import bancoBluePersistencia.conexion.IConexion;
@@ -34,7 +33,7 @@ import java.util.logging.Logger;
  *
  * @author t1pas
  */
-public class OperacionesDAO implements IOperacionesDAO{
+public class OperacionesDAO implements IOperacionesDAO {
 
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
@@ -45,99 +44,65 @@ public class OperacionesDAO implements IOperacionesDAO{
 
     @Override
     public Operacion agregarOperacion(OperacionNuevaDTO operacionNueva) throws PersistenciaException {
-        String sentenciaSQL = """
-            INSERT INTO Operaciones (monto, motivo, codigoCuenta, tipo)
-            VALUES (?, ?, ?, ?);
-                              """;
+        String sentenciaSQL = "INSERT INTO Operaciones (monto, motivo, codigo_cuenta, tipo) VALUES (?, ?, ?, ?)";
 
-        Connection conexion = null; // Declarar la variable fuera del bloque try
-        long folio=-1;
-        int contrasenia=-1;
-        String estado="";
-        try {
-            conexion = this.conexionBD.obtenerConexion();
-            conexion.setAutoCommit(false); // Desactivar la confirmación automática
+        long folio = 0;
+        int contrasenia = 0;
+        String estado = "ERROR";
+        try (Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            try (PreparedStatement comando = conexion.prepareStatement(sentenciaSQL, Statement.RETURN_GENERATED_KEYS)) {
+            conexion.setAutoCommit(false);
 
-                Date fechaAhora = Date.valueOf(LocalDate.now());
+            Date fechaAhora = Date.valueOf(LocalDate.now());
 
-                comando.setDouble(1, operacionNueva.getMonto());
-                comando.setString(2, operacionNueva.getMotivo());
-                comando.setLong(3, operacionNueva.getCodigoCuenta());
-                comando.setString(3, operacionNueva.getTipo());
+            comando.setDouble(1, operacionNueva.getMonto());
+            comando.setString(2, operacionNueva.getMotivo());
+            comando.setLong(3, operacionNueva.getCodigoCuenta());
+            comando.setString(4, operacionNueva.getTipo());
 
-                int numRegistrosInsertados = comando.executeUpdate();
-                logger.log(Level.INFO, "Se agregaron {0} operaciones", numRegistrosInsertados);
+            int numRegistrosInsertados = comando.executeUpdate();
+            logger.log(Level.INFO, "Se agregaron {0} operaciones", numRegistrosInsertados);
 
-                ResultSet idsGenerado = comando.getGeneratedKeys();
-                idsGenerado.next();
+            ResultSet idsGenerado = comando.getGeneratedKeys();
+            idsGenerado.next();
 
-                long idOperacionGenerado = idsGenerado.getLong(1);
+            long idOperacionGenerado = idsGenerado.getLong(1);
 
-                
-
-                logger.log(Level.INFO, "Se agregó la operación con ID {0}", idOperacionGenerado);
-
-                if (operacionNueva.getTipo().equalsIgnoreCase("transferencia")) {
-                    // Intentar agregar la transferencia
-                    agregarTransferencia(idOperacionGenerado, operacionNueva.getNumCuentaDestino());
-                } else if (operacionNueva.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
-                    folio=generarFolio();
-                    contrasenia=GeneradorNumeros.generarNumeroAleatorio8Digitos();
-                    estado="disponible";
-                    agregarRetiroSinCuenta(idOperacionGenerado,fechaAhora,folio,contrasenia);
-                } else {
-                    logger.log(Level.SEVERE, "El tipo de operacion no es valido");
-                    throw new PersistenciaException("El tipo de operacion no es valido");
-                }
-                
-                agregarCuentaOperacion(idOperacionGenerado,operacionNueva.getCodigoCuenta());
-
-                // Si llegamos aquí, todo ha tenido éxito, confirmamos los cambios
-                conexion.commit();
-                conexion.setAutoCommit(true); // Reestablecer la confirmación automática
-
-                Operacion operacion = new Operacion(idOperacionGenerado, operacionNueva.getMonto(), operacionNueva.getMotivo(), operacionNueva.getTipo(), Fechas.convertidorLocalDateTime(fechaAhora), operacionNueva.getCodigoCuenta(),estado,folio,contrasenia, operacionNueva.getNumCuentaDestino());
-                return operacion;
-
-            } catch (SQLException ex) {
-                // Si hay una excepción, hacemos un rollback para revertir los cambios
-                try {
-                    if (conexion != null) {
-                        conexion.rollback();
-                        conexion.setAutoCommit(true); // Reestablecer la confirmación automática
-                    }
-                } catch (SQLException rollbackEx) {
-                    logger.log(Level.SEVERE, "Error al hacer rollback", rollbackEx);
-                }
-
-                logger.log(Level.SEVERE, "No se pudo agregar la operación", ex);
-                throw new PersistenciaException("No se pudo agregar la operación", ex);
+            if (operacionNueva.getTipo().equalsIgnoreCase("transferencia")) {
+                // Intentar agregar la transferencia
+                agregarTransferencia(idOperacionGenerado, operacionNueva.getNumCuentaDestino(), conexion);
+            } else if (operacionNueva.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
+                folio = generarFolio();
+                contrasenia = GeneradorNumeros.generarNumeroAleatorio8Digitos();
+                estado = "disponible";
+                agregarRetiroSinCuenta(idOperacionGenerado, fechaAhora, folio, contrasenia);
+            } else {
+                logger.log(Level.SEVERE, "El tipo de operación no es válido");
+                throw new PersistenciaException("El tipo de operación no es válido");
             }
-        } catch (SQLException e) {
-            logger.log(Level.SEVERE, "Error al obtener la conexión", e);
-            throw new PersistenciaException("Error al obtener la conexión", e);
-        } finally {
-            // Asegurarse de cerrar la conexión en caso de excepción
-            if (conexion != null) {
-                try {
-                    conexion.setAutoCommit(true);
-                    conexion.close();
-                } catch (SQLException closeEx) {
-                    logger.log(Level.SEVERE, "Error al cerrar la conexión", closeEx);
-                }
-            }
+
+            agregarCuentaOperacion(idOperacionGenerado, operacionNueva.getCodigoCuenta(),conexion);
+
+            conexion.commit();
+            conexion.setAutoCommit(true);
+
+            Operacion operacion = new Operacion(idOperacionGenerado, operacionNueva.getMonto(), operacionNueva.getMotivo(),
+                    operacionNueva.getTipo(), Fechas.convertidorLocalDateTime(fechaAhora),
+                    operacionNueva.getCodigoCuenta(), estado, folio, contrasenia, operacionNueva.getNumCuentaDestino());
+
+            return operacion;
+
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se pudo agregar la operación", ex);
+            throw new PersistenciaException("No se pudo agregar la operación", ex);
         }
     }
 
-    private void agregarTransferencia(long codigoOperacion, long numCuentaDestino) throws PersistenciaException {
-        String sentenciaSQL = """
-            INSERT INTO Transferencias (codigo, numero_cuenta_destino)
-            VALUES (?, ?);
-                              """;
-        try (Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
+    private void agregarTransferencia(long codigoOperacion, long numCuentaDestino, Connection conexion)
+            throws PersistenciaException {
+        String sentenciaSQL = "INSERT INTO Transferencias (codigo, numero_cuenta_destino) VALUES (?, ?)";
 
+        try (PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
             comando.setLong(1, codigoOperacion);
             comando.setLong(2, numCuentaDestino);
 
@@ -149,7 +114,7 @@ public class OperacionesDAO implements IOperacionesDAO{
             throw new PersistenciaException("No se pudo agregar la transferencia", ex);
         }
     }
-    
+
     private void agregarRetiroSinCuenta(long codigoOperacion, Date caducidad, long folio, int contrasenia) throws PersistenciaException {
         String sentenciaSQL = """
             INSERT INTO Retiros_sin_cuenta (codigo, num_folio, contrasenia,sal, estado, fecha_hora_caducidad)
@@ -203,14 +168,10 @@ public class OperacionesDAO implements IOperacionesDAO{
 
     }
 
-    private void agregarCuentaOperacion(long codigoOperacion, long codigoCuenta) throws PersistenciaException {
-        String sentenciaSQL = """
-        INSERT INTO Cuenta_Operacion (codigo_cuenta, codigo_operacion)
-        VALUES (?, ?);
-                             """;
+    private void agregarCuentaOperacion(long codigoOperacion, long codigoCuenta,Connection conexion) throws PersistenciaException {
+        String sentenciaSQL = "INSERT INTO Cuenta_Operacion (codigo_cuenta, codigo_operacion) VALUES (?, ?)";
 
-        try (Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
+        try (PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
 
             comando.setLong(1, codigoCuenta);
             comando.setLong(2, codigoOperacion);

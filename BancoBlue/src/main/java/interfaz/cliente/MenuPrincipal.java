@@ -10,7 +10,10 @@ import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
+import interfaz.cuenta.MenuCuenta;
 import interfaz.tablas.TablaCuentas;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -45,6 +48,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.operacionesDAO=operacionesDAO;
         this.setSize(660, 410);
         this.setLocation(400, 200);
+        actualizarTabla();
+         // Agregar un escuchador de clics a la tabla
+        tablaCuentas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int filaSeleccionada = tablaCuentas.getSelectedRow();
+                if (filaSeleccionada >= 0) {
+                    // Obtener la cuenta seleccionada
+                    Cuenta cuentaSeleccionada = listaCuentas.get(filaSeleccionada);
+                    // Ahora puedes hacer lo que necesites con la cuenta seleccionada
+                    menuCuenta(cuentaSeleccionada);
+                    //System.out.println("Cuenta seleccionada: " + cuentaSeleccionada.getNumeroCuenta());
+                }
+            }
+        });
     }
 
     /**
@@ -62,6 +80,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnCerrarSesion = new javax.swing.JButton();
         etqCuentas = new javax.swing.JLabel();
         btnAgregarCuenta = new javax.swing.JButton();
+        btnActualizar = new javax.swing.JToggleButton();
+        lblInformacion = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -111,6 +131,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnActualizar.setText("Actualizar");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
+
+        lblInformacion.setText("Haga clic en una cuenta para usarla");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -124,12 +153,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCerrarSesion))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(etqCuentas)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(etqCuentas)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(151, 151, 151)
+                                .addComponent(btnAgregarCuenta)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addComponent(btnAgregarCuenta)
+                .addGap(216, 216, 216)
+                .addComponent(lblInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -139,12 +173,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPerfil)
                     .addComponent(btnCerrarSesion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblInformacion)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(etqCuentas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAgregarCuenta)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregarCuenta)
+                    .addComponent(btnActualizar))
                 .addGap(23, 23, 23))
         );
 
@@ -170,12 +208,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
-    /*
-    private void menuCuenta(){
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizarTabla();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    
+    private void menuCuenta(Cuenta cuenta){
         MenuCuenta menuCuenta=new MenuCuenta(this, cliente, cuenta, clientesDAO, cuentasDAO,operacionesDAO);
         this.setVisible(false);
         menuCuenta.setVisible(true);
-    }*/
+        actualizarTabla();
+    }
     
     private void agregarCuenta(){
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de crear una nueva cuenta?, esta accion no se puede revertir", "Crear nueva cuenta", JOptionPane.YES_NO_OPTION);
@@ -203,16 +246,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         } catch (PersistenciaException ex) {
             JOptionPane.showMessageDialog(this, "No se pudo actualizar la informacion debido a un error en la base de datos");
         }
-        TablaCuentas tablaModel = new TablaCuentas(listaCuentas, cuentasDAO, operacionesDAO, clientesDAO);
-        tablaCuentas= new JTable(tablaModel);
+        if (listaCuentas!=null) {
+          TablaCuentas tablaModel = new TablaCuentas(listaCuentas, cuentasDAO, operacionesDAO, clientesDAO);
+        tablaCuentas.setModel(tablaModel);  
+        }
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnActualizar;
     private javax.swing.JButton btnAgregarCuenta;
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JLabel etqCuentas;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblInformacion;
     private javax.swing.JTable tablaCuentas;
     // End of variables declaration//GEN-END:variables
 }

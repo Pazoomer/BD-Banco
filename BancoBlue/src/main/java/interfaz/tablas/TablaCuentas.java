@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class TablaCuentas extends AbstractTableModel{
    private final List<Cuenta> listaCuentas;
-    private final String[] columnNames = {"Numero de cuenta", "Fecha de apertura", "Saldo actual"};
+    private final String[] columnNames = {"Numero de cuenta", "Fecha de apertura", "Saldo actual","estado"};
     private final ICuentasDAO cuentasDAO;
     private final IOperacionesDAO operacionesDAO;
     private final IClientesDAO clientesDAO;
@@ -47,14 +47,16 @@ public class TablaCuentas extends AbstractTableModel{
 
             switch (columnIndex) {
                 case 0:
-                    return cuenta.getNumeroCuenta();
-                case 1:
-                    return cuenta.getFechaApertura();
-                case 2:
-                    return cuenta.getSaldo();
-                default:
-                    return null;
-            }
+                return cuenta.getNumeroCuenta();
+            case 1:
+                return cuenta.getFechaApertura().toLocalDate();
+            case 2:
+                return cuenta.getSaldo();
+            case 3:
+                return cuenta.getEstado();
+            default:
+                return null;
+        }
     }
 }
  
