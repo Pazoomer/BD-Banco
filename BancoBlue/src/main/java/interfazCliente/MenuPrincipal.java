@@ -27,16 +27,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablaCuentas = new javax.swing.JTable();
         btnPerfil = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
         etqCuentas = new javax.swing.JLabel();
         btnAgregarCuenta = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -47,7 +46,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 "Número de tarjeta", "Fecha de apertura", "Estado"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablaCuentas);
 
         btnPerfil.setText("Perfil");
 
@@ -104,6 +103,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnPerfil;
     private javax.swing.JLabel etqCuentas;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaCuentas;
     // End of variables declaration//GEN-END:variables
 }
