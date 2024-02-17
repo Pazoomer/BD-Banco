@@ -129,7 +129,7 @@ public class ClientesDAO implements IClientesDAO {
     public boolean actualizar(ClienteActualizableDTO clienteActualizable) throws PersistenciaException {
         String sentenciaSQLCliente =   """
         UPDATE Clientes SET contrasenia = ?, nombre_usuario = ?, fecha_nacimiento = ?, nombres=?, 
-        apellido_paterno=?, apellido_materno=? WHERE id = ?
+        apellido_paterno=?, apellido_materno=?,sal=? WHERE id = ?
                                        """;
         String sentenciaSQLDomicilio = """
         UPDATE Domicilios SET  calle=?, colonia=?, num_exterior=?, codigo_postal=?, ciudad=?,
@@ -137,20 +137,31 @@ public class ClientesDAO implements IClientesDAO {
                                        """;
 
         try (
+   
             Connection conexion = this.conexionBD.obtenerConexion(); 
             PreparedStatement comandoCliente = conexion.prepareStatement(sentenciaSQLCliente); 
             PreparedStatement comandoDomicilio = conexion.prepareStatement(sentenciaSQLDomicilio);) {
             // Desactivar autocommit
             conexion.setAutoCommit(false);
 
+            String sal = Contraseñas.generarSal();
+            String contraseniaConSal;
+            try {
+                contraseniaConSal = Contraseñas.encriptarContraseña(clienteActualizable.getContrasenia(), sal);
+            } catch (NoSuchAlgorithmException ex) {
+                throw new PersistenciaException("Sistema desactualizado, actualize su version para seguir", ex);
+            }
+
             // Cliente
-            comandoCliente.setString(1, clienteActualizable.getContrasenia());
+            comandoCliente.setString(1, contraseniaConSal);
             comandoCliente.setString(2, clienteActualizable.getNombreUsuario());
             comandoCliente.setDate(3, clienteActualizable.getFechaNacimiento());
             comandoCliente.setString(4, clienteActualizable.getNombre());
             comandoCliente.setString(5, clienteActualizable.getApellidopaterno());
             comandoCliente.setString(6, clienteActualizable.getApellidoMaterno());
-            comandoCliente.setLong(7, clienteActualizable.getId());
+            comandoCliente.setString(7, sal);
+            comandoCliente.setLong(8, clienteActualizable.getId());
+
 
             // Domicilio
             comandoDomicilio.setString(1, clienteActualizable.getCalle());

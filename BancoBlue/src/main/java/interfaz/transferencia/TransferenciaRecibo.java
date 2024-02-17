@@ -22,12 +22,16 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
      * @param cuentaOrigen
      */
     public TransferenciaRecibo(TransferenciaMonto transferenciaMonto, Operacion transferencia, String nombreClienteDestino, Cuenta cuentaOrigen) {
+        this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
         this.transferencia=transferencia;
         this.nombreClienteDestino=nombreClienteDestino;
         this.cuentaOrigen=cuentaOrigen;
         this.transferenciaMonto=transferenciaMonto;
         actualizarInformacion();
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -209,6 +213,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -168,7 +168,7 @@ public class Bienvenida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCobrarRetiroActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
-        RegistrarseDatosPersonales registrar=new RegistrarseDatosPersonales(this,clientesDAO);
+        RegistrarseDatosPersonales registrar=new RegistrarseDatosPersonales(this,null,clientesDAO,0);
         this.setVisible(false);
         registrar.setVisible(true);
     }//GEN-LAST:event_btnRegistrarseActionPerformed
@@ -180,7 +180,7 @@ public class Bienvenida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -36,6 +36,8 @@ public class TransferenciaMonto extends javax.swing.JFrame {
      * Creates new form TransferenciaMonto
      */
     public TransferenciaMonto(TransferenciaConfirmacion transferenciaConfirmacion, Cliente cliente, String nombreClienteDestino, Cuenta cuentaOrigen, Cuenta cuentaDestino, String motivo, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+         this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
         this.transferenciaConfirmacion=transferenciaConfirmacion;
         this.cliente=cliente;
@@ -47,6 +49,8 @@ public class TransferenciaMonto extends javax.swing.JFrame {
         this.motivo=motivo;
         this.nombreClienteDestino=nombreClienteDestino;
         actualizarInformacion();
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -138,6 +142,7 @@ public class TransferenciaMonto extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed

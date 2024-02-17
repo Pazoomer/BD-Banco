@@ -208,7 +208,7 @@ public class Cliente {
     }
     
     public String getNombreCompleto(){
-        return this.Nombre.concat(this.apellidopaterno.concat(this.apellidoMaterno));
+        return this.Nombre.concat(" ").concat(this.apellidopaterno.concat(" ").concat(this.apellidoMaterno));
     }
 
     @Override

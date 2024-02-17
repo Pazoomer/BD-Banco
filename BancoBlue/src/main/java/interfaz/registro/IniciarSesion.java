@@ -60,7 +60,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -153,6 +153,8 @@ public class IniciarSesion extends javax.swing.JFrame {
             try {
                 Cliente clienteExistente = clientesDAO.consultar(cliente);
                 if (clienteExistente != null) {
+                    this.CmpContrasenia.setText("");
+                    this.CmpNombreUsuario.setText("");
                     MenuPrincipal registrar = new MenuPrincipal(this, clienteExistente, clientesDAO,cuentasDAO,operacionesDAO);
                     this.setVisible(false);
                     registrar.setVisible(true);

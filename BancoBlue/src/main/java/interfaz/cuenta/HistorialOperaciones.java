@@ -36,6 +36,8 @@ public class HistorialOperaciones extends javax.swing.JFrame {
      * @param cuenta
      */
     public HistorialOperaciones(MenuCuenta menuCuenta, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+        this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
         this.menuCuenta = menuCuenta;
         this.cuenta=cuenta;
@@ -43,6 +45,8 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         this.cuentasDAO=cuentasDAO;
         this.operacionesDAO=operacionesDAO;
         actualizarInformacion();
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -186,6 +190,7 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -9,18 +9,13 @@ import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
-import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
-import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import interfaz.cliente.MenuPrincipal;
 import interfaz.transferencia.TransferenciaNumeroBeneficiario;
-import java.sql.Date;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +34,8 @@ public class MenuCuenta extends javax.swing.JFrame {
      * Creates new form MenuCuenta
      */
     public MenuCuenta(MenuPrincipal menuPrincipal,Cliente cliente, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+        this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
         this.cliente=cliente;
         this.cuenta=cuenta;
@@ -47,6 +44,8 @@ public class MenuCuenta extends javax.swing.JFrame {
         this.operacionesDAO=operacionesDAO;
         this.menuPrincipal=menuPrincipal;
         actualizarInformacion();
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -183,6 +182,7 @@ public class MenuCuenta extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

@@ -3,6 +3,7 @@ package interfaz.registro;
 
 import interfaz.registro.RegistrarseDomicilio;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import javax.swing.JOptionPane;
@@ -16,12 +17,14 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     private final ClienteNuevoDTO cliente;
     private final IClientesDAO clientesDAO;
     private final RegistrarseDomicilio domicilio;
+    private final String operacionCliente;
+    private final long id;
     /**
      * Creates new form RegistrarseUsuario
      * @param cliente
      * @param clientesDAO
      */
-    public RegistrarseUsuario(RegistrarseDomicilio domicilio, ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
+    public RegistrarseUsuario(RegistrarseDomicilio domicilio, ClienteNuevoDTO cliente, IClientesDAO clientesDAO, String operacionCliente,long id) {
         this.setUndecorated(true);
         this.setVisible(true);
         
@@ -31,6 +34,8 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         this.cliente=cliente;
         this.clientesDAO=clientesDAO;
         this.domicilio=domicilio;
+        this.operacionCliente=operacionCliente;
+        this.id=id;
     }
 
     /**
@@ -142,16 +147,57 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
             }
             try {
-                clientesDAO.agregar(cliente);
-                JOptionPane.showMessageDialog(this, "Se agrego el socio");
-                this.domicilio.setVisible(false);
-                this.domicilio.datosPersonales.setVisible(false);
-                this.domicilio.datosPersonales.bienvenida.setVisible(true);
+                if (operacionCliente.equalsIgnoreCase("agregar")) {
+                    clientesDAO.agregar(cliente);
+                    JOptionPane.showMessageDialog(this, "Se agrego el socio");
+
+                    if (this.domicilio != null) {
+                        this.domicilio.setVisible(false);
+                        if (domicilio.datosPersonales != null) {
+                            this.domicilio.datosPersonales.setVisible(false);
+                        }
+                        if (domicilio.datosPersonales.bienvenida != null) {
+                            this.domicilio.datosPersonales.bienvenida.setVisible(true);
+                        }
+
+                    }
+                }else if (operacionCliente.equalsIgnoreCase("actualizar")) {
+                    ClienteActualizableDTO clienteActualizable=new ClienteActualizableDTO();
+                    
+                    clienteActualizable.setApellidoMaterno(cliente.getApellidoMaterno());
+                    clienteActualizable.setApellidopaterno(cliente.getApellidopaterno());
+                    clienteActualizable.setCalle(cliente.getCalle());
+                    clienteActualizable.setCiudad(cliente.getCiudad());
+                    clienteActualizable.setCodigoPostal(cliente.getCodigoPostal());
+                    clienteActualizable.setColonia(cliente.getColonia());
+                    clienteActualizable.setContrasenia(cliente.getContrasenia());
+                    clienteActualizable.setEstado(cliente.getEstado());
+                    clienteActualizable.setFechaNacimiento(cliente.getFechaNacimiento());
+                    clienteActualizable.setNombre(cliente.getNombre());
+                    clienteActualizable.setNombreUsuario(cliente.getNombreUsuario());
+                    clienteActualizable.setNumExterior(cliente.getNumExterior());
+                    clienteActualizable.setId(id);
+
+                    clientesDAO.actualizar(clienteActualizable);
+                    JOptionPane.showMessageDialog(this, "Se actualizo el socio");
+                    
+                    if (this.domicilio != null) {
+                    this.domicilio.setVisible(false);
+                    if (domicilio.datosPersonales != null) {
+                        this.domicilio.datosPersonales.setVisible(false);
+                    }
+                    if (domicilio.datosPersonales.perfilCliente != null) {
+                        this.domicilio.datosPersonales.perfilCliente.setVisible(true);
+                    }
+
+                }
+                }
+
                 this.dispose();
             } catch (PersistenciaException ex) {
-                JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
+                JOptionPane.showMessageDialog(this, "No se pudo modificar el cliente debido a un error en la base de datos");
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
         }

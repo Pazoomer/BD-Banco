@@ -14,13 +14,15 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     ClienteNuevoDTO cliente;
     IClientesDAO clientesDAO;
     RegistrarseDatosPersonales datosPersonales;
+    String operacionCliente;
+    long id;
     /**
      * Creates new form RegistrarseDomicilio
      * @param datosPersonales
      * @param cliente
      * @param clientesDAO
      */
-    public RegistrarseDomicilio(RegistrarseDatosPersonales datosPersonales, ClienteNuevoDTO cliente, IClientesDAO clientesDAO) {
+    public RegistrarseDomicilio(RegistrarseDatosPersonales datosPersonales, ClienteNuevoDTO cliente, IClientesDAO clientesDAO, String operacionCliente,long id) {
         this.setUndecorated(true);
         this.setVisible(true);
         
@@ -30,6 +32,8 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         this.cliente=cliente;
         this.clientesDAO=clientesDAO;
         this.datosPersonales=datosPersonales;
+        this.operacionCliente=operacionCliente;
+        this.id=id;
     }
     
     
@@ -245,7 +249,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
 
             // Realizar la acción si todos los campos son válidos
             if (true) {
-                RegistrarseUsuario registrar = new RegistrarseUsuario(this,cliente, clientesDAO);
+                RegistrarseUsuario registrar = new RegistrarseUsuario(this,cliente, clientesDAO,operacionCliente,id);
                 this.setVisible(false);
                 registrar.setVisible(true);
             }

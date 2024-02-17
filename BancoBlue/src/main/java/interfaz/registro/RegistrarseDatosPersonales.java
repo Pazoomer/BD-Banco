@@ -1,11 +1,10 @@
 
 package interfaz.registro;
 
-import interfaz.registro.RegistrarseDomicilio;
-import interfaz.registro.Bienvenida;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import interfaz.cliente.PerfilCliente;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 
@@ -17,11 +16,14 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
 
     IClientesDAO clientesDAO;
     Bienvenida bienvenida;
+    PerfilCliente perfilCliente;
+    String operacionCliente;
+    long id;
     /**
      * Creates new form RegistrarseDatosPersonales
      * @param clientesDAO
      */
-    public RegistrarseDatosPersonales(Bienvenida bienvenida, IClientesDAO clientesDAO) {
+    public RegistrarseDatosPersonales(Bienvenida bienvenida,PerfilCliente perfilCliente, IClientesDAO clientesDAO, long id) {
         this.setUndecorated(true);
         this.setVisible(true);
         
@@ -30,7 +32,15 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         this.setLocation(400, 200);
         this.setSize(660, 410);
         this.clientesDAO=clientesDAO;
-        this.bienvenida=bienvenida;
+        this.bienvenida = bienvenida;
+        this.perfilCliente = perfilCliente;
+        this.id=id;
+
+        if (bienvenida != null) {
+            operacionCliente="agregar";
+        }else if (perfilCliente!=null) {
+            operacionCliente="actualizar";
+        }
     }
     
 
@@ -248,7 +258,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
 
             try {
                 if (cliente.validarDatosPersonales()) {
-                    RegistrarseDomicilio registrar = new RegistrarseDomicilio(this, cliente, clientesDAO);
+                    RegistrarseDomicilio registrar = new RegistrarseDomicilio(this, cliente, clientesDAO,operacionCliente,id);
                     this.setVisible(false);
                     registrar.setVisible(true);
                 }
@@ -267,7 +277,13 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-       bienvenida.setVisible(true);
+        if (bienvenida!=null) {
+            bienvenida.setVisible(true);
+        }
+        if (perfilCliente!=null) {
+           perfilCliente.setVisible(true);
+        }
+        
     }//GEN-LAST:event_formWindowClosed
 
 

@@ -2,8 +2,6 @@
 package interfaz.cliente;
 
 import interfaz.registro.IniciarSesion;
-import interfaz.cuenta.MenuCuenta;
-import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
@@ -13,11 +11,7 @@ import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import interfaz.tablas.TablaCuentas;
-import interfaz.tablas.TablaOperaciones;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
@@ -41,12 +35,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * @param cuentasDAO
      */
     public MenuPrincipal(IniciarSesion iniciarSesion, Cliente cliente, IClientesDAO clientesDAO,ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+        this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
         this.iniciarSesion=iniciarSesion;
         this.cliente=cliente;
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
         this.operacionesDAO=operacionesDAO;
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -151,6 +149,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

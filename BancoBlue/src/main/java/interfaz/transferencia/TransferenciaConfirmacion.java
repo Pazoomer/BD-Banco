@@ -43,6 +43,8 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
      * @param operacionesDAO
      */
     public TransferenciaConfirmacion(TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+         this.setUndecorated(true);
+        this.setVisible(true);
         initComponents();
         this.transferenciaNumeroBeneficiario=transferenciaNumeroBeneficiario;
         this.cliente=cliente;
@@ -51,7 +53,9 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         this.operacionesDAO=operacionesDAO;
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
-        actualizarDatos();        
+        actualizarDatos();      
+        this.setSize(660, 410);
+        this.setLocation(400, 200);
     }
 
     /**
@@ -165,6 +169,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
