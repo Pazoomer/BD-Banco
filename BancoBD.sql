@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS Cuentas (
 -- Crear la tabla Operaciones
 CREATE TABLE IF NOT EXISTS Operaciones (
     codigo BIGINT AUTO_INCREMENT PRIMARY KEY,
-	tipo VARCHAR(30) CHECK (tipo IN ('Operacion sin cuenta', 'Transferencia')) NOT NULL,
+	tipo VARCHAR(30) CHECK (tipo IN ('Retiro sin cuenta', 'Transferencia')) NOT NULL,
     motivo VARCHAR(200),
     fecha_hora_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     monto DECIMAL,
@@ -64,8 +64,9 @@ CREATE  TABLE IF NOT EXISTS Transferencias (
 CREATE TABLE IF NOT EXISTS Retiros_sin_cuenta (
     codigo BIGINT PRIMARY KEY,
     num_folio BIGINT UNIQUE NOT NULL,
-    contrasenia INT NOT NULL,
-    estado VARCHAR(30) CHECK (estado IN ('Cobrada', 'Vencida',"Disponible")) NOT NULL,
+    contrasenia VARCHAR(256) NOT NULL,
+    sal VARCHAR(64) NOT NULL,
+    estado VARCHAR(30) CHECK (estado IN ('cobrada', 'vencida',"disponible")) NOT NULL,
     fecha_hora_caducidad TIMESTAMP,
     FOREIGN KEY (codigo) REFERENCES Operaciones(codigo)
 );

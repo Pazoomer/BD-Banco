@@ -13,8 +13,8 @@ public class OperacionNuevaDTO {
     private String motivo;
 
     private long codigoCuenta;
-    private int numCuentaOrigen;
-    private int numCuentaDestino;
+    private long numCuentaOrigen;
+    private long numCuentaDestino;
     private String tipo;
 
 
@@ -51,19 +51,19 @@ public class OperacionNuevaDTO {
         this.codigoCuenta = codigoCuenta;
     }
 
-    public int getNumCuentaOrigen() {
+    public long getNumCuentaOrigen() {
         return numCuentaOrigen;
     }
 
-    public void setNumCuentaOrigen(int numCuentaOrigen) {
+    public void setNumCuentaOrigen(long numCuentaOrigen) {
         this.numCuentaOrigen = numCuentaOrigen;
     }
 
-    public int getNumCuentaDestino() {
+    public long getNumCuentaDestino() {
         return numCuentaDestino;
     }
 
-    public void setNumCuentaDestino(int numCuentaDestino) {
+    public void setNumCuentaDestino(long numCuentaDestino) {
         this.numCuentaDestino = numCuentaDestino;
     }
     

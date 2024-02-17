@@ -14,7 +14,7 @@ public class CuentaActualizableDTO {
     private long saldo;
     private LocalDateTime fechaApertura;
     private long numeroCuenta;
-    private int idCliente;
+    private long idCliente;
     String estado;
 
     public String getEstado() {
@@ -57,56 +57,14 @@ public class CuentaActualizableDTO {
         this.numeroCuenta = numeroCuenta;
     }
 
-    public int getIdCliente() {
+    public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + (int) (this.codigo ^ (this.codigo >>> 32));
-        hash = 97 * hash + (int) (this.saldo ^ (this.saldo >>> 32));
-        hash = 97 * hash + Objects.hashCode(this.fechaApertura);
-        hash = 97 * hash + (int) (this.numeroCuenta ^ (this.numeroCuenta >>> 32));
-        hash = 97 * hash + this.idCliente;
-        hash = 97 * hash + Objects.hashCode(this.estado);
-        return hash;
-    }
-
-
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final CuentaActualizableDTO other = (CuentaActualizableDTO) obj;
-        return this.codigo == other.codigo;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("CuentaActualizableDTO{");
-        sb.append("codigo=").append(codigo);
-        sb.append(", saldo=").append(saldo);
-        sb.append(", fechaApertura=").append(fechaApertura);
-        sb.append(", numeroCuenta=").append(numeroCuenta);
-        sb.append(", idCliente=").append(idCliente);
-        sb.append('}');
-        return sb.toString();
-    }
-    
     
     
 }

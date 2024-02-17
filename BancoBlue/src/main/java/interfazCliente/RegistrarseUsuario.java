@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
  */
 public class RegistrarseUsuario extends javax.swing.JFrame {
 
-    ClienteNuevoDTO cliente;
-    IClientesDAO clientesDAO;
-    RegistrarseDomicilio domicilio;
+    private final ClienteNuevoDTO cliente;
+    private final IClientesDAO clientesDAO;
+    private final RegistrarseDomicilio domicilio;
     /**
      * Creates new form RegistrarseUsuario
      * @param cliente

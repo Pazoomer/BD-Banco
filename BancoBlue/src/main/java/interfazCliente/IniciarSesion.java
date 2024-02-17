@@ -2,6 +2,9 @@
 package interfazCliente;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.CuentasDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
@@ -13,19 +16,25 @@ import javax.swing.JOptionPane;
  */
 public class IniciarSesion extends javax.swing.JFrame {
 
-    IClientesDAO clientesDAO;
-    Bienvenida bienvenida;
+    private final IClientesDAO clientesDAO;
+    private final ICuentasDAO cuentasDAO;
+    private final Bienvenida bienvenida;
+    private final IOperacionesDAO operacionesDAO;
     /**
      * Creates new form IniciarSesion
+     * @param bienvenida
      * @param clientesDAO
      */
-    public IniciarSesion(Bienvenida bienvenida, IClientesDAO clientesDAO) {
+    public IniciarSesion(Bienvenida bienvenida, IClientesDAO clientesDAO,ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         this.setUndecorated(true);
         this.setVisible(true);
         
         initComponents();
         this.clientesDAO=clientesDAO;
+        this.cuentasDAO=cuentasDAO;
+        this.operacionesDAO=operacionesDAO;
         this.bienvenida=bienvenida;
+        
         this.setSize(660, 410);
         this.setLocation(400, 200);
     }
@@ -139,12 +148,13 @@ public class IniciarSesion extends javax.swing.JFrame {
             cliente.setContrasenia(contrasenia);
             cliente.setNombreUsuario(nombreUsuario);
 
-
             try {
-                Cliente clienteExistente=clientesDAO.consultar(cliente);
-                if (clienteExistente!=null) {
-                    JOptionPane.showMessageDialog(this, "Inicio de sesion exitoso, bienvenido "+clienteExistente.getNombre());
-                }else{
+                Cliente clienteExistente = clientesDAO.consultar(cliente);
+                if (clienteExistente != null) {
+                    MenuPrincipal registrar = new MenuPrincipal(this, clienteExistente, clientesDAO,cuentasDAO,operacionesDAO);
+                    this.setVisible(false);
+                    registrar.setVisible(true);
+                } else {
                     JOptionPane.showMessageDialog(this, "No existe el socio");
                 }
             } catch (PersistenciaException ex) {

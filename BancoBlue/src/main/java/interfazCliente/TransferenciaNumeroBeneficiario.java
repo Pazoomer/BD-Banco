@@ -1,8 +1,17 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfazCliente;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +19,24 @@ package interfazCliente;
  */
 public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
 
+    final MenuCuenta menuCuenta;
+    private final Cliente cliente;
+    private final Cuenta cuenta;
+    private final IClientesDAO clientesDAO; 
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
+            
     /**
      * Creates new form TransferenciaNumeroBeneficiario
      */
-    public TransferenciaNumeroBeneficiario() {
+    public TransferenciaNumeroBeneficiario(MenuCuenta menuCuenta, Cliente cliente, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         initComponents();
+        this.cuenta=cuenta;
+        this.menuCuenta=menuCuenta;
+        this.cliente=cliente;
+        this.clientesDAO=clientesDAO;
+        this.cuentasDAO=cuentasDAO;
+        this.operacionesDAO=operacionesDAO;
     }
 
     /**
@@ -33,15 +55,29 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Transferencia");
 
         jLabel2.setText("Ingrese el número de cuenta del beneficiario:");
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,8 +122,55 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.menuCuenta.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        confirmar();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void confirmar() {
+
+        String textoBenficiario = this.cmpNumeroBeneficiario.getText();
+        if (textoBenficiario.isBlank()) {
+            JOptionPane.showMessageDialog(this, "No puede dejar el campo vacio");
+            return;
+        }
+
+        long numBeneficiario = -1;
+        try {
+            numBeneficiario = Long.parseLong(textoBenficiario);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Lo ingresado debe ser un numero de 16 digitos");
+            return;
+        }
+
+        CuentaConsultableUsuarioDTO cuentaConsultableUsuario = new CuentaConsultableUsuarioDTO();
+        cuentaConsultableUsuario.setNumeroCuenta(numBeneficiario);
+        Cuenta cuentaConsultable = null;
+        try {
+            cuentaConsultable = cuentasDAO.consultar(cuentaConsultableUsuario);
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos");
+        } catch (ValidacionDTOException ex) {
+            JOptionPane.showMessageDialog(this, "La cuenta que marco esta cancelada, no puede recibir transferencias");
+        }
+
+        if (cuentaConsultable != null) {
+            TransferenciaConfirmacion registrar = new TransferenciaConfirmacion(this, cliente, cuenta, cuentaConsultable, clientesDAO, cuentasDAO, operacionesDAO);
+            this.setVisible(false);
+            registrar.setVisible(true);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;

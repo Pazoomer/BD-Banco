@@ -1,8 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfazCliente;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoblueDominio.Cliente;
+import java.sql.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +16,21 @@ package interfazCliente;
  */
 public class PerfilCliente extends javax.swing.JFrame {
 
+    private MenuPrincipal menuPrincipal;
+    private Cliente cliente;
+    private IClientesDAO clientesDAO;
     /**
      * Creates new form PerfilCliente
+     * @param menuPrincipal
+     * @param cliente
+     * @param clientesDAO
      */
-    public PerfilCliente() {
+    public PerfilCliente(MenuPrincipal menuPrincipal, Cliente cliente, IClientesDAO clientesDAO) {
         initComponents();
+        this.menuPrincipal=menuPrincipal;
+        this.cliente=cliente;
+        this.clientesDAO=clientesDAO;
+        actualizarInformacion();
     }
 
     /**
@@ -48,8 +64,12 @@ public class PerfilCliente extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         etqInformacionUsuario.setText("Información del Usuario");
 
@@ -90,8 +110,18 @@ public class PerfilCliente extends javax.swing.JFrame {
         etqEstadoDinamico.setText("jLabel19");
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         btnActualizar.setText("Actualizar información");
+        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnActualizarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -193,6 +223,55 @@ public class PerfilCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       this.menuPrincipal.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
+        actualizarInformacion();
+    }//GEN-LAST:event_btnActualizarActionPerformed
+
+    public void actualizarInformacion() {
+        
+        ClienteConsultableDTO clienteConsultable=new ClienteConsultableDTO();
+        
+        clienteConsultable.setId(cliente.getId());
+
+        try {
+            cliente=clientesDAO.consultar(clienteConsultable);
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar la informacion debido a un error en la base de datos");
+        }
+        
+        //Domicilio
+        String calle=cliente.getCalle();
+        String ciudad=cliente.getCiudad();
+        int cp=cliente.getCodigoPostal();
+        String colonia=cliente.getColonia();
+        String estado=cliente.getEstado();
+        int numExt=cliente.getNumExterior();
+
+        //Cliente
+        Date nacimiento=cliente.getFechaNacimiento();
+        String nombreCompleto=cliente.getNombreCompleto();
+        String nombreUsuario=cliente.getNombreUsuario();
+        
+        this.etqCPDinamico.setText(String.valueOf(cp));
+        this.etqCalleDinamico.setText(calle);
+        this.etqColoniaDinamico.setText(colonia);
+        this.etqEstadoDinamico.setText(estado);
+        this.etqNumExteriorDinamico.setText(String.valueOf(numExt));
+        
+        this.etqFechaNacimientoDinamico.setText(nacimiento.toString());
+        this.etqMunicipioDinamico.setText(ciudad);
+        this.etqNombreCompletoDinamico.setText(nombreCompleto);
+        this.etqNombreUsuarioDinamico.setText(nombreUsuario);
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizar;

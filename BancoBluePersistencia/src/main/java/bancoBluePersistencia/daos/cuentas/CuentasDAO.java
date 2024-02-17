@@ -11,6 +11,7 @@ import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
+import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import java.sql.Connection;
 import java.sql.Date;
@@ -125,7 +126,7 @@ public class CuentasDAO implements ICuentasDAO{
 
             Date fechaAhora = Date.valueOf(LocalDate.now());
 
-            comando.setInt(2, cuentaNueva.getIdCliente());
+            comando.setLong(2, cuentaNueva.getIdCliente());
 
             int numRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} cuentas", numRegistrosInsertados);
@@ -206,6 +207,39 @@ public class CuentasDAO implements ICuentasDAO{
         } catch (ValidacionDTOException ex) {
             logger.log(Level.INFO, "La cuenta fue cancelada");
             throw new ValidacionDTOException("La cuenta fue cancelada");
+        }
+    }
+
+    @Override
+    public String consultarCliente(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
+       String sentenciaSQL = """
+        SELECT CL.nombre_completo AS nombre_completo
+        FROM Cuentas C
+        JOIN Clientes CL ON C.id_cliente = CL.id
+        WHERE C.num_cuenta = ?;
+                              """;
+        try (
+                Connection conexion = this.conexionBD.obtenerConexion(); 
+                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+
+            comando.setLong(1, cuentaConsultableUsuario.getNumeroCuenta());
+
+            ResultSet resultados = comando.executeQuery();
+
+            if (resultados.next()) {
+
+                String nombre_completo = resultados.getString("nombre_completo");
+
+                logger.log(Level.INFO, "Se consultaron {0} clientes", 1);
+                return nombre_completo;
+
+            } else {
+                logger.log(Level.INFO, "No existe el cliente", 1);
+                return null;
+            }
+        } catch (SQLException ex) {
+            logger.log(Level.SEVERE, "No se puede consultar el cliente", ex);
+            throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
     }
     

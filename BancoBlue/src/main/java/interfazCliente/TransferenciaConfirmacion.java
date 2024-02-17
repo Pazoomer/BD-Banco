@@ -4,17 +4,52 @@
  */
 package interfazCliente;
 
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author victo
  */
 public class TransferenciaConfirmacion extends javax.swing.JFrame {
 
+    final TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario;
+    private final Cliente cliente;
+    private final Cuenta cuentaOrigen;
+    private final Cuenta cuentaDestino;
+    private final IClientesDAO clientesDAO;
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
+    private String nombreClienteDestino;
+            
     /**
      * Creates new form TransferenciaConfirmacion
+     * @param transferenciaNumeroBeneficiario
+     * @param cliente
+     * @param cuentaOrigen
+     * @param cuentaDestino
+     * @param clientesDAO
+     * @param cuentasDAO
+     * @param operacionesDAO
      */
-    public TransferenciaConfirmacion() {
+    public TransferenciaConfirmacion(TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         initComponents();
+        this.transferenciaNumeroBeneficiario=transferenciaNumeroBeneficiario;
+        this.cliente=cliente;
+        this.cuentaDestino=cuentaDestino;
+        this.cuentaOrigen=cuentaOrigen;
+        this.operacionesDAO=operacionesDAO;
+        this.clientesDAO=clientesDAO;
+        this.cuentasDAO=cuentasDAO;
+        actualizarDatos();        
     }
 
     /**
@@ -36,8 +71,12 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         btnConfirmar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Datos del beneficiario");
 
@@ -52,8 +91,18 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         jLabel6.setText("Motivo:");
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -116,6 +165,49 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.transferenciaNumeroBeneficiario.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        confirmar();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void confirmar(){
+        String motivo=this.cmpMotivo.getText();
+        
+        if (motivo.isBlank()) {
+            JOptionPane.showMessageDialog(this, "No puede dejar vacio el motivo");
+            return;
+        }
+        
+        TransferenciaMonto transferenciaMonto=new TransferenciaMonto(this, cliente,nombreClienteDestino, cuentaOrigen, cuentaDestino,motivo, clientesDAO, cuentasDAO, operacionesDAO);
+        this.setVisible(false);
+        transferenciaMonto.setVisible(true);
+    }
+    
+    private void actualizarDatos(){
+        CuentaConsultableUsuarioDTO cuentaConsultableUsuario=new CuentaConsultableUsuarioDTO();
+        cuentaConsultableUsuario.setNumeroCuenta(cuentaDestino.getNumeroCuenta());
+        
+        String nombreCliente;
+        try {
+            nombreCliente=cuentasDAO.consultarCliente(cuentaConsultableUsuario);
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos");
+            this.btnConfirmar.setEnabled(false);
+            return;
+        }
+        this.btnConfirmar.setEnabled(true);
+        
+        this.nombreClienteDestino=nombreCliente;
+        this.etqNombreBeneficiarioDinamico.setText(nombreCliente);
+        this.etqNumeroCuentaBeneficiarioDinamico.setText(String.valueOf(cuentaDestino.getNumeroCuenta()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;

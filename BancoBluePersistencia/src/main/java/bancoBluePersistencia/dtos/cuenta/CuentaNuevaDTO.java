@@ -1,15 +1,13 @@
 
 package bancoBluePersistencia.dtos.cuenta;
 
-import bancoBluePersistencia.herramientas.GeneradorNumeros;
-
 /**
  *
  * @author t1pas
  */
 public class CuentaNuevaDTO {
    
-    private int idCliente;
+    private long idCliente;
 
 
     public CuentaNuevaDTO() {
@@ -18,11 +16,11 @@ public class CuentaNuevaDTO {
      
 
 
-    public int getIdCliente() {
+    public long getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(int idCliente) {
+    public void setIdCliente(long idCliente) {
         this.idCliente = idCliente;
     }
  

@@ -23,12 +23,12 @@ public class Operacion {
     private int contrasenia;
 
     //Atributos de la transferencia
-    private int numCuentaDestino;
+    private long numCuentaDestino;
 
     public Operacion() {
     }
 
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, int numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -42,7 +42,7 @@ public class Operacion {
     }
     
     
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, String estado, long folio, int contrasenia, int numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -54,7 +54,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, int numCuentaDestino) {
+    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -89,7 +89,7 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -99,7 +99,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, int numCuentaDestino) {
+    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, long numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -184,11 +184,11 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public int getNumCuentaDestino() {
+    public long getNumCuentaDestino() {
         return numCuentaDestino;
     }
 
-    public void setNumCuentaDestino(int numCuentaDestino) {
+    public void setNumCuentaDestino(long numCuentaDestino) {
         this.numCuentaDestino = numCuentaDestino;
     }
 

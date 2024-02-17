@@ -5,6 +5,10 @@ import bancoBluePersistencia.conexion.Conexion;
 import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.CuentasDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.daos.operaciones.OperacionesDAO;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,8 +19,10 @@ import java.util.logging.Logger;
  */
 public class Bienvenida extends javax.swing.JFrame {
 
-    IClientesDAO clientesDAO;
-    IConexion conexion;
+    private final IClientesDAO clientesDAO;
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
+    private final IConexion conexion;
     /**
      * Creates new form Bienvenida
      */
@@ -33,6 +39,8 @@ public class Bienvenida extends javax.swing.JFrame {
         //Itson
         conexion = new Conexion(cadenaConexion, usuario, contrasenia);
         clientesDAO = new ClientesDAO(conexion);
+        cuentasDAO = new CuentasDAO(conexion);
+        operacionesDAO=new OperacionesDAO(conexion);
     }
     
 
@@ -166,7 +174,7 @@ public class Bienvenida extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegistrarseActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-        IniciarSesion registrar=new IniciarSesion(this,clientesDAO);
+        IniciarSesion registrar=new IniciarSesion(this,clientesDAO,cuentasDAO,operacionesDAO);
         this.setVisible(false);
         registrar.setVisible(true);
     }//GEN-LAST:event_btnIniciarSesionActionPerformed

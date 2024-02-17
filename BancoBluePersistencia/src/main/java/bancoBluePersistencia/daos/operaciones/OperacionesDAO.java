@@ -41,6 +41,7 @@ public class OperacionesDAO implements IOperacionesDAO{
         this.conexionBD = conexionBD;
     }
 
+    @Override
     public Operacion agregarOperacion(OperacionNuevaDTO operacionNueva) throws PersistenciaException {
         String sentenciaSQL = """
             INSERT INTO Operaciones (monto, motivo, codigoCuenta, tipo)

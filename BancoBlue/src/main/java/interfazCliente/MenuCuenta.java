@@ -4,17 +4,47 @@
  */
 package interfazCliente;
 
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
+import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author victo
  */
 public class MenuCuenta extends javax.swing.JFrame {
 
+    private final Cliente cliente;
+    private Cuenta cuenta;
+    private final IClientesDAO clientesDAO;
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
+    private final MenuPrincipal menuPrincipal;
     /**
      * Creates new form MenuCuenta
      */
-    public MenuCuenta() {
+    public MenuCuenta(MenuPrincipal menuPrincipal,Cliente cliente, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         initComponents();
+        this.cliente=cliente;
+        this.cuenta=cuenta;
+        this.clientesDAO=clientesDAO;
+        this.cuentasDAO=cuentasDAO;
+        this.operacionesDAO=operacionesDAO;
+        this.menuPrincipal=menuPrincipal;
+        actualizarInformacion();
     }
 
     /**
@@ -37,8 +67,12 @@ public class MenuCuenta extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         btnDesactivarCuenta = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         etqNumeroTarjetaDinamico.setText("jLabel1");
 
@@ -51,14 +85,29 @@ public class MenuCuenta extends javax.swing.JFrame {
         etqSaldoActualDinamico.setText("jLabel5");
 
         btnTransferir.setText("Transferir");
+        btnTransferir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferirActionPerformed(evt);
+            }
+        });
 
         btnHistorialOperaciones.setText("Historial de operaciones");
 
         btnRetiroSinCuenta.setText("Retiros sin cuenta");
+        btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetiroSinCuentaActionPerformed(evt);
+            }
+        });
 
         btnVolver.setText("Volver");
 
         btnDesactivarCuenta.setText("Desactivar cuenta");
+        btnDesactivarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesactivarCuentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,6 +178,81 @@ public class MenuCuenta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.menuPrincipal.setVisible(false);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnDesactivarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesactivarCuentaActionPerformed
+        cancelarCuenta();
+    }//GEN-LAST:event_btnDesactivarCuentaActionPerformed
+
+    private void btnTransferirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferirActionPerformed
+        transferencia();
+    }//GEN-LAST:event_btnTransferirActionPerformed
+
+    private void btnRetiroSinCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetiroSinCuentaActionPerformed
+        retiroSinCuenta();
+    }//GEN-LAST:event_btnRetiroSinCuentaActionPerformed
+
+    private void retiroSinCuenta() {
+
+    }
+    
+    private void transferencia(){
+        TransferenciaNumeroBeneficiario registrar=new TransferenciaNumeroBeneficiario(this,cliente,cuenta,clientesDAO, cuentasDAO, operacionesDAO);
+        this.setVisible(false);
+        registrar.setVisible(true);
+    }
+    
+    private void cancelarCuenta() {
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de cancelar la cuenta?, esta accion no se puede revertir", "Cancelar cuenta", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+
+            if (!(this.cuenta.getSaldo()==0)) {
+               JOptionPane.showMessageDialog(this, "Para cancelar la cuenta el saldo debe ser 0"); 
+               return;
+            }
+            CuentaCerrableDTO cuentaCerrable = new CuentaCerrableDTO();
+
+            cuentaCerrable.setNumeroCuenta(this.cuenta.getNumeroCuenta());
+
+            try {
+                cuentasDAO.cancelar(cuentaCerrable);
+                this.btnDesactivarCuenta.setEnabled(false);
+                this.btnRetiroSinCuenta.setEnabled(false);
+                this.btnTransferir.setEnabled(false);
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo cancelar la cuenta debido a un error en la base de datos");
+            }
+        }
+    }
+
+    private void actualizarInformacion(){
+        
+        long numCuenta=this.cuenta.getNumeroCuenta();
+        
+        CuentaConsultableUsuarioDTO CuentaConsultableUsuarioDTO=new CuentaConsultableUsuarioDTO();
+        
+        CuentaConsultableUsuarioDTO.setNumeroCuenta(numCuenta);
+        
+            try {
+                cuenta=cuentasDAO.consultar(CuentaConsultableUsuarioDTO);
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo consultar la informacion de la cuenta debido a un error en la base de datos");
+                return;
+            }catch(ValidacionDTOException ej){
+                JOptionPane.showMessageDialog(this, "Esta cuenta esta cancelada, no se pueden realizar operaciones");
+                this.btnRetiroSinCuenta.setEnabled(false);
+                this.btnTransferir.setEnabled(false);
+            }
+        
+        LocalDateTime fechaApertura=cuenta.getFechaApertura();
+        double saldo=cuenta.getSaldo();
+        
+        this.etqFechaAperturaDinamico.setText(fechaApertura.toString());
+        this.etqNumeroTarjetaDinamico.setText(String.valueOf(numCuenta));
+        this.etqSaldoActualDinamico.setText(String.valueOf(saldo));
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDesactivarCuenta;
     private javax.swing.JButton btnHistorialOperaciones;

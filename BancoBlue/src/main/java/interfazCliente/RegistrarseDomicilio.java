@@ -16,6 +16,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     RegistrarseDatosPersonales datosPersonales;
     /**
      * Creates new form RegistrarseDomicilio
+     * @param datosPersonales
      * @param cliente
      * @param clientesDAO
      */

@@ -1,8 +1,20 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfazCliente;
+
+import bancoBluePersistencia.daos.clientes.ClientesDAO;
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +22,26 @@ package interfazCliente;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
+    private final IniciarSesion iniciarSesion;
+    private final Cliente cliente;
+    private final IClientesDAO clientesDAO;
+    private List<Cuenta> listaCuentas;
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
     /**
      * Creates new form MenuPrincipal
+     * @param iniciarSesion
+     * @param cliente
+     * @param clientesDAO
+     * @param cuentasDAO
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(IniciarSesion iniciarSesion, Cliente cliente, IClientesDAO clientesDAO,ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         initComponents();
+        this.iniciarSesion=iniciarSesion;
+        this.cliente=cliente;
+        this.clientesDAO=clientesDAO;
+        this.cuentasDAO=cuentasDAO;
+        this.operacionesDAO=operacionesDAO;
     }
 
     /**
@@ -33,7 +60,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         etqCuentas = new javax.swing.JLabel();
         btnAgregarCuenta = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,14 +79,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tablaCuentas);
+        if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
+            tablaCuentas.getColumnModel().getColumn(0).setHeaderValue("Número de tarjeta");
+            tablaCuentas.getColumnModel().getColumn(1).setHeaderValue("Fecha de apertura");
+            tablaCuentas.getColumnModel().getColumn(2).setHeaderValue("Estado");
+        }
 
         btnPerfil.setText("Perfil");
+        btnPerfil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerfilActionPerformed(evt);
+            }
+        });
 
         btnCerrarSesion.setText("Cerrar sesión");
+        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarSesionActionPerformed(evt);
+            }
+        });
 
         etqCuentas.setText("Cuentas");
 
         btnAgregarCuenta.setText("Agregar Cuenta");
+        btnAgregarCuenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarCuentaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +148,57 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.iniciarSesion.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnAgregarCuentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCuentaActionPerformed
+        agregarCuenta();
+    }//GEN-LAST:event_btnAgregarCuentaActionPerformed
+
+    private void btnPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerfilActionPerformed
+        PerfilCliente perfilCliente=new PerfilCliente(this, cliente,clientesDAO);
+        this.setVisible(false);
+        perfilCliente.setVisible(true);
+    }//GEN-LAST:event_btnPerfilActionPerformed
+
+    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+
+    private void menuCuenta(){
+        MenuCuenta menuCuenta=new MenuCuenta(this, cliente, cuenta, clientesDAO, cuentasDAO,operacionesDAO);
+        this.setVisible(false);
+        menuCuenta.setVisible(true);
+    }
+    
+    private void agregarCuenta(){
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de crear una nueva cuenta?, esta accion no se puede revertir", "Crear nueva cuenta", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            CuentaNuevaDTO cuentaNueva = new CuentaNuevaDTO();
+            cuentaNueva.setIdCliente(this.cliente.getId());
+            try {
+                cuentasDAO.agregar(cuentaNueva);
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo agregar la cuenta debido a un error en la base de datos");
+                return;
+            }
+        }
+        actualizarTabla();
+        JOptionPane.showMessageDialog(this, "Su nueva cuenta ha sido creada con exito");
+    }
+    
+    private void actualizarTabla(){
+        ClienteConsultableDTO clienteConsultable=new ClienteConsultableDTO();
+        
+        clienteConsultable.setId(cliente.getId());
+
+        try {
+            this.listaCuentas=cuentasDAO.consultar(clienteConsultable);
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "No se pudo actualizar la informacion debido a un error en la base de datos");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarCuenta;

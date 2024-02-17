@@ -1,8 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfazCliente;
+
+import bancoblueDominio.Cuenta;
+import bancoblueDominio.Operacion;
 
 /**
  *
@@ -10,11 +10,24 @@ package interfazCliente;
  */
 public class TransferenciaRecibo extends javax.swing.JFrame {
 
+    private final Operacion transferencia;
+    private final String nombreClienteDestino;
+    private final Cuenta cuentaOrigen;
+    private final TransferenciaMonto transferenciaMonto;
     /**
      * Creates new form TransferenciaRecibo
+     * @param transferenciaMonto
+     * @param transferencia
+     * @param nombreClienteDestino
+     * @param cuentaOrigen
      */
-    public TransferenciaRecibo() {
+    public TransferenciaRecibo(TransferenciaMonto transferenciaMonto, Operacion transferencia, String nombreClienteDestino, Cuenta cuentaOrigen) {
         initComponents();
+        this.transferencia=transferencia;
+        this.nombreClienteDestino=nombreClienteDestino;
+        this.cuentaOrigen=cuentaOrigen;
+        this.transferenciaMonto=transferenciaMonto;
+        actualizarInformacion();
     }
 
     /**
@@ -45,8 +58,12 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         btnTerminar = new javax.swing.JButton();
         btnCerrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("¡Transferencia realizada!");
 
@@ -81,8 +98,18 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         etqCantidadTotalDinamico.setText("jLabel8");
 
         btnTerminar.setText("Terminar");
+        btnTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setText("Cerrar");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -184,6 +211,30 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.transferenciaMonto.transferenciaConfirmacion.transferenciaNumeroBeneficiario.menuCuenta.setVisible(true);
+        this.transferenciaMonto.transferenciaConfirmacion.transferenciaNumeroBeneficiario.dispose();
+        this.transferenciaMonto.transferenciaConfirmacion.dispose();
+        this.transferenciaMonto.dispose();
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnTerminarActionPerformed
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void actualizarInformacion(){
+        this.etqCantidadTotalDinamico.setText(String.valueOf(transferencia.getMonto()));
+        this.etqMontoDinamico.setText(String.valueOf(transferencia.getMonto())); 
+        this.etqFechaHoraDinamico.setText(transferencia.getFechaCreacion().toString());
+        this.etqMotivoDinamico.setText(transferencia.getMotivo());
+        this.etqNombreBeneficiarioDinamico.setText(nombreClienteDestino);
+        this.etqNumCuentaDinamico.setText(String.valueOf(cuentaOrigen.getNumeroCuenta()));
+        this.etqNumTarjetaBeneficiarioDinamico.setText(String.valueOf(transferencia.getNumCuentaDestino()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
