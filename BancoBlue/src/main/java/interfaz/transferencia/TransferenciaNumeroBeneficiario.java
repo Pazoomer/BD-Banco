@@ -176,12 +176,16 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
         }
 
         if (cuentaConsultable != null) {
-            TransferenciaConfirmacion registrar = new TransferenciaConfirmacion(this, cliente, cuenta, cuentaConsultable, clientesDAO, cuentasDAO, operacionesDAO);
+            TransferenciaConfirmacion registrar = new TransferenciaConfirmacion( menuCuenta,this, cliente, cuenta, cuentaConsultable, clientesDAO, cuentasDAO, operacionesDAO);
             this.setVisible(false);
             registrar.setVisible(true);
         }else{
            JOptionPane.showMessageDialog(this, "El numero no pertenece a ninguna cuenta");
         }
+    }
+    
+    public void cerrar(){
+        this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

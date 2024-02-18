@@ -13,6 +13,7 @@ import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
+import interfaz.cuenta.MenuCuenta;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
     private final ICuentasDAO cuentasDAO;
     private final IOperacionesDAO operacionesDAO;
     private String nombreClienteDestino;
+    private final MenuCuenta menuCuenta;
             
     /**
      * Creates new form TransferenciaConfirmacion
@@ -42,7 +44,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
      * @param cuentasDAO
      * @param operacionesDAO
      */
-    public TransferenciaConfirmacion(TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+    public TransferenciaConfirmacion(MenuCuenta menuCuenta,TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
          this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
@@ -53,6 +55,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         this.operacionesDAO=operacionesDAO;
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
+        this.menuCuenta=menuCuenta;
         actualizarDatos();      
         this.setSize(660, 410);
         this.setLocation(400, 200);
@@ -192,7 +195,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
             return;
         }
         
-        TransferenciaMonto transferenciaMonto=new TransferenciaMonto(this, cliente,nombreClienteDestino, cuentaOrigen, cuentaDestino,motivo, clientesDAO, cuentasDAO, operacionesDAO);
+        TransferenciaMonto transferenciaMonto=new TransferenciaMonto(menuCuenta,this, cliente,nombreClienteDestino, cuentaOrigen, cuentaDestino,motivo, clientesDAO, cuentasDAO, operacionesDAO);
         this.setVisible(false);
         transferenciaMonto.setVisible(true);
     }
@@ -214,6 +217,10 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         this.nombreClienteDestino=nombreCliente;
         this.etqNombreBeneficiarioDinamico.setText(nombreCliente);
         this.etqNumeroCuentaBeneficiarioDinamico.setText(String.valueOf(cuentaDestino.getNumeroCuenta()));
+    }
+    
+    public void cerrar(){
+        this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

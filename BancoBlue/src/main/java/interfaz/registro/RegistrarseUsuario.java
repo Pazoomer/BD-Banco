@@ -161,9 +161,9 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
                         }
 
                     }
-                }else if (operacionCliente.equalsIgnoreCase("actualizar")) {
-                    ClienteActualizableDTO clienteActualizable=new ClienteActualizableDTO();
-                    
+                } else if (operacionCliente.equalsIgnoreCase("actualizar")) {
+                    ClienteActualizableDTO clienteActualizable = new ClienteActualizableDTO();
+
                     clienteActualizable.setApellidoMaterno(cliente.getApellidoMaterno());
                     clienteActualizable.setApellidopaterno(cliente.getApellidopaterno());
                     clienteActualizable.setCalle(cliente.getCalle());
@@ -180,17 +180,17 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
 
                     clientesDAO.actualizar(clienteActualizable);
                     JOptionPane.showMessageDialog(this, "Se actualizo el socio");
-                    
-                    if (this.domicilio != null) {
-                    this.domicilio.setVisible(false);
-                    if (domicilio.datosPersonales != null) {
-                        this.domicilio.datosPersonales.setVisible(false);
-                    }
-                    if (domicilio.datosPersonales.perfilCliente != null) {
-                        this.domicilio.datosPersonales.perfilCliente.setVisible(true);
-                    }
 
-                }
+                    if (this.domicilio != null) {
+                        this.domicilio.setVisible(false);
+                        if (domicilio.datosPersonales != null) {
+                            this.domicilio.datosPersonales.setVisible(false);
+                        }
+                        if (domicilio.datosPersonales.perfilCliente != null) {
+                            this.domicilio.datosPersonales.perfilCliente.setVisible(true);
+                        }
+
+                    }
                 }
 
                 this.dispose();
