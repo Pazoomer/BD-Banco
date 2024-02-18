@@ -6,13 +6,10 @@ import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
-import bancoBluePersistencia.herramientas.Fechas;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.tablas.TablaOperaciones;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -140,31 +137,29 @@ public class HistorialOperaciones extends javax.swing.JFrame {
                 .addComponent(etqTitulo)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(radiobtnTransferencia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(radiobtnRetiroSinCuenta)
+                    .addComponent(jLabel3))
+                .addGap(187, 187, 187)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(radiobtnTransferencia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radiobtnRetiroSinCuenta)
-                            .addComponent(jLabel3))
-                        .addGap(187, 187, 187)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbxDia, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbxFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
+                        .addComponent(cmbxDia, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 568, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 43, Short.MAX_VALUE))
+                        .addComponent(cmbxFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmbxAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 56, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnActualizar)
                 .addGap(278, 278, 278))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +203,7 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         actualizarInformacion();
     }//GEN-LAST:event_btnActualizarActionPerformed
 
-    private void acualizarTabla() {
+    private void actualizarTabla() {
         if (listaOperaciones != null) {
             TablaOperaciones tablaModel = new TablaOperaciones(listaOperaciones, cuentasDAO, operacionesDAO, clientesDAO);
             cmbxOperaciones.setModel(tablaModel);
@@ -237,32 +232,30 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         // Crear un objeto Timestamp usando la fecha configurada
         Timestamp timestamp = new Timestamp(calendar.getTimeInMillis());
         
-        CuentaConsultableDTO cuentaConsultable=new CuentaConsultableDTO();
-        
+        CuentaConsultableDTO cuentaConsultable = new CuentaConsultableDTO();
+
         cuentaConsultable.setCodigo(cuenta.getCodigo());
-        
+
         try {
-           List<Operacion>listaCuentas =operacionesDAO.consultar(cuentaConsultable);
-           
+            List<Operacion> listaCuentas = operacionesDAO.consultar(cuentaConsultable);
+
             listaOperaciones = new ArrayList<>();
 
-
-        // Filtrar las operaciones según la fecha y el tipo seleccionado
-        
-        for (Operacion operacion : listaCuentas) {
-            if (operacion.getFechaCreacion().after(timestamp)) {
-                if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
-                    listaOperaciones.add(operacion);
-                } else if (this.radiobtnTransferencia.isSelected() && operacion.getTipo().equalsIgnoreCase("transferencia")) {
-                    listaOperaciones.add(operacion);
+            // Filtrar las operaciones según la fecha y el tipo seleccionado
+            for (Operacion operacion : listaCuentas) {
+                if (operacion.getFechaCreacion().after(timestamp)) {
+                    if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
+                        listaOperaciones.add(operacion);
+                    } else if (this.radiobtnTransferencia.isSelected() && operacion.getTipo().equalsIgnoreCase("transferencia")) {
+                        listaOperaciones.add(operacion);
+                    }
                 }
             }
-        }
 
         } catch (PersistenciaException ex) {
-            JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos"); 
+            JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos");
         }
-        acualizarTabla();
+        actualizarTabla();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

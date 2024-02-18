@@ -213,7 +213,6 @@ public class OperacionesDAO implements IOperacionesDAO {
             O.monto,
             T.numero_cuenta_destino,
             R.num_folio,
-            R.contrasenia,
             R.estado AS estado_retiro,
             R.fecha_hora_caducidad AS caducidad_retiro
         FROM Operaciones O
@@ -233,7 +232,6 @@ public class OperacionesDAO implements IOperacionesDAO {
             long numero_cuenta_destino=-1;
             String estado="";
             int folio=-1;
-            int contrasenia=-1;
             while (resultados.next()) {
 
                 //Operacion
@@ -248,14 +246,13 @@ public class OperacionesDAO implements IOperacionesDAO {
                     numero_cuenta_destino = resultados.getLong("numero_cuenta_destino");
                 } else if (tipo.equalsIgnoreCase("Retiro sin cuenta")) {
                     //Retiro sin cuenta
-                    estado = resultados.getString("estado");
-                    folio = resultados.getInt("folio");
-                    contrasenia = resultados.getInt("contrasenia");
+                    estado = resultados.getString("estado_retiro");
+                    folio = resultados.getInt("num_folio");
                 } else {
                     throw new PersistenciaException("Estado de la base de datos incosistente");
                 }
 
-                Operacion operacion = new Operacion(codigo,monto, motivo, tipo,fecha_hora_creacion, estado,folio,contrasenia,numero_cuenta_destino);
+                Operacion operacion = new Operacion(codigo,monto, motivo, tipo,fecha_hora_creacion,cuentaConsultable.getCodigo(), estado,folio,numero_cuenta_destino);
                 listaOperaciones.add(operacion);
 
             }

@@ -15,16 +15,14 @@ import java.util.logging.Logger;
 
 public class TablaOperaciones extends AbstractTableModel {
     private final List<Operacion> listaOperaciones;
-    private final String[] columnNames = {"Tipo", "Monto", "Motivo", "Fecha/Hora Creación", "Estado","Nombre del beneficiario"};
+    private final String[] columnNames = {"Tipo", "Monto", "Fecha/Hora Creación", "Estado", "Nombre del beneficiario"};
     private final ICuentasDAO cuentasDAO;
     private final IOperacionesDAO operacionesDAO;
-    private final IClientesDAO clientesDAO;
-    
+
     public TablaOperaciones(List<Operacion> listaOperaciones, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO, IClientesDAO clientesDAO) {
         this.listaOperaciones = listaOperaciones;
-        this.clientesDAO=clientesDAO;
-        this.cuentasDAO=cuentasDAO;
-        this.operacionesDAO=operacionesDAO;
+        this.cuentasDAO = cuentasDAO;
+        this.operacionesDAO = operacionesDAO;
     }
 
     @Override
@@ -46,57 +44,65 @@ public class TablaOperaciones extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Operacion operacion = listaOperaciones.get(rowIndex);
 
-        if (operacion.getTipo().equalsIgnoreCase("Transferencia")) {
-            switch (columnIndex) {
-                case 0:
-                    return "Transferencia";
-                case 1:
-                    return operacion.getMonto();
-                case 2:
-                    return operacion.getMotivo();
-                case 3:
-                    return operacion.getFechaCreacion();
-                case 4:
-                    return "";
-                case 5:
-                    OperacionConsultableDTO operacionConsultable=new OperacionConsultableDTO();
-                    operacionConsultable.setCodigo(operacion.getCodigo());
-                    String nombre="No encontrado";
-                {
-                    try {
-                        Cuenta cuenta=operacionesDAO.consultarCuenta(operacionConsultable);
-                        
-                        CuentaConsultableUsuarioDTO cuentaConsultableUsuario=new CuentaConsultableUsuarioDTO();
-                        cuentaConsultableUsuario.setNumeroCuenta(cuenta.getNumeroCuenta());
-                        
-                        nombre=cuentasDAO.consultarCliente(cuentaConsultableUsuario);
-                    } catch (PersistenciaException ex) {
-                        Logger.getLogger(TablaOperaciones.class.getName()).log(Level.SEVERE, "Error al acceder a la base de datos en la tabla", ex);
-                    }
-                    return nombre;
-                }
-                default:
-                    return null; // Si hay más columnas, ajusta según tu estructura de datos
-            }
-        } else if (operacion.getTipo().equalsIgnoreCase("Retiro sin cuenta")) {
-            switch (columnIndex) {
-                case 0:
-                    return "Retiro sin cuenta";
-                case 1:
-                    return operacion.getMonto();
-                case 2:
-                    return operacion.getMotivo();
-                case 3:
-                    return operacion.getFechaCreacion();
-                case 4:
-                    return operacion.getEstado();
-                case 5:
-                    return "";
-                default:
-                    return null; // Si hay más columnas, ajusta según tu estructura de datos
-            }
+        switch (operacion.getTipo().toLowerCase()) {
+            case "transferencia":
+                return getValueForTransferencia(operacion, columnIndex);
+            case "retiro sin cuenta":
+                return getValueForRetiroSinCuenta(operacion, columnIndex);
+            default:
+                return null;
         }
+    }
 
-        return null;
+    private Object getValueForTransferencia(Operacion operacion, int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return "Transferencia";
+            case 1:
+                return operacion.getMonto();
+            case 2:
+                return operacion.getFechaCreacion();
+            case 3:
+                return "";
+            case 4:
+                return getValueForCuenta(operacion.getCodigoCuenta());      
+            default:
+                return null;
+        }
+    }
+
+    private Object getValueForRetiroSinCuenta(Operacion operacion, int columnIndex) {
+        switch (columnIndex) {
+            case 0:
+                return "Retiro sin cuenta";
+            case 1:
+                return operacion.getMonto();
+            case 2:
+                return operacion.getFechaCreacion();
+            case 3:
+                return operacion.getEstado();
+            default:
+                return null;
+        }
+    }
+
+    private String getValueForCuenta(long codigoCuenta) {
+        OperacionConsultableDTO operacionConsultable = new OperacionConsultableDTO();
+        operacionConsultable.setCodigo(codigoCuenta);
+
+        try {
+            Cuenta cuenta = operacionesDAO.consultarCuenta(operacionConsultable);
+            if (cuenta != null) {
+                CuentaConsultableUsuarioDTO cuentaConsultableUsuario = new CuentaConsultableUsuarioDTO();
+                cuentaConsultableUsuario.setNumeroCuenta(cuenta.getNumeroCuenta());
+
+                return cuentasDAO.consultarCliente(cuentaConsultableUsuario);
+            }
+
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(TablaOperaciones.class.getName()).log(Level.SEVERE, "Error al acceder a la base de datos en la tabla", ex);
+            return "No encontrado";
+        }
+        return "No encontrado";
     }
 }

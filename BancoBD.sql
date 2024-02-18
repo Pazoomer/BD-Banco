@@ -79,3 +79,75 @@ CREATE TABLE IF NOT EXISTS Cuenta_Operacion (
     FOREIGN KEY (codigo_cuenta) REFERENCES Cuentas(codigo),
     FOREIGN KEY (codigo_operacion) REFERENCES Operaciones(codigo)
 );
+ -- Procedimiento almacenado para caducar los retiros sin cuenta (se revisan antes de cobrarse)
+DELIMITER //
+CREATE PROCEDURE RevisarCaducidadRetirosSinCuenta()
+BEGIN
+    DECLARE ahora TIMESTAMP;
+    
+    -- Obtener la fecha y hora actuales
+    SET ahora = CURRENT_TIMESTAMP;
+    
+    -- Actualizar los retiros sin cuenta vencidos
+    UPDATE Retiros_sin_cuenta
+    SET estado = 'vencida'
+    WHERE estado = 'disponible' AND fecha_hora_caducidad < ahora;
+
+END //
+DELIMITER ;
+
+ -- Procedimiento almacenado para calcular la edad de un cliente e insertarselo
+DELIMITER //
+CREATE PROCEDURE CalcularEdadCliente(IN codigoCliente INT)
+BEGIN
+    DECLARE fechaNacimientoCliente DATE;
+    DECLARE edadCliente INT;
+
+    -- Obtener la fecha de nacimiento del cliente
+    SELECT fecha_nacimiento INTO fechaNacimientoCliente
+    FROM Clientes
+    WHERE id = codigoCliente;
+
+    -- Calcular la edad del cliente
+    SET edadCliente = YEAR(CURDATE()) - YEAR(fechaNacimientoCliente) -
+        (DATE_FORMAT(CURDATE(), '%m%d') < DATE_FORMAT(fechaNacimientoCliente, '%m%d'));
+
+    -- Actualizar la edad del cliente en la tabla
+    UPDATE Clientes
+    SET edad = edadCliente
+    WHERE id = codigoCliente;
+END //
+DELIMITER ;
+
+ -- Trigger para realizar una transferencia
+DELIMITER //
+CREATE TRIGGER trg_transferencia
+AFTER INSERT ON Transferencias
+FOR EACH ROW
+BEGIN
+    -- Variables para almacenar información
+    DECLARE monto_transferencia DECIMAL;
+    DECLARE cuenta_origen BIGINT;
+    DECLARE cuenta_destino BIGINT;
+
+    -- Obtener información de la transferencia
+    SELECT monto, codigo_cuenta INTO monto_transferencia, cuenta_origen
+    FROM Operaciones
+    WHERE codigo = NEW.codigo;
+
+    SELECT numero_cuenta_destino INTO cuenta_destino
+    FROM Transferencias
+    WHERE codigo = NEW.codigo;
+
+    -- Actualizar el saldo de la cuenta origen
+    UPDATE Cuentas
+    SET saldo = saldo - monto_transferencia
+    WHERE codigo = cuenta_origen;
+
+    -- Actualizar el saldo de la cuenta destino
+    UPDATE Cuentas
+    SET saldo = saldo + monto_transferencia
+    WHERE num_cuenta = cuenta_destino;
+END;
+//
+DELIMITER ;

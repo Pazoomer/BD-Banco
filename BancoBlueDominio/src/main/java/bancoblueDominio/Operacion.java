@@ -29,6 +29,33 @@ public class Operacion {
     public Operacion() {
     }
 
+    public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, String estado, long folio, long numCuentaDestino) {
+        this.codigo = codigo;
+        this.monto = monto;
+        this.motivo = motivo;
+        this.tipo = tipo;
+        this.fechaCreacion = fechaCreacion;
+        this.codigoCuenta = codigoCuenta;
+        this.estado = estado;
+        this.folio = folio;
+        this.numCuentaDestino = numCuentaDestino;
+    }
+    
+    
+
+    public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, String estado, long folio,long numCuentaDestino) {
+        this.codigo = codigo;
+        this.monto = monto;
+        this.motivo = motivo;
+        this.tipo = tipo;
+        this.fechaCreacion = fechaCreacion;
+        this.numCuentaDestino = numCuentaDestino;
+        this.estado = estado;
+        this.folio = folio;
+    }
+    
+    
+
     public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
@@ -109,6 +136,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
+    
     
 
     public String getTipo() {
