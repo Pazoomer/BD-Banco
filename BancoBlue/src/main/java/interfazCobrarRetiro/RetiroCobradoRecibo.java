@@ -185,7 +185,7 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
         this.etqMotivoDinamico.setText(retiro.getMotivo());
 
         OperacionConsultableDTO operacionConsultable = new OperacionConsultableDTO();
-        operacionConsultable.setCodigo(retiro.getCodigo());
+        operacionConsultable.setCodigo(retiro.getCodigoCuenta());
 
         Cuenta cuenta;
         String cliente;

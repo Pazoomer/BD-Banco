@@ -150,8 +150,6 @@ public class CobrarRetiro extends javax.swing.JFrame {
         operacionConsultableRetiro.setContrasenia(contrasenia);
         operacionConsultableRetiro.setFolio(folio);
         Operacion retiro=null;
-        System.out.println("c"+contrasenia);
-        System.out.println("f"+folio);
         try {
 
             retiro=operacionesDAO.consultar(operacionConsultableRetiro);

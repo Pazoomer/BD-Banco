@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -57,6 +58,16 @@ public class OperacionesDAO implements IOperacionesDAO {
             // Crear un objeto Timestamp usando la fecha actual
             Timestamp fechaAhora = new Timestamp(fechaActual.getTime());
 
+            // Crear una instancia de Calendar y establecer el Timestamp actual
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(fechaAhora);
+
+            // Añadir 10 minutos
+            calendar.add(Calendar.MINUTE, 10);
+
+            // Obtener el nuevo Timestamp después de añadir 10 minutos
+            Timestamp fechaCaducidad = new Timestamp(calendar.getTimeInMillis());
+
             comando.setDouble(1, operacionNueva.getMonto());
             comando.setString(2, operacionNueva.getMotivo());
             comando.setLong(3, operacionNueva.getCodigoCuenta());
@@ -77,7 +88,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                 folio = generarFolio();
                 contrasenia = GeneradorNumeros.generarNumeroAleatorio8Digitos();
                 estado = "disponible";
-                agregarRetiroSinCuenta(idOperacionGenerado, fechaAhora, folio, contrasenia,conexion);
+                agregarRetiroSinCuenta(idOperacionGenerado, fechaCaducidad, folio, contrasenia,conexion);
             } else {
                 logger.log(Level.SEVERE, "El tipo de operación no es válido");
                 throw new PersistenciaException("El tipo de operación no es válido");
@@ -327,11 +338,11 @@ public class OperacionesDAO implements IOperacionesDAO {
                     String tipo = resultados.getString("tipo");
 
                     try {
-                        if (!estado.equalsIgnoreCase("cobrada")) {
+                        if (estado.equalsIgnoreCase("cobrada")) {
                             logger.log(Level.INFO, "El retiro ya ha sido cobrada");
                             throw new ValidacionDTOException("El retiro ya ha sido cobrada");
                             
-                        }else if (!estado.equalsIgnoreCase("vencida")) {
+                        }else if (estado.equalsIgnoreCase("vencida")) {
                             logger.log(Level.INFO, "El retiro vencio");
                             throw new ValidacionDTOException("El retiro vencio");
                             
