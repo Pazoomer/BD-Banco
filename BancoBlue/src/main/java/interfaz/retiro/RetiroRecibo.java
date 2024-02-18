@@ -1,8 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz.retiro;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoblueDominio.Cuenta;
+import bancoblueDominio.Operacion;
+import interfaz.cuenta.MenuCuenta;
+import java.sql.Timestamp;
+import java.util.Calendar;
 
 /**
  *
@@ -10,13 +16,24 @@ package interfaz.retiro;
  */
 public class RetiroRecibo extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TransferenciaRecibo
-     */
-    public RetiroRecibo() {
-        initComponents();
-    }
+    IClientesDAO clientesDAO;
+    ICuentasDAO cuentasDAO;
+    IOperacionesDAO operacionesDAO;
+    Operacion retiro;
+    Cuenta cuenta;
+    MenuCuenta menuCuenta;
 
+    public RetiroRecibo(Operacion retiro,Cuenta cuenta,MenuCuenta menuCuenta,IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
+        initComponents();
+        this.clientesDAO = clientesDAO;
+        this.cuentasDAO = cuentasDAO;
+        this.operacionesDAO = operacionesDAO;
+        this.retiro = retiro;
+        this.cuenta=cuenta;
+        this.menuCuenta=menuCuenta;
+        actualizarInformacion();
+    }
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +47,7 @@ public class RetiroRecibo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         etqFechaHoraCreacionDinamico = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        etqFechaHoraCaducidadDinamico = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         etqMontoDinamico = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -39,15 +56,18 @@ public class RetiroRecibo extends javax.swing.JFrame {
         etqContraseniaDinamico = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         etqNumCuentaDinamico = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        etqNumReferenciaDinamico = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         etqMotivoDinamico = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         etqTotalDinamico = new javax.swing.JLabel();
         btnTerminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("¡Folia generado!");
 
@@ -57,7 +77,7 @@ public class RetiroRecibo extends javax.swing.JFrame {
 
         jLabel4.setText("Caduca el:");
 
-        jLabel5.setText("jLabel5");
+        etqFechaHoraCaducidadDinamico.setText("jLabel5");
 
         jLabel6.setText("Retiro con valor de:");
 
@@ -75,10 +95,6 @@ public class RetiroRecibo extends javax.swing.JFrame {
 
         etqNumCuentaDinamico.setText("jLabel13");
 
-        jLabel14.setText("Número de referencia:");
-
-        etqNumReferenciaDinamico.setText("jLabel15");
-
         jLabel16.setText("Motivo:");
 
         etqMotivoDinamico.setText("jLabel17");
@@ -88,6 +104,11 @@ public class RetiroRecibo extends javax.swing.JFrame {
         etqTotalDinamico.setText("jLabel19");
 
         btnTerminar.setText("Terminar");
+        btnTerminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTerminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -109,24 +130,17 @@ public class RetiroRecibo extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jLabel16)
-                            .addComponent(jLabel14)
                             .addComponent(jLabel18))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(etqNumReferenciaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(etqTotalDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(76, 76, 76)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etqMotivoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(etqNumCuentaDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                .addGap(144, 144, 144))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
+                                .addComponent(etqTotalDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(etqMotivoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(etqNumCuentaDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(144, 144, 144))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(271, 271, 271)
                 .addComponent(btnTerminar)
@@ -146,7 +160,7 @@ public class RetiroRecibo extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(etqFechaHoraCaducidadDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -162,7 +176,7 @@ public class RetiroRecibo extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(etqFechaHoraCreacionDinamico)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(etqFechaHoraCaducidadDinamico))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(12, 12, 12)
@@ -177,11 +191,7 @@ public class RetiroRecibo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(etqNumCuentaDinamico))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(etqNumReferenciaDinamico))
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(etqMotivoDinamico))
@@ -195,28 +205,58 @@ public class RetiroRecibo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnTerminarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       menuCuenta.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    public void actualizarInformacion() {
+        this.etqContraseniaDinamico.setText(String.valueOf(retiro.getContrasenia()));
+        this.etqFechaHoraCreacionDinamico.setText(retiro.getFechaCreacion().toString());
+        
+        // Crear una instancia de Calendar y establecer el Timestamp actual
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(retiro.getFechaCreacion());
+
+        // Añadir 10 minutos
+        calendar.add(Calendar.MINUTE, 10);
+
+        // Obtener el nuevo Timestamp después de añadir 10 minutos
+        Timestamp nuevoTimestamp = new Timestamp(calendar.getTimeInMillis());
+        
+        this.etqFechaHoraCaducidadDinamico.setText(nuevoTimestamp.toString());
+        
+        this.etqFolioDinamico.setText(String.valueOf(retiro.getFolio()));
+        this.etqMontoDinamico.setText(String.valueOf(retiro.getMonto()));
+        this.etqTotalDinamico.setText(String.valueOf(retiro.getMonto()));
+        this.etqMotivoDinamico.setText(retiro.getMotivo());
+        this.etqNumCuentaDinamico.setText(String.valueOf(cuenta.getNumeroCuenta()));
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTerminar;
     private javax.swing.JLabel etqContraseniaDinamico;
+    private javax.swing.JLabel etqFechaHoraCaducidadDinamico;
     private javax.swing.JLabel etqFechaHoraCreacionDinamico;
     private javax.swing.JLabel etqFolioDinamico;
     private javax.swing.JLabel etqMontoDinamico;
     private javax.swing.JLabel etqMotivoDinamico;
     private javax.swing.JLabel etqNumCuentaDinamico;
-    private javax.swing.JLabel etqNumReferenciaDinamico;
     private javax.swing.JLabel etqTotalDinamico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables

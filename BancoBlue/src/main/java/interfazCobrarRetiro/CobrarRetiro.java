@@ -1,8 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfazCobrarRetiro;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoblueDominio.Operacion;
+import interfaz.registro.Bienvenida;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,12 +17,19 @@ package interfazCobrarRetiro;
  */
 public class CobrarRetiro extends javax.swing.JFrame {
 
-    /**
-     * Creates new form SacarRetiro
-     */
-    public CobrarRetiro() {
-        initComponents();
+    private final IClientesDAO clientesDAO;
+    private final ICuentasDAO cuentasDAO;
+    private final IOperacionesDAO operacionesDAO;
+    private final Bienvenida bienvenida;
+
+    public CobrarRetiro(IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO, Bienvenida bienvenida) {
+        this.clientesDAO = clientesDAO;
+        this.cuentasDAO = cuentasDAO;
+        this.operacionesDAO = operacionesDAO;
+        this.bienvenida = bienvenida;
+        this.initComponents();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -32,8 +46,14 @@ public class CobrarRetiro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         cmpContrasenia = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Cobrar Retiro");
 
@@ -42,6 +62,18 @@ public class CobrarRetiro extends javax.swing.JFrame {
         jLabel3.setText("Contraseña:");
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,13 +94,18 @@ public class CobrarRetiro extends javax.swing.JFrame {
                             .addComponent(cmpContrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(279, 279, 279)
-                        .addComponent(btnConfirmar)))
+                        .addComponent(btnConfirmar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnVolver)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(btnVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(49, 49, 49)
                 .addComponent(jLabel2)
@@ -84,46 +121,68 @@ public class CobrarRetiro extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+                                                   
+            String contraseniaTexto=this.cmpContrasenia.getText();
+            String folioTexto=this.cmpFolioOperacion.getText();
+            
+            if (contraseniaTexto.isBlank()) {
+                JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");
+            }
+            if (folioTexto.isBlank()) {
+                JOptionPane.showMessageDialog(this, "No puede dejar campos vacios");
+            }
+          
+        long folio = -1;
+        int contrasenia = -1;
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CobrarRetiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CobrarRetiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CobrarRetiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CobrarRetiro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
+            folio = Long.parseLong(folioTexto);
+            contrasenia = Integer.parseInt(contraseniaTexto);
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CobrarRetiro().setVisible(true);
-            }
-        });
-    }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Lo ingresado deben ser numeros");
+            return;
+        }
+        OperacionConsultableRetiroDTO operacionConsultableRetiro = new OperacionConsultableRetiroDTO();
+        operacionConsultableRetiro.setContrasenia(contrasenia);
+        operacionConsultableRetiro.setFolio(folio);
+        Operacion retiro=null;
+        System.out.println("c"+contrasenia);
+        System.out.println("f"+folio);
+        try {
+
+            retiro=operacionesDAO.consultar(operacionConsultableRetiro);
+        } catch (PersistenciaException ex) {
+            JOptionPane.showMessageDialog(this, "Hubo un error en la base de datos");
+            return;
+        } catch (ValidacionDTOException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+            return;
+        }
+        if (retiro!=null) {
+            RetiroCobradoRecibo registrar=new RetiroCobradoRecibo(retiro,bienvenida,operacionesDAO,cuentasDAO);
+            this.setVisible(false);
+            registrar.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "No hay retiro con esos datos");
+        }
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.bienvenida.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JTextField cmpContrasenia;
     private javax.swing.JTextField cmpFolioOperacion;
     private javax.swing.JLabel jLabel1;

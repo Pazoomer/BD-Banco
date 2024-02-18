@@ -185,7 +185,6 @@ public class TransferenciaMonto extends javax.swing.JFrame {
             
             Operacion transferencia;
             try {
-                System.out.println("Aa");
                 transferencia=operacionesDAO.agregarOperacion(operacionNueva);
             } catch (PersistenciaException ex) {
                 JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos");

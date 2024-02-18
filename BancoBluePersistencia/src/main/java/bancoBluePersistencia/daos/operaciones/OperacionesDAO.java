@@ -15,16 +15,13 @@ import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
-import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
@@ -54,7 +51,11 @@ public class OperacionesDAO implements IOperacionesDAO {
 
             conexion.setAutoCommit(false);
 
-            Date fechaAhora = Date.valueOf(LocalDate.now());
+            // Obtener la fecha y hora actual
+            java.util.Date fechaActual = new java.util.Date();
+
+            // Crear un objeto Timestamp usando la fecha actual
+            Timestamp fechaAhora = new Timestamp(fechaActual.getTime());
 
             comando.setDouble(1, operacionNueva.getMonto());
             comando.setString(2, operacionNueva.getMotivo());
@@ -76,7 +77,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                 folio = generarFolio();
                 contrasenia = GeneradorNumeros.generarNumeroAleatorio8Digitos();
                 estado = "disponible";
-                agregarRetiroSinCuenta(idOperacionGenerado, fechaAhora, folio, contrasenia);
+                agregarRetiroSinCuenta(idOperacionGenerado, fechaAhora, folio, contrasenia,conexion);
             } else {
                 logger.log(Level.SEVERE, "El tipo de operación no es válido");
                 throw new PersistenciaException("El tipo de operación no es válido");
@@ -88,7 +89,7 @@ public class OperacionesDAO implements IOperacionesDAO {
             conexion.setAutoCommit(true);
 
             Operacion operacion = new Operacion(idOperacionGenerado, operacionNueva.getMonto(), operacionNueva.getMotivo(),
-                    operacionNueva.getTipo(), Fechas.convertidorLocalDateTime(fechaAhora),
+                    operacionNueva.getTipo(), fechaAhora,
                     operacionNueva.getCodigoCuenta(), estado, folio, contrasenia, operacionNueva.getNumCuentaDestino());
 
             return operacion;
@@ -116,14 +117,13 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
-    private void agregarRetiroSinCuenta(long codigoOperacion, Date caducidad, long folio, int contrasenia) throws PersistenciaException {
+    private void agregarRetiroSinCuenta(long codigoOperacion, Timestamp caducidad, long folio, int contrasenia,Connection conexion) throws PersistenciaException {
         String sentenciaSQL = """
             INSERT INTO Retiros_sin_cuenta (codigo, num_folio, contrasenia,sal, estado, fecha_hora_caducidad)
             VALUES (?, ?,?,?,"disponible",?);
                               """;
 
-        try (Connection conexion = this.conexionBD.obtenerConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
+        try (PreparedStatement comando = conexion.prepareStatement(sentenciaSQL)) {
             
             String sal=Contraseñas.generarSal();
                 String contraseniaConSal;
@@ -139,7 +139,7 @@ public class OperacionesDAO implements IOperacionesDAO {
             comando.setString(4, sal);
             
             //En la base de datos se le va a aumentar 10 min a la caducidad
-            comando.setDate(5, caducidad);
+            comando.setTimestamp(5, caducidad);
 
             int numRegistrosInsertados = comando.executeUpdate();
             logger.log(Level.INFO, "Se agregaron {0} Retiros_sin_cuenta", numRegistrosInsertados);
@@ -229,7 +229,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                 long codigo = resultados.getLong("codigo_operacion");
                 String tipo = resultados.getString("tipo");
                 String motivo = resultados.getString("motivo");
-                Date fecha_hora_creacion = resultados.getDate("fecha_hora_creacion");
+                Timestamp fecha_hora_creacion = resultados.getTimestamp("fecha_hora_creacion");
                 long monto = resultados.getLong("monto");
 
                 if (tipo.equalsIgnoreCase("Transferencia")) {
@@ -244,7 +244,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                     throw new PersistenciaException("Estado de la base de datos incosistente");
                 }
 
-                Operacion operacion = new Operacion(codigo,monto, motivo, tipo,Fechas.convertidorLocalDateTime(fecha_hora_creacion), estado,folio,contrasenia,numero_cuenta_destino);
+                Operacion operacion = new Operacion(codigo,monto, motivo, tipo,fecha_hora_creacion, estado,folio,contrasenia,numero_cuenta_destino);
                 listaOperaciones.add(operacion);
 
             }
@@ -353,7 +353,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                             
                             Timestamp fecha_hora_creacion = resultados.getTimestamp("fecha_hora_creacion");
                             
-                            Operacion operacion = new Operacion(codigo_operacion, monto, motivo, tipo, Fechas.convertirTimestampALocalDateTime(fecha_hora_creacion), codigo_cuenta,estado,operacionConsultableRetiro.getFolio(),operacionConsultableRetiro.getContrasenia());
+                            Operacion operacion = new Operacion(codigo_operacion, monto, motivo, tipo, fecha_hora_creacion, codigo_cuenta,estado,operacionConsultableRetiro.getFolio(),operacionConsultableRetiro.getContrasenia());
 
                             logger.log(Level.INFO, "Se consultaron {0} operaciones", 1);
                             return operacion;

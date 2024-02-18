@@ -1,8 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package interfaz.retiro;
+
+import bancoBluePersistencia.daos.clientes.IClientesDAO;
+import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
+import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
+import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoblueDominio.Cliente;
+import bancoblueDominio.Cuenta;
+import bancoblueDominio.Operacion;
+import interfaz.cuenta.MenuCuenta;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,11 +18,22 @@ package interfaz.retiro;
  */
 public class RetiroMonto extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RetiroMonto
-     */
-    public RetiroMonto() {
+    MenuCuenta menuCuenta;
+    Cliente cliente;
+    Cuenta cuenta;
+    IClientesDAO clientesDAO;
+    ICuentasDAO cuentasDAO;
+    IOperacionesDAO operacionesDAO;
+
+    public RetiroMonto(MenuCuenta menuCuenta, Cliente cliente, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
         initComponents();
+        this.menuCuenta = menuCuenta;
+        this.cliente = cliente;
+        this.cuenta = cuenta;
+        this.clientesDAO = clientesDAO;
+        this.cuentasDAO = cuentasDAO;
+        this.operacionesDAO = operacionesDAO;
+        actualizarInformacion();
     }
 
     /**
@@ -35,9 +54,14 @@ public class RetiroMonto extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         cmpMotivo = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("Retiro sin cuenta");
 
@@ -49,74 +73,146 @@ public class RetiroMonto extends javax.swing.JFrame {
 
         etqSaldoDisponibleDinamico.setText("jLabel5");
 
-        jLabel6.setText("Motivo:");
+        jLabel6.setText("Ingrese el motivo del retiro");
 
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+
+        btnVolver.setText("Volver");
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(287, 287, 287)
-                .addComponent(btnConfirmar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 139, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(136, 136, 136)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(114, 114, 114)
-                        .addComponent(cmpMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cmpMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(cmpMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmpMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(etqSaldoDisponibleDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(177, 177, 177)
+                        .addComponent(etqSaldoDisponibleDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(131, 131, 131))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(287, 287, 287)
+                        .addComponent(btnConfirmar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(jLabel4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(btnVolver)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(etqSaldoDisponibleDinamico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cmpMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(cmpMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
+                .addComponent(jLabel3)
+                .addGap(12, 12, 12)
+                .addComponent(cmpMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel6)
+                .addGap(10, 10, 10)
+                .addComponent(cmpMotivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(btnConfirmar)
                 .addGap(36, 36, 36))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        this.menuCuenta.setVisible(true);
+    }//GEN-LAST:event_formWindowClosed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        String montoTexto = this.cmpMonto.getText();
+        String motivo = this.cmpMotivo.getText();
+        
+        if (montoTexto.isBlank()) {
+            JOptionPane.showMessageDialog(this, "No puede dejar el monto vacio");
+            return;
+        }
+
+        long monto = -1;
+        try {
+            monto = Long.parseLong(montoTexto);
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El monto debe ser un numero");
+            return;
+        }
+        
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de realizar un retiro?, esta accion no se puede revertir", "Confirmacion final", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            
+            OperacionNuevaDTO operacionNueva=new OperacionNuevaDTO();
+            operacionNueva.setMonto(monto);
+            operacionNueva.setMotivo(motivo);
+            operacionNueva.setTipo("retiro sin cuenta");
+            operacionNueva.setNumCuentaOrigen(this.cuenta.getNumeroCuenta());
+            operacionNueva.setCodigoCuenta(cuenta.getCodigo());
+            
+            Operacion retiro = null;
+            try {
+                retiro = operacionesDAO.agregarOperacion(operacionNueva);
+            } catch (PersistenciaException ex) {
+                JOptionPane.showMessageDialog(this, "No se pudo acceder a la base de datos");
+            }
+            if (retiro != null) {
+                RetiroRecibo registrar = new RetiroRecibo(retiro, cuenta, menuCuenta, clientesDAO, cuentasDAO, operacionesDAO);
+                this.setVisible(false);
+                registrar.setVisible(true);
+            }
+
+        }
+
+    }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
+    private void actualizarInformacion(){
+        this.etqSaldoDisponibleDinamico.setText(String.valueOf(cuenta.getSaldo()));
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JTextField cmpMonto;
     private javax.swing.JTextField cmpMotivo;
     private javax.swing.JLabel etqSaldoDisponibleDinamico;

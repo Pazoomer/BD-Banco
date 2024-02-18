@@ -9,6 +9,7 @@ import bancoBluePersistencia.daos.cuentas.CuentasDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.daos.operaciones.OperacionesDAO;
+import interfazCobrarRetiro.CobrarRetiro;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,6 +42,7 @@ public class Bienvenida extends javax.swing.JFrame {
         clientesDAO = new ClientesDAO(conexion);
         cuentasDAO = new CuentasDAO(conexion);
         operacionesDAO=new OperacionesDAO(conexion);
+        
     }
     
 
@@ -164,7 +166,9 @@ public class Bienvenida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCobrarRetiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCobrarRetiroActionPerformed
-        // TODO add your handling code here:
+       CobrarRetiro registrar=new CobrarRetiro(clientesDAO, cuentasDAO, operacionesDAO, this);
+       this.setVisible(false);
+       registrar.setVisible(true);
     }//GEN-LAST:event_btnCobrarRetiroActionPerformed
 
     private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed

@@ -11,6 +11,7 @@ import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import interfaz.cliente.MenuPrincipal;
+import interfaz.retiro.RetiroMonto;
 import interfaz.transferencia.TransferenciaNumeroBeneficiario;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
@@ -221,7 +222,9 @@ public class MenuCuenta extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void retiroSinCuenta() {
-
+        RetiroMonto registrar=new RetiroMonto(this, cliente, cuenta,  clientesDAO,  cuentasDAO, operacionesDAO);
+        this.setVisible(false);
+        registrar.setVisible(true);
     }
     
     private void transferencia(){

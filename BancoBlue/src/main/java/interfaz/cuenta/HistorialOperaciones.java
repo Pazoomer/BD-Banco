@@ -11,11 +11,12 @@ import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.tablas.TablaOperaciones;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -226,9 +227,15 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         int dia = Integer.parseInt(diaStr);
         int mes = Integer.parseInt(mesStr);
 
-        Date fechaFiltro = new Date(anio - 1900, mes - 1, dia);
-        
-        LocalDateTime fecha=Fechas.convertidorLocalDateTime(fechaFiltro);
+        // Obtener la fecha actual
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.YEAR, anio);
+        calendar.set(Calendar.MONTH, mes);
+        calendar.set(Calendar.DAY_OF_MONTH, dia);
+
+        // Crear un objeto Timestamp usando la fecha configurada
+        Timestamp timestamp = new Timestamp(calendar.getTimeInMillis());
         
         CuentaConsultableDTO cuentaConsultable=new CuentaConsultableDTO();
         
@@ -243,7 +250,7 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         // Filtrar las operaciones según la fecha y el tipo seleccionado
         
         for (Operacion operacion : listaCuentas) {
-            if (operacion.getFechaCreacion().isAfter(fecha)) {
+            if (operacion.getFechaCreacion().after(timestamp)) {
                 if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
                     listaOperaciones.add(operacion);
                 } else if (this.radiobtnTransferencia.isSelected() && operacion.getTipo().equalsIgnoreCase("transferencia")) {

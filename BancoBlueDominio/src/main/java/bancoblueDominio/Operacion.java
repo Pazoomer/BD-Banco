@@ -1,6 +1,7 @@
 
 package bancoblueDominio;
 
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 /**
@@ -14,7 +15,7 @@ public class Operacion {
     private double monto;
     private String motivo;
     private String tipo;
-    private LocalDateTime fechaCreacion;
+    private Timestamp fechaCreacion;
     private long codigoCuenta;
     
     //Atributos del retiro sin cuenta
@@ -28,7 +29,7 @@ public class Operacion {
     public Operacion() {
     }
 
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -42,7 +43,7 @@ public class Operacion {
     }
     
     
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, String estado, long folio, int contrasenia, long numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -54,7 +55,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
+    public Operacion(double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia, long numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -66,7 +67,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -78,7 +79,7 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia) {
+    public Operacion(double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, String estado, long folio, int contrasenia) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -89,7 +90,7 @@ public class Operacion {
         this.contrasenia = contrasenia;
     }
 
-    public Operacion(long codigo, double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, long numCuentaDestino) {
+    public Operacion(long codigo, double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, long numCuentaDestino) {
         this.codigo = codigo;
         this.monto = monto;
         this.motivo = motivo;
@@ -99,7 +100,7 @@ public class Operacion {
         this.numCuentaDestino = numCuentaDestino;
     }
 
-    public Operacion(double monto, String motivo, String tipo, LocalDateTime fechaCreacion, long codigoCuenta, long numCuentaDestino) {
+    public Operacion(double monto, String motivo, String tipo, Timestamp fechaCreacion, long codigoCuenta, long numCuentaDestino) {
         this.monto = monto;
         this.motivo = motivo;
         this.tipo = tipo;
@@ -144,11 +145,11 @@ public class Operacion {
         this.motivo = motivo;
     }
 
-    public LocalDateTime getFechaCreacion() {
+    public Timestamp getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(LocalDateTime fechaCreacion) {
+    public void setFechaCreacion(Timestamp fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
