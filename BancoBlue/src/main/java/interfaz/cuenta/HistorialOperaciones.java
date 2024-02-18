@@ -12,6 +12,7 @@ import bancoblueDominio.Operacion;
 import interfaz.tablas.TablaOperaciones;
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -42,9 +43,12 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
         this.operacionesDAO=operacionesDAO;
+        this.radiobtnRetiroSinCuenta.setSelected(true);
+        this.radiobtnTransferencia.setSelected(true);
         actualizarInformacion();
         this.setSize(660, 410);
         this.setLocation(400, 200);
+        
     }
 
     /**
@@ -204,10 +208,13 @@ public class HistorialOperaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void acualizarTabla() {
-        TablaOperaciones tablaModel = new TablaOperaciones(listaOperaciones, cuentasDAO, operacionesDAO, clientesDAO);
-        cmbxOperaciones= new JTable(tablaModel);
+        if (listaOperaciones != null) {
+            TablaOperaciones tablaModel = new TablaOperaciones(listaOperaciones, cuentasDAO, operacionesDAO, clientesDAO);
+            cmbxOperaciones.setModel(tablaModel);
+        }
+
     }
-    
+
     private void actualizarInformacion(){
         
         String anioStr = (String) this.cmbxAnio.getSelectedItem();
@@ -228,10 +235,14 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         cuentaConsultable.setCodigo(cuenta.getCodigo());
         
         try {
-           List<Operacion>listaAuxiliar =operacionesDAO.consultar(cuentaConsultable);
+           List<Operacion>listaCuentas =operacionesDAO.consultar(cuentaConsultable);
+           
+            listaOperaciones = new ArrayList<>();
+
 
         // Filtrar las operaciones según la fecha y el tipo seleccionado
-        for (Operacion operacion : listaAuxiliar) {
+        
+        for (Operacion operacion : listaCuentas) {
             if (operacion.getFechaCreacion().isAfter(fecha)) {
                 if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
                     listaOperaciones.add(operacion);

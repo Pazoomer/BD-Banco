@@ -3,6 +3,7 @@ package interfaz.transferencia;
 
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
+import interfaz.cuenta.MenuCuenta;
 
 /**
  *
@@ -14,6 +15,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
     private final String nombreClienteDestino;
     private final Cuenta cuentaOrigen;
     private final TransferenciaMonto transferenciaMonto;
+    private final MenuCuenta menuCuenta;
     /**
      * Creates new form TransferenciaRecibo
      * @param transferenciaMonto
@@ -21,7 +23,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
      * @param nombreClienteDestino
      * @param cuentaOrigen
      */
-    public TransferenciaRecibo(TransferenciaMonto transferenciaMonto, Operacion transferencia, String nombreClienteDestino, Cuenta cuentaOrigen) {
+    public TransferenciaRecibo(MenuCuenta menuCuenta,TransferenciaMonto transferenciaMonto, Operacion transferencia, String nombreClienteDestino, Cuenta cuentaOrigen) {
         this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
@@ -29,6 +31,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         this.nombreClienteDestino=nombreClienteDestino;
         this.cuentaOrigen=cuentaOrigen;
         this.transferenciaMonto=transferenciaMonto;
+        this.menuCuenta=menuCuenta;
         actualizarInformacion();
         this.setSize(660, 410);
         this.setLocation(400, 200);
@@ -203,10 +206,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        this.transferenciaMonto.transferenciaConfirmacion.transferenciaNumeroBeneficiario.menuCuenta.setVisible(true);
-        this.transferenciaMonto.transferenciaConfirmacion.transferenciaNumeroBeneficiario.dispose();
-        this.transferenciaMonto.transferenciaConfirmacion.dispose();
-        this.transferenciaMonto.dispose();
+        cerrar();
     }//GEN-LAST:event_formWindowClosed
 
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
@@ -225,6 +225,12 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         this.etqNombreBeneficiarioDinamico.setText(nombreClienteDestino);
         this.etqNumCuentaDinamico.setText(String.valueOf(cuentaOrigen.getNumeroCuenta()));
         this.etqNumTarjetaBeneficiarioDinamico.setText(String.valueOf(transferencia.getNumCuentaDestino()));
+    }
+
+    public void cerrar() {
+        
+        menuCuenta.setVisible(true);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

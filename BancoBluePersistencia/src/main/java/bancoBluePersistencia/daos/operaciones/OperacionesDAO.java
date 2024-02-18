@@ -15,6 +15,7 @@ import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
+import java.math.BigDecimal;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
@@ -218,14 +219,14 @@ public class OperacionesDAO implements IOperacionesDAO {
 
             List<Operacion> listaOperaciones = new LinkedList<>();
 
-            int numero_cuenta_destino=-1;
+            long numero_cuenta_destino=-1;
             String estado="";
             int folio=-1;
             int contrasenia=-1;
             while (resultados.next()) {
 
                 //Operacion
-                long codigo = resultados.getLong("codigo");
+                long codigo = resultados.getLong("codigo_operacion");
                 String tipo = resultados.getString("tipo");
                 String motivo = resultados.getString("motivo");
                 Date fecha_hora_creacion = resultados.getDate("fecha_hora_creacion");
@@ -233,7 +234,7 @@ public class OperacionesDAO implements IOperacionesDAO {
 
                 if (tipo.equalsIgnoreCase("Transferencia")) {
                     //Transferencia
-                    numero_cuenta_destino = resultados.getInt("numero_cuenta_destino");
+                    numero_cuenta_destino = resultados.getLong("numero_cuenta_destino");
                 } else if (tipo.equalsIgnoreCase("Retiro sin cuenta")) {
                     //Retiro sin cuenta
                     estado = resultados.getString("estado");
@@ -382,7 +383,7 @@ public class OperacionesDAO implements IOperacionesDAO {
     @Override
     public Cuenta consultarCuenta(OperacionConsultableDTO operacionConsultable) throws PersistenciaException {
         String sentenciaSQL = """
-        SELECT codigo, num_cuenta, fecha_apertura, saldo, estado, id_cliente
+        SELECT C.codigo, C.num_cuenta, C.fecha_apertura, C.saldo, C.estado, C.id_cliente
         FROM Cuentas C
         JOIN Operaciones O ON O.codigo_cuenta = C.codigo
         WHERE O.codigo_cuenta = ?;
@@ -399,7 +400,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                 long codigo = resultados.getLong("codigo");
                 long num_cuenta = resultados.getLong("num_cuenta");
                 Timestamp fecha_apertura = resultados.getTimestamp("fecha_apertura");
-                long saldo = resultados.getLong("saldo");
+                Double saldo = resultados.getDouble("saldo");
                 String estado = resultados.getString("estado");
                 long id_cliente = resultados.getLong("id_cliente");
 
@@ -409,7 +410,7 @@ public class OperacionesDAO implements IOperacionesDAO {
                 return cuenta;
 
             } else {
-                logger.log(Level.INFO, "No existe el cliente", 1);
+                logger.log(Level.INFO, "No existe la cuenta", 1);
                 return null;
             }
         } catch (SQLException ex) {

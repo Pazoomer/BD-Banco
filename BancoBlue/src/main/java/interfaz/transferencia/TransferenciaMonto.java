@@ -12,6 +12,7 @@ import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
+import interfaz.cuenta.MenuCuenta;
 import javax.swing.JOptionPane;
 
 /**
@@ -29,11 +30,12 @@ public class TransferenciaMonto extends javax.swing.JFrame {
     private final ICuentasDAO cuentasDAO;
     private final IOperacionesDAO operacionesDAO;
     private final String nombreClienteDestino;
+    private final MenuCuenta menuCuenta;
         
     /**
      * Creates new form TransferenciaMonto
      */
-    public TransferenciaMonto(TransferenciaConfirmacion transferenciaConfirmacion, Cliente cliente, String nombreClienteDestino, Cuenta cuentaOrigen, Cuenta cuentaDestino, String motivo, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+    public TransferenciaMonto(MenuCuenta menuCuenta, TransferenciaConfirmacion transferenciaConfirmacion, Cliente cliente, String nombreClienteDestino, Cuenta cuentaOrigen, Cuenta cuentaDestino, String motivo, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
          this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
@@ -41,6 +43,7 @@ public class TransferenciaMonto extends javax.swing.JFrame {
         this.cliente=cliente;
         this.cuentaDestino=cuentaDestino;
         this.cuentaOrigen=cuentaOrigen;
+        this.menuCuenta=menuCuenta;
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
         this.operacionesDAO=operacionesDAO;
@@ -189,7 +192,7 @@ public class TransferenciaMonto extends javax.swing.JFrame {
                 return;
             }
         
-            TransferenciaRecibo transferenciaRecibo=new TransferenciaRecibo(this,transferencia,nombreClienteDestino,cuentaOrigen);
+            TransferenciaRecibo transferenciaRecibo=new TransferenciaRecibo(menuCuenta,this,transferencia,nombreClienteDestino,cuentaOrigen);
             this.setVisible(false);
             transferenciaRecibo.setVisible(true);
         }
@@ -221,6 +224,10 @@ public class TransferenciaMonto extends javax.swing.JFrame {
         this.btnConfirmar.setEnabled(true);
         this.etqSaldoDisponibleDinamico.setText(String.valueOf(cuentaOrigen.getSaldo())); 
         
+    }
+    
+    public void cerrar(){
+        this.dispose();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

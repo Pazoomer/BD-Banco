@@ -56,6 +56,8 @@ public class TablaOperaciones extends AbstractTableModel {
                     return operacion.getMotivo();
                 case 3:
                     return operacion.getFechaCreacion();
+                case 4:
+                    return "";
                 case 5:
                     OperacionConsultableDTO operacionConsultable=new OperacionConsultableDTO();
                     operacionConsultable.setCodigo(operacion.getCodigo());
@@ -88,6 +90,8 @@ public class TablaOperaciones extends AbstractTableModel {
                     return operacion.getFechaCreacion();
                 case 4:
                     return operacion.getEstado();
+                case 5:
+                    return "";
                 default:
                     return null; // Si hay más columnas, ajusta según tu estructura de datos
             }
