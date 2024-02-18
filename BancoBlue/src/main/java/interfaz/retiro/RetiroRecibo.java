@@ -8,12 +8,12 @@ package interfaz.retiro;
  *
  * @author victo
  */
-public class TransferenciaRecibo extends javax.swing.JFrame {
+public class RetiroRecibo extends javax.swing.JFrame {
 
     /**
      * Creates new form TransferenciaRecibo
      */
-    public TransferenciaRecibo() {
+    public RetiroRecibo() {
         initComponents();
     }
 
@@ -48,7 +48,6 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         btnTerminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
 
         jLabel1.setText("¡Folia generado!");
 
