@@ -88,7 +88,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
 
         etqTotalDinamico.setText("jLabel19");
 
-        btnTerminar.setText("Termianr");
+        btnTerminar.setText("Terminar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
