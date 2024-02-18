@@ -3,16 +3,15 @@ package interfazCobrarRetiro;
 
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
-import bancoBluePersistencia.daos.operaciones.OperacionesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaSaldoDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
+import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
-import bancoblueDominio.Cliente;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.registro.Bienvenida;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +40,7 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labTitulo = new javax.swing.JLabel();
         etqFechaHoraDinamico = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         etqMontoDinamico = new javax.swing.JLabel();
@@ -62,7 +61,7 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("¡Retiro validado!");
+        labTitulo.setText("¡Retiro validado!");
 
         etqFechaHoraDinamico.setText("jLabel2");
 
@@ -123,7 +122,7 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
+                            .addComponent(labTitulo)
                             .addComponent(etqFechaHoraDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(219, 219, 219))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -140,7 +139,7 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addComponent(jLabel1)
+                .addComponent(labTitulo)
                 .addGap(18, 18, 18)
                 .addComponent(etqFechaHoraDinamico)
                 .addGap(18, 18, 18)
@@ -179,10 +178,7 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosed
 
     private void actualizarInformacion() {
-        this.etqFechaHoraDinamico.setText(retiro.getFechaCreacion().toString());
-        this.etqMontoDinamico.setText(String.valueOf(retiro.getMonto()));
-        this.etqTotalDinamico.setText(String.valueOf(retiro.getMonto()));
-        this.etqMotivoDinamico.setText(retiro.getMotivo());
+        
 
         OperacionConsultableDTO operacionConsultable = new OperacionConsultableDTO();
         operacionConsultable.setCodigo(retiro.getCodigoCuenta());
@@ -197,13 +193,32 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
             cuentaConsultableUsuario.setNumeroCuenta(cuenta.getNumeroCuenta());
 
             cliente = cuentasDAO.consultarCliente(cuentaConsultableUsuario);
+            
+            CuentaSaldoDTO cuentaSaldo = new CuentaSaldoDTO();
+            cuentaSaldo.setCodigo(cuenta.getCodigo());
+            cuentaSaldo.setSaldo(retiro.getMonto() * -1);
+
+            cuentasDAO.cambiarMonto(cuentaSaldo);
+            
+            OperacionEstadoDTO operacionEstado=new OperacionEstadoDTO();
+            operacionEstado.setEstado("cobrada");
+            operacionEstado.setCodigo(retiro.getCodigo());
+            
+            operacionesDAO.cambiarEstado(operacionEstado);
 
             this.etqNombreClienteDinamico.setText(cliente);
         } catch (PersistenciaException ex) {
-            JOptionPane.showMessageDialog(this, "Error al consultar los datos de la cuenta del retiro, aun asi, el retiro fue exitoso");
+            JOptionPane.showMessageDialog(this, "Error en la base de datos al consultar la cuenta del registro");
+            this.dispose();
+        } catch (ValidacionDTOException ex) {
+            JOptionPane.showMessageDialog(this, ex);
+            this.dispose();
         }
- 
-        
+        this.etqFechaHoraDinamico.setText(retiro.getFechaCreacion().toString());
+        this.etqMontoDinamico.setText(String.valueOf(retiro.getMonto()));
+        this.etqTotalDinamico.setText(String.valueOf(retiro.getMonto()));
+        this.etqMotivoDinamico.setText(retiro.getMotivo());
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -214,11 +229,11 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel etqNombreClienteDinamico;
     private javax.swing.JLabel etqNumTarjetClienteDinamico;
     private javax.swing.JLabel etqTotalDinamico;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labTitulo;
     // End of variables declaration//GEN-END:variables
 }

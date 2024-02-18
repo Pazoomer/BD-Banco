@@ -58,7 +58,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="labTitulo" min="-2" max="-2" attributes="0"/>
                           <Component id="etqFechaHoraDinamico" min="-2" pref="200" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="219" max="-2" attributes="0"/>
@@ -83,7 +83,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="labTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="etqFechaHoraDinamico" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -115,7 +115,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="labTitulo">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xa1;Retiro validado!"/>
       </Properties>

@@ -5,9 +5,9 @@ import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaSaldoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
-import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import java.util.List;
 
@@ -21,7 +21,8 @@ public interface ICuentasDAO {
     String consultarCliente(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException;
     //boolean actualizarEstado (CuentaActualizableDTO cuentaActualizable) throws PersistenciaException;
     //boolean actualizarSaldo (CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException;
-    boolean cancelar (CuentaCerrableDTO cuentaCerrableDTO) throws PersistenciaException;
+    boolean cancelar (CuentaCerrableDTO cuentaCerrable) throws PersistenciaException;
     List<Cuenta> consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException;
+    boolean cambiarMonto(CuentaSaldoDTO cuentaSaldo)throws PersistenciaException,ValidacionDTOException;
     //long generarNumCuenta (long numCuenta) throws PersistenciaException;
 }

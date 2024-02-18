@@ -7,12 +7,14 @@ import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaCerrableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaSaldoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
-import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -212,15 +214,14 @@ public class CuentasDAO implements ICuentasDAO{
 
     @Override
     public String consultarCliente(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
-       String sentenciaSQL = """
+        String sentenciaSQL = """
         SELECT CL.nombre_completo AS nombre_completo
         FROM Cuentas C
         JOIN Clientes CL ON C.id_cliente = CL.id
         WHERE C.num_cuenta = ?;
                               """;
         try (
-                Connection conexion = this.conexionBD.obtenerConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
 
             comando.setLong(1, cuentaConsultableUsuario.getNumeroCuenta());
 
@@ -242,7 +243,68 @@ public class CuentasDAO implements ICuentasDAO{
             throw new PersistenciaException("No se pudo consultar el cliente", ex);
         }
     }
-    
-    
+
+    @Override
+    public boolean cambiarMonto(CuentaSaldoDTO cuentaSaldo) throws PersistenciaException, ValidacionDTOException {
+        String consultaSQL = """
+        SELECT saldo, estado
+        FROM Cuentas
+        WHERE codigo=?;
+                             """;
+
+        String actualizacionSQL = """
+        UPDATE Cuentas SET saldo = ?
+        WHERE codigo = ?;
+                                  """;
+
+        try (Connection conexion = this.conexionBD.obtenerConexion(); 
+            PreparedStatement consultaCuenta = conexion.prepareStatement(consultaSQL); 
+            PreparedStatement actualizacionCuenta = conexion.prepareStatement(actualizacionSQL)) {
+
+            consultaCuenta.setLong(1, cuentaSaldo.getCodigo());
+
+            ResultSet resultadosConsulta = consultaCuenta.executeQuery();
+
+            if (resultadosConsulta.next()) {
+                double saldo = resultadosConsulta.getDouble("saldo");
+                String estado = resultadosConsulta.getString("estado");
+
+                if (estado.equalsIgnoreCase("cancelada")) {
+                    throw new ValidacionDTOException("La cuenta fue cancelada");
+                }
+
+                logger.log(Level.INFO, "Se consultaron {0} cuentas", 1);
+                
+
+                double saldoNuevo = saldo + cuentaSaldo.getSaldo();
+
+                if (saldoNuevo < 0) {
+                    throw new ValidacionDTOException("No hay suficiente dinero en la cuenta");
+                }
+
+                actualizacionCuenta.setDouble(1, saldoNuevo);
+                actualizacionCuenta.setDouble(2, cuentaSaldo.getCodigo());
+
+                int filasAfectadasCuenta = actualizacionCuenta.executeUpdate();
+
+                if (filasAfectadasCuenta > 0) {
+                    logger.log(Level.INFO, "Se actualizó el saldo");
+                    return true;
+                } else {
+                    logger.log(Level.WARNING, "No se actualizó el saldo");
+                    return false;
+                }
+
+            } else {
+                logger.log(Level.INFO, "No existe la cuenta", 1);
+                return false;
+            }
+
+        } catch (SQLException ex) {
+            // Manejar la excepción y revertir la transacción
+            logger.log(Level.SEVERE, "No se puede actualizar la cuenta", ex);
+            throw new PersistenciaException("No se pudo actualizar la cuenta", ex);
+        }
+    }
 
 }

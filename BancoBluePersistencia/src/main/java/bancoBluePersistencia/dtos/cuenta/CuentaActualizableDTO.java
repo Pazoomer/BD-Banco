@@ -2,7 +2,6 @@
 package bancoBluePersistencia.dtos.cuenta;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 /**
  *
@@ -11,7 +10,7 @@ import java.util.Objects;
 public class CuentaActualizableDTO {
 
     private long codigo;
-    private long saldo;
+    private double saldo;
     private LocalDateTime fechaApertura;
     private long numeroCuenta;
     private long idCliente;
@@ -33,11 +32,11 @@ public class CuentaActualizableDTO {
         this.codigo = codigo;
     }
 
-    public long getSaldo() {
+    public double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(long saldo) {
+    public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
 
