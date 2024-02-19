@@ -100,6 +100,7 @@ public class RetiroMonto extends javax.swing.JFrame {
 
         cmpMonto.setBackground(new java.awt.Color(17, 20, 44));
         cmpMonto.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        cmpMonto.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(cmpMonto);
         cmpMonto.setBounds(208, 234, 227, 46);
 
@@ -111,6 +112,7 @@ public class RetiroMonto extends javax.swing.JFrame {
 
         cmpMotivo.setBackground(new java.awt.Color(17, 20, 44));
         cmpMotivo.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        cmpMotivo.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(cmpMotivo);
         cmpMotivo.setBounds(208, 303, 285, 28);
 

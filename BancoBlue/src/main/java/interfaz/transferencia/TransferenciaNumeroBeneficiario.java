@@ -86,6 +86,7 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
 
         cmpNumeroBeneficiario.setBackground(new java.awt.Color(17, 20, 44));
         cmpNumeroBeneficiario.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
+        cmpNumeroBeneficiario.setForeground(new java.awt.Color(255, 255, 255));
         cmpNumeroBeneficiario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(cmpNumeroBeneficiario);
         cmpNumeroBeneficiario.setBounds(108, 259, 417, 50);
