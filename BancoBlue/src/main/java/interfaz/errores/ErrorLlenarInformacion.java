@@ -29,8 +29,10 @@ public class ErrorLlenarInformacion extends javax.swing.JFrame {
         btnConfirmar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
         btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -41,43 +43,24 @@ public class ErrorLlenarInformacion extends javax.swing.JFrame {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(240, 260, 132, 37);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Favor de llenar todos los campos que se solicita.");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(90, 180, 480, 30);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("Aviso");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(240, 90, 137, 58);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(btnConfirmar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLabel2)))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConfirmar)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 9.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, -4, 650, 410);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -91,5 +74,6 @@ public class ErrorLlenarInformacion extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

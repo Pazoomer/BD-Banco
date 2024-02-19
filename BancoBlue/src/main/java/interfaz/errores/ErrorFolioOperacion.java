@@ -29,16 +29,22 @@ public class ErrorFolioOperacion extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("Aviso");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(240, 80, 137, 58);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("El folio ha caducado o es incorrecto, verífique la información.");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(20, 180, 611, 30);
 
         btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
         btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -49,36 +55,12 @@ public class ErrorFolioOperacion extends javax.swing.JFrame {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(240, 270, 132, 37);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 21, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addGap(19, 19, 19))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(btnConfirmar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnConfirmar)
-                .addContainerGap(96, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 9.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, -4, 650, 410);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -93,5 +75,6 @@ public class ErrorFolioOperacion extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }
