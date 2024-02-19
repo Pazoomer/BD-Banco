@@ -24,7 +24,10 @@ public class RetiroRecibo extends javax.swing.JFrame {
     MenuCuenta menuCuenta;
 
     public RetiroRecibo(Operacion retiro,Cuenta cuenta,MenuCuenta menuCuenta,IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
+        this.setUndecorated(true);
         initComponents();
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
         this.clientesDAO = clientesDAO;
         this.cuentasDAO = cuentasDAO;
         this.operacionesDAO = operacionesDAO;

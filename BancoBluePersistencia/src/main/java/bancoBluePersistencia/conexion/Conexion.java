@@ -7,8 +7,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Jorge Zamora 245103
+ * Se encarga de la conexion con la base de datos
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
  */
 public class Conexion implements IConexion {
 
@@ -17,6 +18,12 @@ public class Conexion implements IConexion {
     final String contrasenia;
     static final Logger logger = Logger.getLogger(Conexion.class.getName());
 
+    /**
+     * Constructor que recibe los parametros para hacer la conexion
+     * @param cadenaConexion ubicacion a donde conectarse
+     * @param usuario usuario al que se conecta
+     * @param contrasenia clave de acceso
+     */
     public Conexion(String cadenaConexion, String usuario, String contrasenia) {
         this.cadenaConexion = cadenaConexion;
         this.usuario = usuario;

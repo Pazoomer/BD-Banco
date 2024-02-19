@@ -7,14 +7,26 @@ import java.time.Period;
 import java.util.Objects;
 
 /**
- *
- * @author lv1821
+ * Representa a los usuarios del sistema, contiene los atributos de docicilios
+ * @author Jorge Zamora y Victoria Vega
  */
 public class Cliente {
     
+    /**
+     * Distingue los clientes
+     */
     private long id;
+    /**
+     * Permite acceder a su cuenta
+     */
     private String contrasenia;
-    private Date fechaNacimiento; // Este atributo calcula la edad
+    /**
+     * Fecha de nacimiento con la que se calcula la edad
+     */
+    private Date fechaNacimiento; 
+    /**
+     * Nombre unico para ingresar a nivel usuario
+     */
     private String nombreUsuario;
     
     // Los siguientes atributos componen el nombre completo

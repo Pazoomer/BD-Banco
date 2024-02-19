@@ -44,14 +44,14 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
      * @param cuentasDAO
      * @param operacionesDAO
      */
-    public TransferenciaConfirmacion(MenuCuenta menuCuenta,TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
-         this.setUndecorated(true);
+    public TransferenciaConfirmacion(MenuCuenta menuCuenta, TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
+        this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
-        this.transferenciaNumeroBeneficiario=transferenciaNumeroBeneficiario;
-        this.cliente=cliente;
-        this.cuentaDestino=cuentaDestino;
-        this.cuentaOrigen=cuentaOrigen;
+        this.transferenciaNumeroBeneficiario = transferenciaNumeroBeneficiario;
+        this.cliente = cliente;
+        this.cuentaDestino = cuentaDestino;
+        this.cuentaOrigen = cuentaOrigen;
         this.operacionesDAO=operacionesDAO;
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;

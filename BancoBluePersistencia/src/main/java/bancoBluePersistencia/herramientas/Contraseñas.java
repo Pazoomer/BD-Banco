@@ -5,6 +5,11 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
+/**
+ * Maneja el uso de encriptaciones, contraseñas y sal
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
+ */
 public class Contraseñas {
 
     /**

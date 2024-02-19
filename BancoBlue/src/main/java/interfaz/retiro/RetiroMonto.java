@@ -26,7 +26,10 @@ public class RetiroMonto extends javax.swing.JFrame {
     IOperacionesDAO operacionesDAO;
 
     public RetiroMonto(MenuCuenta menuCuenta, Cliente cliente, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
+        this.setUndecorated(true);
         initComponents();
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
         this.menuCuenta = menuCuenta;
         this.cliente = cliente;
         this.cuenta = cuenta;

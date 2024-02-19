@@ -1,4 +1,3 @@
-
 package bancoBluePersistencia.daos.clientes;
 
 import bancoBluePersistencia.conexion.IConexion;
@@ -15,27 +14,40 @@ import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
-import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
-import bancoblueDominio.Cuenta;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
 /**
- *
- * @author Jorge Zamora 245103
+ * Implementa los metodos para hacer operaciones con clientes en la base de
+ * datos
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
  */
 public class ClientesDAO implements IClientesDAO {
 
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
 
+    /**
+     * Constructor que recibe la conexion a la base de datos
+     *
+     * @param conexion Conexion de la base de datos
+     */
     public ClientesDAO(IConexion conexion) {
         this.conexionBD = conexion;
     }
 
+    /**
+     * Agrega un nuevo cliente a la base de datos
+     *
+     * @param clienteNuevo contiene todos los datos que un cliente tiene antes
+     * de entrar a la base de datos
+     * @return Cliente con todos los datos
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos
+     */
     @Override
     public Cliente agregar(ClienteNuevoDTO clienteNuevo) throws PersistenciaException {
         Connection conexion = null;
@@ -52,15 +64,15 @@ public class ClientesDAO implements IClientesDAO {
         """;
             //Comando para añadir al cliente
             try (PreparedStatement comandoCliente = conexion.prepareStatement(sentenciaClienteSQL, Statement.RETURN_GENERATED_KEYS)) {
-                
-                String sal=Contraseñas.generarSal();
+
+                String sal = Contraseñas.generarSal();
                 String contraseniaConSal;
                 try {
-                    contraseniaConSal=Contraseñas.encriptarContraseña(clienteNuevo.getContrasenia(), sal);
+                    contraseniaConSal = Contraseñas.encriptarContraseña(clienteNuevo.getContrasenia(), sal);
                 } catch (NoSuchAlgorithmException ex) {
                     throw new PersistenciaException("Sistema desactualizado, actualize su version para seguir", ex);
                 }
-                
+
                 comandoCliente.setString(1, contraseniaConSal);
                 comandoCliente.setString(2, sal);
                 comandoCliente.setString(3, clienteNuevo.getNombreUsuario());
@@ -111,7 +123,7 @@ public class ClientesDAO implements IClientesDAO {
 
             logger.log(Level.SEVERE, "No se puede guardar el cliente o el domicilio del cliente", ex);
             throw new PersistenciaException("No se pudo guardar el cliente o el domicilio del cliente", ex);
-            
+
         } finally {
             try {
                 if (conexion != null) {
@@ -125,9 +137,17 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
+    /**
+     * Actualiza la información de un cliente en la base de datos.
+     *
+     * @param clienteActualizable Contiene los datos actualizables de un
+     * cliente.
+     * @return true si la actualización fue exitosa, false en caso contrario.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public boolean actualizar(ClienteActualizableDTO clienteActualizable) throws PersistenciaException {
-        String sentenciaSQLCliente =   """
+        String sentenciaSQLCliente = """
         UPDATE Clientes SET contrasenia = ?, nombre_usuario = ?, fecha_nacimiento = ?, nombres=?, 
         apellido_paterno=?, apellido_materno=?,sal=? WHERE id = ?
                                        """;
@@ -137,10 +157,7 @@ public class ClientesDAO implements IClientesDAO {
                                        """;
 
         try (
-   
-            Connection conexion = this.conexionBD.obtenerConexion(); 
-            PreparedStatement comandoCliente = conexion.prepareStatement(sentenciaSQLCliente); 
-            PreparedStatement comandoDomicilio = conexion.prepareStatement(sentenciaSQLDomicilio);) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comandoCliente = conexion.prepareStatement(sentenciaSQLCliente); PreparedStatement comandoDomicilio = conexion.prepareStatement(sentenciaSQLDomicilio);) {
             // Desactivar autocommit
             conexion.setAutoCommit(false);
 
@@ -161,7 +178,6 @@ public class ClientesDAO implements IClientesDAO {
             comandoCliente.setString(6, clienteActualizable.getApellidoMaterno());
             comandoCliente.setString(7, sal);
             comandoCliente.setLong(8, clienteActualizable.getId());
-
 
             // Domicilio
             comandoDomicilio.setString(1, clienteActualizable.getCalle());
@@ -192,7 +208,15 @@ public class ClientesDAO implements IClientesDAO {
             throw new PersistenciaException("No se pudo actualizar el cliente o el domicilio del cliente", ex);
         }
     }
-    
+
+    /**
+     * Consulta la información de un cliente en la base de datos.
+     *
+     * @param clienteConsultable Contiene los datos necesarios para consultar un
+     * cliente.
+     * @return Cliente con la información solicitada.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public Cliente consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException {
         String sentenciaSQL = """
@@ -255,6 +279,12 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
+    /**
+     * Consulta la lista de todos los clientes en la base de datos.
+     *
+     * @return Lista de clientes almacenados en la base de datos.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public List<Cliente> consultar() throws PersistenciaException {
         String sentenciaSQL = """
@@ -276,8 +306,7 @@ public class ClientesDAO implements IClientesDAO {
         JOIN Domicilios d ON c.id = d.id_cliente;
                               """;
         try (
-                Connection conexion = this.conexionBD.obtenerConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             ResultSet resultados = comando.executeQuery();
 
             List<Cliente> listaClientes = new LinkedList<>();
@@ -313,6 +342,14 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
+    /**
+     * Consulta la información de un cliente para el inicio de sesión.
+     *
+     * @param clienteInicioSesion Contiene el nombre de usuario y contraseña
+     * sesión.
+     * @return Cliente con la información requerida para el inicio de sesión.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public Cliente consultar(ClienteInicioSesionDTO clienteInicioSesion) throws PersistenciaException {
         String sentenciaSQL = """
@@ -389,6 +426,13 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
+    /**
+     * Valida si un nombre de usuario ya existe en la base de datos.
+     *
+     * @param nombreConsultable Nombre de usuario a ser validado.
+     * @return true si el nombre de usuario ya existe, false si es único.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public boolean validarNombreUsuarios(String nombreConsultable) throws PersistenciaException {
         String sentenciaSQL = """
@@ -396,8 +440,7 @@ public class ClientesDAO implements IClientesDAO {
         FROM clientes
                               """;
         try (
-                Connection conexion = this.conexionBD.obtenerConexion(); 
-                PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
+                Connection conexion = this.conexionBD.obtenerConexion(); PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             ResultSet resultados = comando.executeQuery();
 
             List<String> listaNombresUsuario = new LinkedList<>();
@@ -421,5 +464,4 @@ public class ClientesDAO implements IClientesDAO {
         }
     }
 
-    
 }

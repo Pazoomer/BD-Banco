@@ -23,11 +23,14 @@ public class CobrarRetiro extends javax.swing.JFrame {
     private final Bienvenida bienvenida;
 
     public CobrarRetiro(IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO, Bienvenida bienvenida) {
+        this.setUndecorated(true);
         this.clientesDAO = clientesDAO;
         this.cuentasDAO = cuentasDAO;
         this.operacionesDAO = operacionesDAO;
         this.bienvenida = bienvenida;
         this.initComponents();
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
     }
 
 

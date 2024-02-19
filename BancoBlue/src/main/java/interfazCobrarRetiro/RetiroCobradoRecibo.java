@@ -28,12 +28,15 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
      * Creates new form RetiroCobradoRecibo
      */
     public RetiroCobradoRecibo(Operacion retiro,Bienvenida bienvenida,IOperacionesDAO operacionesDAO,ICuentasDAO cuentasDAO) {
+        this.setUndecorated(true);
         initComponents();
         this.retiro=retiro;
         this.bienvenida=bienvenida;
         this.operacionesDAO=operacionesDAO;
         this.cuentasDAO=cuentasDAO;
         actualizarInformacion();
+        this.setLocation(400, 200);
+        this.setSize(660, 410);
     }
 
     @SuppressWarnings("unchecked")
