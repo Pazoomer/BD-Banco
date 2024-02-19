@@ -9,6 +9,7 @@ import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
+import bancoBluePersistencia.herramientas.FormatoPesos;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.registro.Bienvenida;
@@ -218,8 +219,10 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
             this.dispose();
         }
         this.etqFechaHoraDinamico.setText(retiro.getFechaCreacion().toString());
-        this.etqMontoDinamico.setText(String.valueOf(retiro.getMonto()));
-        this.etqTotalDinamico.setText(String.valueOf(retiro.getMonto()));
+        
+        String monto=FormatoPesos.convertidorPesos(retiro.getMonto());
+        this.etqMontoDinamico.setText(monto);
+        this.etqTotalDinamico.setText(monto);
         this.etqMotivoDinamico.setText(retiro.getMotivo());
 
     }

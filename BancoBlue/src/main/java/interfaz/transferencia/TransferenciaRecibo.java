@@ -1,6 +1,7 @@
 
 package interfaz.transferencia;
 
+import bancoBluePersistencia.herramientas.FormatoPesos;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.cuenta.MenuCuenta;
@@ -218,8 +219,9 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void actualizarInformacion(){
-        this.etqCantidadTotalDinamico.setText(String.valueOf(transferencia.getMonto()));
-        this.etqMontoDinamico.setText(String.valueOf(transferencia.getMonto())); 
+        String montoPesos=FormatoPesos.convertidorPesos(transferencia.getMonto());
+        this.etqCantidadTotalDinamico.setText(montoPesos);
+        this.etqMontoDinamico.setText(montoPesos); 
         this.etqFechaHoraDinamico.setText(transferencia.getFechaCreacion().toString());
         this.etqMotivoDinamico.setText(transferencia.getMotivo());
         this.etqNombreBeneficiarioDinamico.setText(nombreClienteDestino);

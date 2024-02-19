@@ -1,29 +1,23 @@
 
 package interfaz.tablas;
 
-import bancoBluePersistencia.daos.clientes.IClientesDAO;
-import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
-import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
+import bancoBluePersistencia.herramientas.FormatoPesos;
 import bancoblueDominio.Cuenta;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- * @author t1pas
+ * Representa la tabla de cuentas de un cliente
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
  */
-public class TablaCuentas extends AbstractTableModel{
-   private final List<Cuenta> listaCuentas;
-    private final String[] columnNames = {"Numero de cuenta", "Fecha de apertura", "Saldo actual","estado"};
-    private final ICuentasDAO cuentasDAO;
-    private final IOperacionesDAO operacionesDAO;
-    private final IClientesDAO clientesDAO;
-    
-    public TablaCuentas(List<Cuenta> listaCuentas, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO, IClientesDAO clientesDAO) {
+public class TablaCuentas extends AbstractTableModel {
+
+    private final List<Cuenta> listaCuentas;
+    private final String[] columnNames = {"Numero de cuenta", "Fecha de apertura", "Saldo actual", "estado"};
+
+    public TablaCuentas(List<Cuenta> listaCuentas) {
         this.listaCuentas = listaCuentas;
-        this.clientesDAO=clientesDAO;
-        this.cuentasDAO=cuentasDAO;
-        this.operacionesDAO=operacionesDAO;
     }
 
     @Override
@@ -41,22 +35,23 @@ public class TablaCuentas extends AbstractTableModel{
         return columnNames[columnIndex];
     }
 
+    /**
+     * Le coloca los valores a la tabla
+     * @param rowIndex Fila de la tabla
+     * @param columnIndex Columna de la tabla
+     * @return Valores de la cuenta
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cuenta cuenta = listaCuentas.get(rowIndex);
 
-            switch (columnIndex) {
-                case 0:
-                return cuenta.getNumeroCuenta();
-            case 1:
-                return cuenta.getFechaApertura().toLocalDate();
-            case 2:
-                return cuenta.getSaldo();
-            case 3:
-                return cuenta.getEstado();
-            default:
-                return null;
-        }
+       return switch (columnIndex) {
+           case 0 -> cuenta.getNumeroCuenta();
+           case 1 -> cuenta.getFechaApertura().toLocalDate();
+           case 2 -> FormatoPesos.convertidorPesos(cuenta.getSaldo());
+           case 3 -> cuenta.getEstado();
+           default -> null;
+       };
     }
 }
  

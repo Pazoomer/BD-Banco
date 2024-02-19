@@ -6,6 +6,7 @@ import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.herramientas.FormatoPesos;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import javax.swing.table.AbstractTableModel;
@@ -13,12 +14,25 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Representa la tabla de operaciones de una cuenta
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
+ */
 public class TablaOperaciones extends AbstractTableModel {
+
     private final List<Operacion> listaOperaciones;
     private final String[] columnNames = {"Tipo", "Monto", "Fecha/Hora Creación", "Estado", "Nombre del beneficiario"};
     private final ICuentasDAO cuentasDAO;
     private final IOperacionesDAO operacionesDAO;
 
+    /**
+     * Constructor que recibe la lista y constuye la tabla
+     * @param listaOperaciones Lista de operaciones
+     * @param cuentasDAO Opera cuentas
+     * @param operacionesDAO Opera operaciones
+     * @param clientesDAO Opera clientes
+     */
     public TablaOperaciones(List<Operacion> listaOperaciones, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO, IClientesDAO clientesDAO) {
         this.listaOperaciones = listaOperaciones;
         this.cuentasDAO = cuentasDAO;
@@ -44,48 +58,39 @@ public class TablaOperaciones extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         Operacion operacion = listaOperaciones.get(rowIndex);
 
-        switch (operacion.getTipo().toLowerCase()) {
-            case "transferencia":
-                return getValueForTransferencia(operacion, columnIndex);
-            case "retiro sin cuenta":
-                return getValueForRetiroSinCuenta(operacion, columnIndex);
-            default:
-                return null;
-        }
+        return switch (operacion.getTipo().toLowerCase()) {
+            case "transferencia" -> getValueForTransferencia(operacion, columnIndex);
+            case "retiro sin cuenta" -> getValueForRetiroSinCuenta(operacion, columnIndex);
+            default -> null;
+        };
     }
 
     private Object getValueForTransferencia(Operacion operacion, int columnIndex) {
-        switch (columnIndex) {
-            case 0:
-                return "Transferencia";
-            case 1:
-                return operacion.getMonto();
-            case 2:
-                return operacion.getFechaCreacion();
-            case 3:
-                return "";
-            case 4:
-                return getValueForCuenta(operacion.getCodigoCuenta());      
-            default:
-                return null;
-        }
+        return switch (columnIndex) {
+            case 0 -> "Transferencia";
+            case 1 -> FormatoPesos.convertidorPesos(operacion.getMonto());
+            case 2 -> operacion.getFechaCreacion();
+            case 3 -> "";
+            case 4 -> getValueForCuenta(operacion.getCodigoCuenta());
+            default -> null;
+        };
     }
 
     private Object getValueForRetiroSinCuenta(Operacion operacion, int columnIndex) {
-        switch (columnIndex) {
-            case 0:
-                return "Retiro sin cuenta";
-            case 1:
-                return operacion.getMonto();
-            case 2:
-                return operacion.getFechaCreacion();
-            case 3:
-                return operacion.getEstado();
-            default:
-                return null;
-        }
+        return switch (columnIndex) {
+            case 0 -> "Retiro sin cuenta";
+            case 1 -> FormatoPesos.convertidorPesos(operacion.getMonto());
+            case 2 -> operacion.getFechaCreacion();
+            case 3 -> operacion.getEstado();
+            default -> null;
+        };
     }
 
+    /**
+     * Obtiene el nombre del creador de un retiro
+     * @param codigoCuenta Codigo que rastrea al cliente de la cuenta
+     * @return Cadena con el nombre del dueño de la cuenta
+     */
     private String getValueForCuenta(long codigoCuenta) {
         OperacionConsultableDTO operacionConsultable = new OperacionConsultableDTO();
         operacionConsultable.setCodigo(codigoCuenta);
