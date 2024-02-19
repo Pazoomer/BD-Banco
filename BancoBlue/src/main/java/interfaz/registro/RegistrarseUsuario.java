@@ -53,6 +53,10 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         EtqContrasenia = new javax.swing.JLabel();
         CmpContrasenia = new javax.swing.JTextField();
         btnVolver = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -76,31 +80,31 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnGuardar);
-        btnGuardar.setBounds(450, 330, 193, 63);
+        btnGuardar.setBounds(513, 353, 130, 40);
 
         EtqNombreUsuario.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombreUsuario.setText("NOMBRE DE USUARIO");
         getContentPane().add(EtqNombreUsuario);
-        EtqNombreUsuario.setBounds(53, 129, 300, 30);
+        EtqNombreUsuario.setBounds(60, 80, 300, 30);
 
         CmpNombreUsuario.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombreUsuario.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmpNombreUsuario.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpNombreUsuario);
-        CmpNombreUsuario.setBounds(53, 156, 320, 40);
+        CmpNombreUsuario.setBounds(60, 110, 320, 40);
 
         EtqContrasenia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqContrasenia.setForeground(new java.awt.Color(2, 178, 178));
         EtqContrasenia.setText("CONTRASEÑA");
         getContentPane().add(EtqContrasenia);
-        EtqContrasenia.setBounds(53, 244, 260, 30);
+        EtqContrasenia.setBounds(60, 170, 260, 30);
 
         CmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
         CmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmpContrasenia.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpContrasenia);
-        CmpContrasenia.setBounds(53, 271, 320, 40);
+        CmpContrasenia.setBounds(60, 200, 320, 40);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -112,13 +116,36 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(10, 10, 191, 63);
+        btnVolver.setBounds(10, 10, 110, 37);
+
+        jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Usuario y contraseña");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(310, 320, 160, 23);
+
+        jLabel5.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Domicilio");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(200, 320, 80, 20);
+
+        jLabel4.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Datos personales");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(40, 320, 130, 23);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 3.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(60, 260, 350, 50);
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese la información");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(220, 20, 400, 50);
+        jLabel2.setBounds(140, 10, 400, 50);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 2.png"))); // NOI18N
         getContentPane().add(jLabel1);
@@ -222,5 +249,9 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

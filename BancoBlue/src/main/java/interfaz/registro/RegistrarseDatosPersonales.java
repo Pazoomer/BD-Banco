@@ -199,7 +199,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Usuario y contraseña");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(300, 320, 158, 23);
+        jLabel7.setBounds(310, 320, 158, 23);
 
         jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
