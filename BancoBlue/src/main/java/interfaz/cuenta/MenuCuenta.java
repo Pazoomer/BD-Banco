@@ -116,7 +116,7 @@ public class MenuCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnTransferir);
-        btnTransferir.setBounds(6, 294, 129, 37);
+        btnTransferir.setBounds(6, 281, 140, 50);
 
         btnHistorialOperaciones.setBackground(new java.awt.Color(0, 2, 20));
         btnHistorialOperaciones.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -128,7 +128,7 @@ public class MenuCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnHistorialOperaciones);
-        btnHistorialOperaciones.setBounds(370, 360, 275, 37);
+        btnHistorialOperaciones.setBounds(355, 347, 290, 50);
 
         btnRetiroSinCuenta.setBackground(new java.awt.Color(0, 2, 20));
         btnRetiroSinCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -140,7 +140,7 @@ public class MenuCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRetiroSinCuenta);
-        btnRetiroSinCuenta.setBounds(6, 360, 212, 37);
+        btnRetiroSinCuenta.setBounds(6, 347, 220, 50);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -164,7 +164,7 @@ public class MenuCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnDesactivarCuenta);
-        btnDesactivarCuenta.setBounds(430, 290, 214, 37);
+        btnDesactivarCuenta.setBounds(414, 280, 230, 50);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tarjeta.png"))); // NOI18N
         getContentPane().add(jLabel2);
