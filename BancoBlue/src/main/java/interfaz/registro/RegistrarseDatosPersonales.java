@@ -65,9 +65,13 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         CmbxAnio = new javax.swing.JComboBox<>();
         btnSiguiente = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -81,25 +85,25 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         EtqNombre.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombre.setText("NOMBRE(S)");
         getContentPane().add(EtqNombre);
-        EtqNombre.setBounds(20, 110, 150, 25);
+        EtqNombre.setBounds(20, 80, 150, 25);
 
         EtqApellidoPaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoPaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoPaterno.setText("APELLIDO PATERNO");
         getContentPane().add(EtqApellidoPaterno);
-        EtqApellidoPaterno.setBounds(310, 110, 262, 25);
+        EtqApellidoPaterno.setBounds(310, 80, 262, 25);
 
         EtqApellidoMaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoMaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoMaterno.setText("APELLIDO MATERNO");
         getContentPane().add(EtqApellidoMaterno);
-        EtqApellidoMaterno.setBounds(20, 220, 269, 25);
+        EtqApellidoMaterno.setBounds(20, 170, 269, 25);
 
         EtqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         EtqFechaNacimiento.setText("FECHA DE NACIMIENTO");
         getContentPane().add(EtqFechaNacimiento);
-        EtqFechaNacimiento.setBounds(310, 220, 309, 25);
+        EtqFechaNacimiento.setBounds(310, 170, 309, 25);
 
         CmpNombre.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombre.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -110,7 +114,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpNombre);
-        CmpNombre.setBounds(20, 140, 222, 36);
+        CmpNombre.setBounds(20, 110, 222, 36);
 
         CmpApellidoMaterno.setBackground(new java.awt.Color(17, 20, 44));
         CmpApellidoMaterno.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -121,7 +125,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpApellidoMaterno);
-        CmpApellidoMaterno.setBounds(20, 250, 222, 36);
+        CmpApellidoMaterno.setBounds(20, 200, 222, 36);
 
         CmpApellidoPaterno.setBackground(new java.awt.Color(17, 20, 44));
         CmpApellidoPaterno.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -132,7 +136,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpApellidoPaterno);
-        CmpApellidoPaterno.setBounds(310, 140, 222, 36);
+        CmpApellidoPaterno.setBounds(310, 110, 222, 36);
 
         CmbxDia.setBackground(new java.awt.Color(17, 20, 44));
         CmbxDia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -144,7 +148,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmbxDia);
-        CmbxDia.setBounds(310, 250, 82, 36);
+        CmbxDia.setBounds(310, 200, 82, 36);
 
         CmbxMes.setBackground(new java.awt.Color(17, 20, 44));
         CmbxMes.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -156,14 +160,14 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmbxMes);
-        CmbxMes.setBounds(400, 250, 82, 36);
+        CmbxMes.setBounds(400, 200, 82, 36);
 
         CmbxAnio.setBackground(new java.awt.Color(17, 20, 44));
         CmbxAnio.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmbxAnio.setForeground(new java.awt.Color(255, 255, 255));
         CmbxAnio.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
         getContentPane().add(CmbxAnio);
-        CmbxAnio.setBounds(490, 250, 106, 36);
+        CmbxAnio.setBounds(490, 200, 106, 36);
 
         btnSiguiente.setBackground(new java.awt.Color(238, 107, 107));
         btnSiguiente.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -191,6 +195,29 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         getContentPane().add(btnVolver);
         btnVolver.setBounds(6, 6, 110, 40);
 
+        jLabel7.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Usuario y contraseña");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(300, 320, 158, 23);
+
+        jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Domicilio");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(200, 320, 80, 23);
+
+        jLabel3.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Datos personales");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(40, 320, 129, 20);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 1.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(60, 260, 350, 50);
+
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingrese sus datos");
@@ -201,9 +228,9 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(-3, -4, 660, 410);
 
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(150, 330, 37, 16);
+        jLabel5.setText("jLabel5");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(80, 330, 37, 16);
 
         pack();
         setLocationRelativeTo(null);
@@ -308,5 +335,9 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
