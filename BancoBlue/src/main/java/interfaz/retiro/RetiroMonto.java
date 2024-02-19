@@ -94,6 +94,7 @@ public class RetiroMonto extends javax.swing.JFrame {
 
         etqSaldoDisponibleDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqSaldoDisponibleDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqSaldoDisponibleDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqSaldoDisponibleDinamico.setText("jLabel5");
         getContentPane().add(etqSaldoDisponibleDinamico);
         etqSaldoDisponibleDinamico.setBounds(347, 205, 154, 23);
@@ -101,6 +102,7 @@ public class RetiroMonto extends javax.swing.JFrame {
         cmpMonto.setBackground(new java.awt.Color(17, 20, 44));
         cmpMonto.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         cmpMonto.setForeground(new java.awt.Color(255, 255, 255));
+        cmpMonto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         getContentPane().add(cmpMonto);
         cmpMonto.setBounds(208, 234, 227, 46);
 
@@ -113,6 +115,7 @@ public class RetiroMonto extends javax.swing.JFrame {
         cmpMotivo.setBackground(new java.awt.Color(17, 20, 44));
         cmpMotivo.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         cmpMotivo.setForeground(new java.awt.Color(255, 255, 255));
+        cmpMotivo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         getContentPane().add(cmpMotivo);
         cmpMotivo.setBounds(208, 303, 285, 28);
 
