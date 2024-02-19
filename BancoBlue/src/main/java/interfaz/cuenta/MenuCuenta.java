@@ -65,6 +65,7 @@ public class MenuCuenta extends javax.swing.JFrame {
         btnRetiroSinCuenta = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
         btnDesactivarCuenta = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,123 +74,105 @@ public class MenuCuenta extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
+        etqNumeroTarjetaDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
+        etqNumeroTarjetaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqNumeroTarjetaDinamico.setText("jLabel1");
+        getContentPane().add(etqNumeroTarjetaDinamico);
+        etqNumeroTarjetaDinamico.setBounds(130, 20, 398, 43);
 
+        etqFechaApertura.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         etqFechaApertura.setText("Fecha de apertura:");
+        getContentPane().add(etqFechaApertura);
+        etqFechaApertura.setBounds(170, 130, 173, 22);
 
+        etqFechaAperturaDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        etqFechaAperturaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqFechaAperturaDinamico.setText("jLabel3");
+        getContentPane().add(etqFechaAperturaDinamico);
+        etqFechaAperturaDinamico.setBounds(360, 120, 170, 30);
 
+        etqSaldo.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        etqSaldo.setForeground(new java.awt.Color(255, 255, 255));
         etqSaldo.setText("Saldo actual:");
+        getContentPane().add(etqSaldo);
+        etqSaldo.setBounds(140, 200, 153, 30);
 
+        etqSaldoActualDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        etqSaldoActualDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqSaldoActualDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqSaldoActualDinamico.setText("jLabel5");
+        getContentPane().add(etqSaldoActualDinamico);
+        etqSaldoActualDinamico.setBounds(300, 200, 229, 30);
 
+        btnTransferir.setBackground(new java.awt.Color(0, 2, 20));
+        btnTransferir.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnTransferir.setForeground(new java.awt.Color(255, 255, 255));
         btnTransferir.setText("Transferir");
         btnTransferir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTransferirActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTransferir);
+        btnTransferir.setBounds(6, 294, 129, 37);
 
+        btnHistorialOperaciones.setBackground(new java.awt.Color(0, 2, 20));
+        btnHistorialOperaciones.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnHistorialOperaciones.setForeground(new java.awt.Color(255, 255, 255));
         btnHistorialOperaciones.setText("Historial de operaciones");
         btnHistorialOperaciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistorialOperacionesActionPerformed(evt);
             }
         });
+        getContentPane().add(btnHistorialOperaciones);
+        btnHistorialOperaciones.setBounds(370, 360, 275, 37);
 
+        btnRetiroSinCuenta.setBackground(new java.awt.Color(0, 2, 20));
+        btnRetiroSinCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnRetiroSinCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnRetiroSinCuenta.setText("Retiros sin cuenta");
         btnRetiroSinCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRetiroSinCuentaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRetiroSinCuenta);
+        btnRetiroSinCuenta.setBounds(6, 360, 212, 37);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 6, 96, 37);
 
+        btnDesactivarCuenta.setBackground(new java.awt.Color(0, 2, 20));
+        btnDesactivarCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnDesactivarCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnDesactivarCuenta.setText("Desactivar cuenta");
         btnDesactivarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDesactivarCuentaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnDesactivarCuenta);
+        btnDesactivarCuenta.setBounds(430, 290, 214, 37);
 
-        jLabel1.setText("Numero de cuenta");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Tarjeta.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(80, -20, 470, 210);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnRetiroSinCuenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnHistorialOperaciones))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(252, 252, 252)
-                        .addComponent(etqFechaApertura, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etqFechaAperturaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(171, 171, 171))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnTransferir)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnVolver)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDesactivarCuenta))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(etqSaldo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(etqSaldoActualDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(225, 225, 225))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(etqNumeroTarjetaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(189, 189, 189))))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnVolver)
-                        .addComponent(btnDesactivarCuenta))
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(etqNumeroTarjetaDinamico)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqFechaApertura)
-                    .addComponent(etqFechaAperturaDinamico))
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqSaldo)
-                    .addComponent(etqSaldoActualDinamico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
-                .addComponent(btnTransferir)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnHistorialOperaciones)
-                    .addComponent(btnRetiroSinCuenta))
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 9.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, -4, 654, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -294,5 +277,6 @@ public class MenuCuenta extends javax.swing.JFrame {
     private javax.swing.JLabel etqSaldo;
     private javax.swing.JLabel etqSaldoActualDinamico;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

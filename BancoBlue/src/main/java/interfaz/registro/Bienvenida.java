@@ -79,7 +79,7 @@ public class Bienvenida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnIniciarSesion);
-        btnIniciarSesion.setBounds(90, 310, 193, 63);
+        btnIniciarSesion.setBounds(113, 310, 170, 40);
 
         btnCobrarRetiro.setBackground(new java.awt.Color(238, 107, 107));
         btnCobrarRetiro.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -93,7 +93,7 @@ public class Bienvenida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCobrarRetiro);
-        btnCobrarRetiro.setBounds(450, 10, 193, 63);
+        btnCobrarRetiro.setBounds(473, 10, 170, 40);
 
         btnRegistrarse.setBackground(new java.awt.Color(238, 107, 107));
         btnRegistrarse.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -107,7 +107,7 @@ public class Bienvenida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRegistrarse);
-        btnRegistrarse.setBounds(370, 310, 193, 63);
+        btnRegistrarse.setBounds(370, 310, 140, 40);
 
         btnCerrar.setBackground(new java.awt.Color(238, 107, 107));
         btnCerrar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -119,7 +119,7 @@ public class Bienvenida extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCerrar);
-        btnCerrar.setBounds(10, 10, 193, 63);
+        btnCerrar.setBounds(10, 10, 110, 40);
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(2, 178, 178));
