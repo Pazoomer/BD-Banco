@@ -104,7 +104,6 @@ public class RetiroRecibo extends javax.swing.JFrame {
         etqFechaHoraCaducidadDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqFechaHoraCaducidadDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqFechaHoraCaducidadDinamico.setText("jLabel5");
-        etqFechaHoraCaducidadDinamico.setPreferredSize(new java.awt.Dimension(61, 25));
         getContentPane().add(etqFechaHoraCaducidadDinamico);
         etqFechaHoraCaducidadDinamico.setBounds(420, 100, 220, 25);
 
@@ -153,12 +152,12 @@ public class RetiroRecibo extends javax.swing.JFrame {
         getContentPane().add(jLabel12);
         jLabel12.setBounds(130, 250, 145, 23);
 
-        etqNumCuentaDinamico.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        etqNumCuentaDinamico.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         etqNumCuentaDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqNumCuentaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqNumCuentaDinamico.setText("jLabel13");
         getContentPane().add(etqNumCuentaDinamico);
-        etqNumCuentaDinamico.setBounds(320, 250, 200, 17);
+        etqNumCuentaDinamico.setBounds(320, 250, 200, 23);
 
         jLabel16.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,12 +165,12 @@ public class RetiroRecibo extends javax.swing.JFrame {
         getContentPane().add(jLabel16);
         jLabel16.setBounds(130, 280, 60, 23);
 
-        etqMotivoDinamico.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        etqMotivoDinamico.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         etqMotivoDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqMotivoDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqMotivoDinamico.setText("jLabel17");
         getContentPane().add(etqMotivoDinamico);
-        etqMotivoDinamico.setBounds(320, 280, 200, 17);
+        etqMotivoDinamico.setBounds(320, 280, 200, 23);
 
         jLabel18.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -179,12 +178,12 @@ public class RetiroRecibo extends javax.swing.JFrame {
         getContentPane().add(jLabel18);
         jLabel18.setBounds(130, 310, 120, 23);
 
-        etqTotalDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        etqTotalDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqTotalDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqTotalDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqTotalDinamico.setText("jLabel19");
         getContentPane().add(etqTotalDinamico);
-        etqTotalDinamico.setBounds(380, 310, 140, 17);
+        etqTotalDinamico.setBounds(380, 310, 140, 23);
 
         btnTerminar.setBackground(new java.awt.Color(238, 107, 107));
         btnTerminar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
