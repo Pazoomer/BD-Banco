@@ -69,6 +69,11 @@ public class TransferenciaMonto extends javax.swing.JFrame {
         cmpMonto = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -76,70 +81,83 @@ public class TransferenciaMonto extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingrese el monto total de la transferencia:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(68, 151, 501, 30);
 
+        jLabel2.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Saldo disponible:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(186, 208, 133, 23);
 
+        etqSaldoDisponibleDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        etqSaldoDisponibleDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqSaldoDisponibleDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqSaldoDisponibleDinamico.setText("jLabel3");
+        getContentPane().add(etqSaldoDisponibleDinamico);
+        etqSaldoDisponibleDinamico.setBounds(325, 208, 116, 23);
 
+        cmpMonto.setBackground(new java.awt.Color(17, 20, 44));
+        cmpMonto.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        cmpMonto.setForeground(new java.awt.Color(255, 255, 255));
+        cmpMonto.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(cmpMonto);
+        cmpMonto.setBounds(186, 243, 251, 55);
+
+        btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
+        btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(249, 338, 132, 37);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 6, 96, 37);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(217, 217, 217)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etqSaldoDisponibleDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(527, 527, 527)
-                        .addComponent(cmpMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
-                        .addComponent(btnConfirmar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnVolver))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(jLabel1)))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(etqSaldoDisponibleDinamico))
-                .addGap(18, 18, 18)
-                .addComponent(cmpMonto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(btnConfirmar)
-                .addGap(47, 47, 47))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 3.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(149, 23, 347, 62);
+
+        jLabel4.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Número de cuenta");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(120, 86, 140, 23);
+
+        jLabel5.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Confirmación");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(278, 86, 103, 23);
+
+        jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Ingresar monto");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(411, 86, 116, 23);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 6.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, -10, 650, 420);
 
         pack();
         setLocationRelativeTo(null);
@@ -235,5 +253,10 @@ public class TransferenciaMonto extends javax.swing.JFrame {
     private javax.swing.JLabel etqSaldoDisponibleDinamico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }
