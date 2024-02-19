@@ -2,7 +2,6 @@
 package bancoBluePersistencia.daos.operaciones;
 
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
-import bancoBluePersistencia.dtos.operacion.OperacionActualizableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
@@ -20,15 +19,6 @@ import java.util.List;
  * @author Jorge Zamora y Victoria Vega
  */
 public interface IOperacionesDAO {
-
-    /**
-     * Actualiza la información de una operación en la base de datos.
-     *
-     * @param operacionActualizable Contiene los datos necesarios para actualizar una operación.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
-     */
-    boolean actualizar(OperacionActualizableDTO operacionActualizable) throws PersistenciaException;
 
     /**
      * Cambia el estado de una operación en la base de datos.

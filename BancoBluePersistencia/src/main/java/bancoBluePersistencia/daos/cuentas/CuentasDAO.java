@@ -10,11 +10,9 @@ import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaSaldoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
-import bancoBluePersistencia.herramientas.Contraseñas;
 import bancoBluePersistencia.herramientas.Fechas;
 import bancoBluePersistencia.herramientas.GeneradorNumeros;
 import bancoblueDominio.Cuenta;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -27,18 +25,31 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
- *
- * @author t1pas
+ * Opera las cuentas con la base de datos
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
  */
 public class CuentasDAO implements ICuentasDAO{
     
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
 
+    /**
+     * Constructor que recibe la conexion con la base de datos
+     * @param conexionBD Conexion con la base de datos
+     */
     public CuentasDAO(IConexion conexionBD) {
         this.conexionBD = conexionBD;
     }
 
+    /**
+     * Cancela una cuenta, cambiando su estado a cerrada.
+     *
+     * @param cuentaCerrable Contiene los datos necesarios para cerrar una
+     * cuenta.
+     * @return true si la cancelación fue exitosa, false en caso contrario.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public boolean cancelar(CuentaCerrableDTO cuentaCerrable) throws PersistenciaException {
         String sentenciaSQLCliente = """
@@ -68,6 +79,14 @@ public class CuentasDAO implements ICuentasDAO{
 
     }
 
+    /**
+     * Consulta la lista de cuentas asociadas a un cliente.
+     *
+     * @param clienteConsultable Contiene los datos necesarios para consultar
+     * las cuentas de un cliente.
+     * @return Lista de cuentas asociadas al cliente.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public List<Cuenta> consultar(ClienteConsultableDTO clienteConsultable) throws PersistenciaException {
         String sentenciaSQL = """
@@ -109,6 +128,14 @@ public class CuentasDAO implements ICuentasDAO{
         }
     }
 
+    /**
+     * Agrega una nueva cuenta a la base de datos.
+     *
+     * @param cuentaNueva Contiene los datos necesarios para crear una nueva
+     * cuenta.
+     * @return Cuenta creada con la información proporcionada.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public Cuenta agregar(CuentaNuevaDTO cuentaNueva) throws PersistenciaException {
         String sentenciaSQL = """
@@ -149,6 +176,12 @@ public class CuentasDAO implements ICuentasDAO{
         }
     }
 
+    /**
+     * Comprueba si el numero de cuenta ya existe
+     * @param numCuenta Numero de cuenta A comprobar
+     * @return Verdadero si la cuenta no existe
+     * @throws PersistenciaException cuando ocurre un error en la base de datos
+     */
     private boolean comprobarExistenciaCuenta(long numCuenta) throws PersistenciaException {
         String consultaSQL = "SELECT COUNT(*) AS cuenta_existente FROM cuentas WHERE num_cuenta = ?";
 
@@ -168,6 +201,16 @@ public class CuentasDAO implements ICuentasDAO{
 
     }
 
+    /**
+     * Consulta la información de una cuenta para un usuario específico.
+     *
+     * @param cuentaConsultableUsuario Contiene los datos necesarios para
+     * consultar una cuenta por usuario.
+     * @return Cuenta con la información solicitada.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     * @throws ValidacionDTOException Cuando hay un problema de validación en
+     * los datos proporcionados.
+     */
     @Override
     public Cuenta consultar(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException, ValidacionDTOException {
         String sentenciaSQL = """
@@ -212,6 +255,14 @@ public class CuentasDAO implements ICuentasDAO{
         }
     }
 
+    /**
+     * Consulta el nombre de cliente asociado a una cuenta.
+     *
+     * @param cuentaConsultableUsuario Contiene los datos necesarios para
+     * consultar el nombre del cliente asociado a una cuenta.
+     * @return Nombre del cliente asociado a la cuenta.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public String consultarCliente(CuentaConsultableUsuarioDTO cuentaConsultableUsuario) throws PersistenciaException {
         String sentenciaSQL = """
@@ -244,6 +295,17 @@ public class CuentasDAO implements ICuentasDAO{
         }
     }
 
+    /**
+     * Cambia el monto de una cuenta, realizando operaciones de depósito o
+     * retiro.
+     *
+     * @param cuentaSaldo Contiene los datos necesarios para cambiar el monto de
+     * una cuenta.
+     * @return true si la operación fue exitosa, false en caso contrario.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     * @throws ValidacionDTOException Cuando hay un problema de validación en
+     * los datos proporcionados.
+     */
     @Override
     public boolean cambiarMonto(CuentaSaldoDTO cuentaSaldo) throws PersistenciaException, ValidacionDTOException {
         String consultaSQL = """

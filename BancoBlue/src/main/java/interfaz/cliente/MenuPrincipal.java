@@ -228,7 +228,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
      * @param cuenta Cuenta a mostrar
      */
     private void menuCuenta(Cuenta cuenta){
-        MenuCuenta menuCuenta=new MenuCuenta(this, cliente, cuenta, clientesDAO, cuentasDAO,operacionesDAO);
+        MenuCuenta menuCuenta=new MenuCuenta(this, cuenta, clientesDAO, cuentasDAO,operacionesDAO);
         this.setVisible(false);
         menuCuenta.setVisible(true);
         actualizarTabla();

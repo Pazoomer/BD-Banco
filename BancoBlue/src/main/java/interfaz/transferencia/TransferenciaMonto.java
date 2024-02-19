@@ -241,7 +241,7 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
                 return;
             }
         
-            TransferenciaRecibo transferenciaRecibo=new TransferenciaRecibo(menuCuenta,this,transferencia,nombreClienteDestino,cuentaOrigen);
+            TransferenciaRecibo transferenciaRecibo=new TransferenciaRecibo(menuCuenta,transferencia,nombreClienteDestino,cuentaOrigen);
             this.setVisible(false);
             transferenciaRecibo.setVisible(true);
         }

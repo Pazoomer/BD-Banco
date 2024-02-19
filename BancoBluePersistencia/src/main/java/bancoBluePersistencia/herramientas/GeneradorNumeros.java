@@ -3,8 +3,8 @@ package bancoBluePersistencia.herramientas;
 import java.util.Random;
 
 /**
- * Clase de utilidad para generar números aleatorios. Clase documentada
- *
+ * Clase de utilidad para generar números aleatorios. 
+ * Clase documentada
  * @author Jorge Zamora y Victoria Vega
  */
 public class GeneradorNumeros {

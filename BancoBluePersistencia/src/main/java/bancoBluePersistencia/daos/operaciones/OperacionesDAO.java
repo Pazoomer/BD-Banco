@@ -3,7 +3,6 @@ package bancoBluePersistencia.daos.operaciones;
 import bancoBluePersistencia.conexion.IConexion;
 import bancoBluePersistencia.daos.clientes.ClientesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableDTO;
-import bancoBluePersistencia.dtos.operacion.OperacionActualizableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
 import bancoBluePersistencia.dtos.operacion.OperacionEstadoDTO;
@@ -29,18 +28,30 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author t1pas
+ * Opera las operaciones con la base de datos
+ * Clase documentada
+ * @author Jorge Zamora y Victoria Vega
  */
 public class OperacionesDAO implements IOperacionesDAO {
 
     final IConexion conexionBD;
     static final Logger logger = Logger.getLogger(ClientesDAO.class.getName());
 
+    /**
+     * Constructor que recibe la conexion con la base de datos
+     * @param conexionBD Conexion con la base de datos
+     */
     public OperacionesDAO(IConexion conexionBD) {
         this.conexionBD = conexionBD;
     }
 
+    /**
+     * Agrega una nueva operación a la base de datos.
+     *
+     * @param operacionNueva Contiene los datos necesarios para crear una nueva operación.
+     * @return Operación creada con la información proporcionada.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public Operacion agregarOperacion(OperacionNuevaDTO operacionNueva) throws PersistenciaException {
         String sentenciaSQL = "INSERT INTO Operaciones (monto, motivo, codigo_cuenta, tipo) VALUES (?, ?, ?, ?)";
@@ -111,6 +122,13 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
+    /**
+     * Agrega una transferencia a la tabla de transferencias
+     * @param codigoOperacion Codigo de la transferencia
+     * @param numCuentaDestino Numero de cuenta destino
+     * @param conexion Conexion con la base de datos
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     private void agregarTransferencia(long codigoOperacion, long numCuentaDestino, Connection conexion)
             throws PersistenciaException {
         String sentenciaSQL = "INSERT INTO Transferencias (codigo, numero_cuenta_destino) VALUES (?, ?)";
@@ -128,6 +146,15 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
+    /**
+     * Agrega un retiro sin cuenta a la tabla retiro sin cuenta
+     * @param codigoOperacion Codigo del retiro
+     * @param caducidad Caducidad del retiro
+     * @param folio Folio del reiro
+     * @param contrasenia Contraseña del retiro
+     * @param conexion Conexion con la base de datos
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos. 
+     */
     private void agregarRetiroSinCuenta(long codigoOperacion, Timestamp caducidad, long folio, int contrasenia,Connection conexion) throws PersistenciaException {
         String sentenciaSQL = """
             INSERT INTO Retiros_sin_cuenta (codigo, num_folio, contrasenia,sal, estado, fecha_hora_caducidad)
@@ -161,6 +188,11 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
     
+    /**
+     * Genera un folio unico para un retiro
+     * @return Numero de 8 digitos unico en la base de datos para el folio
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     private long generarFolio() throws PersistenciaException {
         String consultaSQL = "SELECT COUNT(*) AS folios_existentes FROM Retiros_sin_cuenta";
 
@@ -180,6 +212,13 @@ public class OperacionesDAO implements IOperacionesDAO {
 
     }
 
+    /**
+     * Agrega una cuenta operacion en la tabla cuenta_operacion de la base de datos
+     * @param codigoOperacion Codigo de la operacion
+     * @param codigoCuenta COdigo de la cuenta
+     * @param conexion conexion con la base de datos
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     private void agregarCuentaOperacion(long codigoOperacion, long codigoCuenta,Connection conexion) throws PersistenciaException {
         String sentenciaSQL = "INSERT INTO Cuenta_Operacion (codigo_cuenta, codigo_operacion) VALUES (?, ?)";
 
@@ -197,11 +236,13 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
-    @Override
-    public boolean actualizar(OperacionActualizableDTO operacionActualizable) throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    /**
+     * Consulta la lista de operaciones asociadas a una cuenta.
+     *
+     * @param cuentaConsultable Contiene los datos necesarios para consultar las operaciones de una cuenta.
+     * @return Lista de operaciones asociadas a la cuenta.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public List<Operacion> consultar(CuentaConsultableDTO cuentaConsultable) throws PersistenciaException {
         String sentenciaSQL = """
@@ -269,6 +310,13 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
+    /**
+     * Cambia el estado de una operación en la base de datos.
+     *
+     * @param operacionEstado Contiene los datos necesarios para cambiar el estado de una operación.
+     * @return true si el cambio de estado fue exitoso, false en caso contrario.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public boolean cambiarEstado(OperacionEstadoDTO operacionEstado) throws PersistenciaException {
         String sentenciaSQLCliente = """
@@ -298,6 +346,14 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
+    /**
+     * Consulta la información de un retiro específico.
+     *
+     * @param operacionConsultableRetiro Contiene los datos necesarios para consultar un retiro específico.
+     * @return Operación de retiro con la información solicitada.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     * @throws ValidacionDTOException Cuando hay un problema de validación en los datos proporcionados.
+     */
     @Override
     public Operacion consultar(OperacionConsultableRetiroDTO operacionConsultableRetiro) throws PersistenciaException, ValidacionDTOException {
        String sentenciaSQL = """
@@ -388,6 +444,13 @@ public class OperacionesDAO implements IOperacionesDAO {
         }
     }
 
+    /**
+     * Consulta la cuenta asociada a una operación.
+     *
+     * @param operacionConsultable Contiene los datos necesarios para consultar la cuenta asociada a una operación.
+     * @return Cuenta asociada a la operación.
+     * @throws PersistenciaException Cuando ocurre un error en la base de datos.
+     */
     @Override
     public Cuenta consultarCuenta(OperacionConsultableDTO operacionConsultable) throws PersistenciaException {
         String sentenciaSQL = """

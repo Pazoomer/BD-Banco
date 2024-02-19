@@ -219,6 +219,7 @@ public class Bienvenida extends javax.swing.JFrame {
     }
     /**
      * Da inicio a la interfaz de las pantallas
+     * @param args
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -245,10 +246,8 @@ public class Bienvenida extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Bienvenida().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Bienvenida().setVisible(true);
         });
     }
 

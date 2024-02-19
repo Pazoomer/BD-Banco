@@ -24,7 +24,6 @@ import javax.swing.JOptionPane;
  */
 public class MenuCuenta extends javax.swing.JFrame {
 
-    private final Cliente cliente;
     private Cuenta cuenta;
     private final IClientesDAO clientesDAO;
     private final ICuentasDAO cuentasDAO;
@@ -33,17 +32,15 @@ public class MenuCuenta extends javax.swing.JFrame {
     /**
      * Constructor con los datos del cliente y la cuenta
      * @param menuPrincipal Pantalla a mostrar cuando se cierra esta
-     * @param cliente Cliente con el que trabaja
      * @param cuenta Cuenta con la que trabaja
      * @param clientesDAO Permite operar con clientes
      * @param cuentasDAO Permite operar con cuentas
      * @param operacionesDAO Permite operar con operaciones
      */
-    public MenuCuenta(MenuPrincipal menuPrincipal,Cliente cliente, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
+    public MenuCuenta(MenuPrincipal menuPrincipal, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO,IOperacionesDAO operacionesDAO) {
         this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
-        this.cliente=cliente;
         this.cuenta=cuenta;
         this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
@@ -226,7 +223,7 @@ public class MenuCuenta extends javax.swing.JFrame {
      * Inicia una transferencia
      */
     private void transferencia(){
-        TransferenciaNumeroBeneficiario registrar=new TransferenciaNumeroBeneficiario(this,cliente,cuenta,clientesDAO, cuentasDAO, operacionesDAO);
+        TransferenciaNumeroBeneficiario registrar=new TransferenciaNumeroBeneficiario(this,cuenta,cuentasDAO, operacionesDAO);
         this.setVisible(false);
         registrar.setVisible(true);
     }

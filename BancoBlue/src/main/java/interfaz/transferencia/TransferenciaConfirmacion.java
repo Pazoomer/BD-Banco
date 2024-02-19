@@ -1,12 +1,10 @@
 
 package interfaz.transferencia;
 
-import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
-import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import interfaz.cuenta.MenuCuenta;
 import javax.swing.JOptionPane;
@@ -19,10 +17,8 @@ import javax.swing.JOptionPane;
 public class TransferenciaConfirmacion extends javax.swing.JFrame {
 
     final TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario;
-    private final Cliente cliente;
     private final Cuenta cuentaOrigen;
     private final Cuenta cuentaDestino;
-    private final IClientesDAO clientesDAO;
     private final ICuentasDAO cuentasDAO;
     private final IOperacionesDAO operacionesDAO;
     private String nombreClienteDestino;
@@ -32,23 +28,19 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
      * Constructor que recibe datos y los muestra
      * @param menuCuenta Pantalla a mostrar al cerrarse
      * @param transferenciaNumeroBeneficiario Numero de la cuenta destino
-     * @param cliente Cliente origen
      * @param cuentaOrigen Cuenta origen
      * @param cuentaDestino Cuenta destino
-     * @param clientesDAO Opera clientes
      * @param cuentasDAO Opera cuentas
      * @param operacionesDAO Opera operaciones
      */
-    public TransferenciaConfirmacion(MenuCuenta menuCuenta, TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cliente cliente, Cuenta cuentaOrigen, Cuenta cuentaDestino, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
+    public TransferenciaConfirmacion(MenuCuenta menuCuenta, TransferenciaNumeroBeneficiario transferenciaNumeroBeneficiario, Cuenta cuentaOrigen, Cuenta cuentaDestino, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
         this.setUndecorated(true);
         this.setVisible(true);
         initComponents();
         this.transferenciaNumeroBeneficiario = transferenciaNumeroBeneficiario;
-        this.cliente = cliente;
         this.cuentaDestino = cuentaDestino;
         this.cuentaOrigen = cuentaOrigen;
         this.operacionesDAO=operacionesDAO;
-        this.clientesDAO=clientesDAO;
         this.cuentasDAO=cuentasDAO;
         this.menuCuenta=menuCuenta;
         actualizarDatos();      
