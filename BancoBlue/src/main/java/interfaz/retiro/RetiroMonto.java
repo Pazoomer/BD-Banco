@@ -72,13 +72,13 @@ public class RetiroMonto extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("Retiro sin cuenta");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(105, 65, 416, 58);
+        jLabel1.setBounds(120, 50, 416, 58);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nota: El folio tiene que aplicarse máximo a los 10 minutos de ser creado.");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(51, 129, 541, 23);
+        jLabel2.setBounds(50, 120, 541, 23);
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
