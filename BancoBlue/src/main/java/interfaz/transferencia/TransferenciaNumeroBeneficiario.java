@@ -58,6 +58,11 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
         cmpNumeroBeneficiario = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -65,66 +70,76 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("Transferencia");
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 48)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel1.setText("Realizar transferencia");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(52, 127, 542, 58);
 
+        jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese el número de cuenta del beneficiario:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(52, 203, 536, 30);
 
+        cmpNumeroBeneficiario.setBackground(new java.awt.Color(17, 20, 44));
+        cmpNumeroBeneficiario.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
+        cmpNumeroBeneficiario.setForeground(new java.awt.Color(255, 255, 255));
+        cmpNumeroBeneficiario.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        getContentPane().add(cmpNumeroBeneficiario);
+        cmpNumeroBeneficiario.setBounds(120, 260, 417, 50);
+
+        btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
+        btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(259, 349, 132, 37);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 6, 96, 37);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnConfirmar)
-                        .addGap(287, 287, 287))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cmpNumeroBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(218, 218, 218))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnVolver)))
-                .addGap(0, 207, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver)
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel2)
-                .addGap(32, 32, 32)
-                .addComponent(cmpNumeroBeneficiario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(btnConfirmar)
-                .addGap(60, 60, 60))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 1.png"))); // NOI18N
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(145, 19, 349, 61);
+
+        jLabel4.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Número de cuenta");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(120, 86, 140, 23);
+
+        jLabel5.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Confirmación");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(278, 86, 103, 23);
+
+        jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Ingresar monto");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(411, 86, 116, 23);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 6.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(0, -5, 650, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -194,5 +209,10 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
     private javax.swing.JTextField cmpNumeroBeneficiario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

@@ -62,6 +62,7 @@ public final class PerfilCliente extends javax.swing.JFrame {
         etqMunicipioDinamico = new javax.swing.JTextField();
         etqColoniaDinamico = new javax.swing.JTextField();
         btnRecargar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -69,147 +70,162 @@ public final class PerfilCliente extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
+        etqInformacionUsuario.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
+        etqInformacionUsuario.setForeground(new java.awt.Color(255, 255, 255));
         etqInformacionUsuario.setText("Información del Usuario");
+        getContentPane().add(etqInformacionUsuario);
+        etqInformacionUsuario.setBounds(20, 10, 420, 43);
 
-        jLabel2.setText("Nombre completo");
+        jLabel2.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel2.setText("Nombre ");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(6, 67, 123, 25);
 
+        etqNombreUsuario.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         etqNombreUsuario.setText("Nombre de usuario");
+        getContentPane().add(etqNombreUsuario);
+        etqNombreUsuario.setBounds(331, 67, 285, 25);
 
+        etqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         etqFechaNacimiento.setText("Fecha de nacimiento");
+        getContentPane().add(etqFechaNacimiento);
+        etqFechaNacimiento.setBounds(6, 146, 309, 25);
 
+        etqCalle.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqCalle.setForeground(new java.awt.Color(2, 178, 178));
         etqCalle.setText("Calle");
+        getContentPane().add(etqCalle);
+        etqCalle.setBounds(6, 217, 84, 25);
 
+        etqNumExterior.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqNumExterior.setForeground(new java.awt.Color(2, 178, 178));
         etqNumExterior.setText("Núm. Exterior");
+        getContentPane().add(etqNumExterior);
+        etqNumExterior.setBounds(207, 217, 206, 25);
 
+        etqCP.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqCP.setForeground(new java.awt.Color(2, 178, 178));
         etqCP.setText("C.P.");
+        getContentPane().add(etqCP);
+        etqCP.setBounds(431, 217, 48, 25);
 
+        etqColonia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqColonia.setForeground(new java.awt.Color(2, 178, 178));
         etqColonia.setText("Colonia");
+        getContentPane().add(etqColonia);
+        etqColonia.setBounds(6, 288, 121, 25);
 
+        etqMunicipio.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqMunicipio.setForeground(new java.awt.Color(2, 178, 178));
         etqMunicipio.setText("Municipio");
+        getContentPane().add(etqMunicipio);
+        etqMunicipio.setBounds(207, 288, 143, 25);
 
+        etqEstado.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        etqEstado.setForeground(new java.awt.Color(2, 178, 178));
         etqEstado.setText("Estado");
+        getContentPane().add(etqEstado);
+        etqEstado.setBounds(431, 288, 105, 25);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(549, 6, 96, 37);
 
+        btnCambiar.setBackground(new java.awt.Color(238, 107, 107));
+        btnCambiar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnCambiar.setForeground(new java.awt.Color(255, 255, 255));
         btnCambiar.setText("Actualizar información");
         btnCambiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCambiarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCambiar);
+        btnCambiar.setBounds(383, 360, 262, 37);
 
-        btnRecargar.setText("Recargar Informacion");
+        etqNombreUsuarioDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqNombreUsuarioDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqNombreUsuarioDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqNombreUsuarioDinamico);
+        etqNombreUsuarioDinamico.setBounds(331, 98, 275, 30);
+
+        etqNombreCompletoDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqNombreCompletoDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqNombreCompletoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqNombreCompletoDinamico);
+        etqNombreCompletoDinamico.setBounds(6, 98, 300, 30);
+
+        etqCPDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqCPDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqCPDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqCPDinamico);
+        etqCPDinamico.setBounds(431, 248, 186, 30);
+
+        etqFechaNacimientoDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqFechaNacimientoDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqFechaNacimientoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqFechaNacimientoDinamico);
+        etqFechaNacimientoDinamico.setBounds(6, 177, 155, 30);
+
+        etqNumExteriorDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqNumExteriorDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqNumExteriorDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqNumExteriorDinamico);
+        etqNumExteriorDinamico.setBounds(207, 248, 206, 30);
+
+        etqCalleDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqCalleDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqCalleDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqCalleDinamico);
+        etqCalleDinamico.setBounds(6, 248, 183, 30);
+
+        etqEstadoDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqEstadoDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqEstadoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqEstadoDinamico);
+        etqEstadoDinamico.setBounds(431, 319, 186, 30);
+
+        etqMunicipioDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqMunicipioDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqMunicipioDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqMunicipioDinamico);
+        etqMunicipioDinamico.setBounds(207, 319, 206, 30);
+
+        etqColoniaDinamico.setBackground(new java.awt.Color(17, 20, 44));
+        etqColoniaDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        etqColoniaDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(etqColoniaDinamico);
+        etqColoniaDinamico.setBounds(6, 319, 183, 30);
+
+        btnRecargar.setBackground(new java.awt.Color(238, 107, 107));
+        btnRecargar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnRecargar.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecargar.setText("Recargar información");
         btnRecargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRecargarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnRecargar);
+        btnRecargar.setBounds(10, 360, 249, 37);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(etqFechaNacimiento)
-                        .addGap(0, 545, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(etqInformacionUsuario)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnVolver))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(6, 6, 6)
-                                .addComponent(btnRecargar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCambiar))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(etqCalle, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etqColonia, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etqCalleDinamico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
-                                            .addComponent(etqColoniaDinamico, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etqFechaNacimientoDinamico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(etqNumExterior)
-                                            .addComponent(etqMunicipio)
-                                            .addComponent(etqNumExteriorDinamico)
-                                            .addComponent(etqMunicipioDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE))
-                                        .addGap(38, 38, 38)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(etqCP)
-                                            .addComponent(etqEstado)
-                                            .addComponent(etqCPDinamico)
-                                            .addComponent(etqEstadoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(etqNombreCompletoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(etqNombreUsuario)
-                                            .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(29, 29, 29)))
-                        .addContainerGap())))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(etqInformacionUsuario)
-                    .addComponent(btnVolver))
-                .addGap(64, 64, 64)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(etqNombreUsuario))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqNombreUsuarioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqNombreCompletoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addComponent(etqFechaNacimiento)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(etqFechaNacimientoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqCalle)
-                    .addComponent(etqNumExterior)
-                    .addComponent(etqCP))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqCPDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqNumExteriorDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqCalleDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqColonia)
-                    .addComponent(etqMunicipio)
-                    .addComponent(etqEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(etqEstadoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqMunicipioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(etqColoniaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCambiar)
-                    .addComponent(btnRecargar))
-                .addContainerGap())
-        );
+        jLabel1.setForeground(new java.awt.Color(17, 20, 44));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 3.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, -4, 650, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -307,6 +323,7 @@ public final class PerfilCliente extends javax.swing.JFrame {
     private javax.swing.JTextField etqNombreUsuarioDinamico;
     private javax.swing.JLabel etqNumExterior;
     private javax.swing.JTextField etqNumExteriorDinamico;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

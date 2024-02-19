@@ -67,7 +67,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         EtqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombreUsuario.setText("NOMBRE DE USUARIO");
         getContentPane().add(EtqNombreUsuario);
-        EtqNombreUsuario.setBounds(183, 140, 260, 32);
+        EtqNombreUsuario.setBounds(183, 140, 285, 25);
 
         CmpNombreUsuario.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombreUsuario.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -79,7 +79,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         EtqContrasenia.setForeground(new java.awt.Color(2, 178, 178));
         EtqContrasenia.setText("CONTRASEÑA");
         getContentPane().add(EtqContrasenia);
-        EtqContrasenia.setBounds(183, 225, 166, 40);
+        EtqContrasenia.setBounds(183, 225, 182, 40);
 
         CmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
         CmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -99,7 +99,7 @@ public class IniciarSesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnConfirmar);
-        btnConfirmar.setBounds(229, 325, 193, 63);
+        btnConfirmar.setBounds(250, 350, 160, 40);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -111,19 +111,19 @@ public class IniciarSesion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(490, 10, 148, 56);
+        btnVolver.setBounds(538, 10, 100, 40);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bienvenido de nuevo");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(195, 93, 257, 26);
+        jLabel1.setBounds(195, 93, 258, 26);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(248, 19, 148, 62);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 1.png"))); // NOI18N
         getContentPane().add(jLabel3);
         jLabel3.setBounds(-3, -4, 660, 410);
 

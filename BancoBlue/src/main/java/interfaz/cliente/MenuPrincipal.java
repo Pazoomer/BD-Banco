@@ -82,6 +82,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        tablaCuentas.setBackground(new java.awt.Color(17, 20, 44));
+        tablaCuentas.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        tablaCuentas.setForeground(new java.awt.Color(255, 255, 255));
         tablaCuentas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -93,6 +96,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 "Número de tarjeta", "Fecha de apertura", "Estado"
             }
         ));
+        tablaCuentas.setGridColor(new java.awt.Color(255, 255, 255));
+        tablaCuentas.setSelectionBackground(new java.awt.Color(255, 255, 255));
+        tablaCuentas.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tablaCuentas);
         if (tablaCuentas.getColumnModel().getColumnCount() > 0) {
             tablaCuentas.getColumnModel().getColumn(0).setHeaderValue("Número de tarjeta");
@@ -114,9 +120,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        etqCuentas.setText("Cuentas");
+        etqCuentas.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        etqCuentas.setForeground(new java.awt.Color(2, 178, 178));
+        etqCuentas.setText("CUENTAS");
 
-        btnAgregarCuenta.setText("Agregar Cuenta");
+        btnAgregarCuenta.setText("Agregar cuenta");
         btnAgregarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarCuentaActionPerformed(evt);
@@ -130,6 +138,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lblInformacion.setBackground(new java.awt.Color(255, 255, 255));
+        lblInformacion.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
+        lblInformacion.setForeground(new java.awt.Color(255, 255, 255));
         lblInformacion.setText("Haga clic en una cuenta para usarla");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,6 +154,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnPerfil)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblInformacion)
+                        .addGap(68, 68, 68)
                         .addComponent(btnCerrarSesion))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,21 +166,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
                                 .addComponent(btnAgregarCuenta)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(216, 216, 216)
-                .addComponent(lblInformacion, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPerfil)
-                    .addComponent(btnCerrarSesion))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblInformacion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnPerfil)
+                            .addComponent(btnCerrarSesion)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(lblInformacion)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(etqCuentas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)

@@ -55,6 +55,10 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         CmpEstado = new javax.swing.JTextField();
         btnSiguiente = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -70,37 +74,37 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         EtqCalle.setForeground(new java.awt.Color(2, 178, 178));
         EtqCalle.setText("CALLE");
         getContentPane().add(EtqCalle);
-        EtqCalle.setBounds(21, 104, 76, 32);
+        EtqCalle.setBounds(20, 80, 84, 25);
 
         jLabel2.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(2, 178, 178));
         jLabel2.setText("NÚM. exterior");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(260, 98, 146, 36);
+        jLabel2.setBounds(260, 70, 206, 36);
 
         EtqCP.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqCP.setForeground(new java.awt.Color(2, 178, 178));
         EtqCP.setText("C.P.");
         getContentPane().add(EtqCP);
-        EtqCP.setBounds(484, 104, 46, 32);
+        EtqCP.setBounds(480, 70, 48, 30);
 
         EtqColonia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqColonia.setForeground(new java.awt.Color(2, 178, 178));
         EtqColonia.setText("COLONIA");
         getContentPane().add(EtqColonia);
-        EtqColonia.setBounds(15, 232, 106, 32);
+        EtqColonia.setBounds(20, 170, 121, 25);
 
         EtqMunicipio.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqMunicipio.setForeground(new java.awt.Color(2, 178, 178));
         EtqMunicipio.setText("MUNICIPIO");
         getContentPane().add(EtqMunicipio);
-        EtqMunicipio.setBounds(260, 232, 124, 32);
+        EtqMunicipio.setBounds(260, 170, 143, 25);
 
         EtqEstado.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqEstado.setForeground(new java.awt.Color(2, 178, 178));
         EtqEstado.setText("ESTADO");
         getContentPane().add(EtqEstado);
-        EtqEstado.setBounds(453, 232, 98, 32);
+        EtqEstado.setBounds(450, 170, 105, 25);
 
         CmpCalle.setBackground(new java.awt.Color(17, 20, 44));
         CmpCalle.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -111,7 +115,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpCalle);
-        CmpCalle.setBounds(21, 137, 221, 36);
+        CmpCalle.setBounds(20, 110, 221, 36);
 
         CmpNumExt.setBackground(new java.awt.Color(17, 20, 44));
         CmpNumExt.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -122,13 +126,13 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpNumExt);
-        CmpNumExt.setBounds(260, 137, 143, 36);
+        CmpNumExt.setBounds(260, 110, 143, 36);
 
         CmpCP.setBackground(new java.awt.Color(17, 20, 44));
         CmpCP.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmpCP.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpCP);
-        CmpCP.setBounds(484, 137, 136, 36);
+        CmpCP.setBounds(480, 110, 136, 36);
 
         CmpColonia.setBackground(new java.awt.Color(17, 20, 44));
         CmpColonia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -139,7 +143,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpColonia);
-        CmpColonia.setBounds(15, 263, 227, 36);
+        CmpColonia.setBounds(20, 200, 227, 36);
 
         CmpMunicipio.setBackground(new java.awt.Color(17, 20, 44));
         CmpMunicipio.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -150,18 +154,18 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(CmpMunicipio);
-        CmpMunicipio.setBounds(260, 263, 175, 36);
+        CmpMunicipio.setBounds(260, 200, 175, 36);
 
         CmpEstado.setBackground(new java.awt.Color(17, 20, 44));
         CmpEstado.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         CmpEstado.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(CmpEstado);
-        CmpEstado.setBounds(453, 263, 167, 36);
+        CmpEstado.setBounds(450, 200, 167, 36);
 
         btnSiguiente.setBackground(new java.awt.Color(238, 107, 107));
         btnSiguiente.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
-        btnSiguiente.setText("Siguiente");
+        btnSiguiente.setText("Continuar");
         btnSiguiente.setMaximumSize(new java.awt.Dimension(193, 63));
         btnSiguiente.setMinimumSize(new java.awt.Dimension(193, 63));
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +174,7 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSiguiente);
-        btnSiguiente.setBounds(447, 335, 192, 62);
+        btnSiguiente.setBounds(499, 357, 140, 40);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -182,15 +186,38 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 192, 62);
+        btnVolver.setBounds(6, 6, 110, 40);
+
+        jLabel7.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Usuario y contraseña");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(310, 330, 158, 23);
+
+        jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("Domicilio");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(200, 330, 80, 23);
+
+        jLabel5.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Datos personales");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(40, 330, 130, 23);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 2.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(60, 270, 350, 50);
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ingrese su domicilio");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(220, 20, 360, 40);
+        jLabel3.setBounds(130, 10, 360, 40);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 2.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-3, -4, 650, 410);
 
@@ -295,5 +322,9 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,5 +1,5 @@
 
-package interfazCobrarRetiro;
+package interfaz.cobrarRetiro;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
@@ -50,6 +50,8 @@ public class CobrarRetiro extends javax.swing.JFrame {
         cmpContrasenia = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -57,71 +59,69 @@ public class CobrarRetiro extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("Cobrar Retiro");
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cobrar retiro");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(240, 90, 155, 30);
 
-        jLabel2.setText("Folio de operación:");
+        jLabel2.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel2.setText("Folio de operación");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(180, 130, 287, 42);
 
-        jLabel3.setText("Contraseña:");
+        cmpFolioOperacion.setBackground(new java.awt.Color(17, 20, 44));
+        cmpFolioOperacion.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        cmpFolioOperacion.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(cmpFolioOperacion);
+        cmpFolioOperacion.setBounds(180, 180, 287, 36);
 
+        jLabel3.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel3.setText("Contraseña");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(180, 230, 182, 37);
+
+        cmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
+        cmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
+        cmpContrasenia.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(cmpContrasenia);
+        cmpContrasenia.setBounds(180, 270, 287, 36);
+
+        btnConfirmar.setBackground(new java.awt.Color(238, 107, 107));
+        btnConfirmar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(255, 255, 255));
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfirmarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnConfirmar);
+        btnConfirmar.setBounds(260, 340, 132, 40);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 12, 96, 37);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(289, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(292, 292, 292))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(204, 204, 204)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2)
-                            .addComponent(cmpFolioOperacion)
-                            .addComponent(jLabel3)
-                            .addComponent(cmpContrasenia, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(279, 279, 279)
-                        .addComponent(btnConfirmar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(btnVolver)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnVolver)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(49, 49, 49)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmpFolioOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(btnConfirmar)
-                .addGap(52, 52, 52))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(248, 19, 148, 62);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 7.png"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, -4, 650, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -189,5 +189,7 @@ public class CobrarRetiro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     // End of variables declaration//GEN-END:variables
 }
