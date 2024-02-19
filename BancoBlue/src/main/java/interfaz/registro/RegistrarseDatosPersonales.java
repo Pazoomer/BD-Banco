@@ -67,6 +67,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         btnVolver = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -80,25 +81,25 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         EtqNombre.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombre.setText("NOMBRE(S)");
         getContentPane().add(EtqNombre);
-        EtqNombre.setBounds(20, 110, 138, 32);
+        EtqNombre.setBounds(20, 110, 150, 25);
 
         EtqApellidoPaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoPaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoPaterno.setText("APELLIDO PATERNO");
         getContentPane().add(EtqApellidoPaterno);
-        EtqApellidoPaterno.setBounds(310, 110, 238, 32);
+        EtqApellidoPaterno.setBounds(310, 110, 262, 25);
 
         EtqApellidoMaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoMaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoMaterno.setText("APELLIDO MATERNO");
         getContentPane().add(EtqApellidoMaterno);
-        EtqApellidoMaterno.setBounds(20, 220, 242, 32);
+        EtqApellidoMaterno.setBounds(20, 220, 269, 25);
 
         EtqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         EtqFechaNacimiento.setText("FECHA DE NACIMIENTO");
         getContentPane().add(EtqFechaNacimiento);
-        EtqFechaNacimiento.setBounds(310, 220, 276, 32);
+        EtqFechaNacimiento.setBounds(310, 220, 309, 25);
 
         CmpNombre.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombre.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -167,7 +168,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         btnSiguiente.setBackground(new java.awt.Color(238, 107, 107));
         btnSiguiente.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
-        btnSiguiente.setText("Siguiente");
+        btnSiguiente.setText("Continuar");
         btnSiguiente.setMaximumSize(new java.awt.Dimension(193, 63));
         btnSiguiente.setMinimumSize(new java.awt.Dimension(193, 63));
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +177,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSiguiente);
-        btnSiguiente.setBounds(450, 330, 193, 63);
+        btnSiguiente.setBounds(503, 353, 140, 40);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -188,17 +189,21 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 193, 60);
+        btnVolver.setBounds(6, 6, 110, 40);
 
         jLabel1.setFont(new java.awt.Font("Lucida Sans Unicode", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingrese sus datos");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(220, 20, 360, 40);
+        jLabel1.setBounds(130, 10, 360, 40);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 2.png"))); // NOI18N
         getContentPane().add(jLabel2);
         jLabel2.setBounds(-3, -4, 660, 410);
+
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(150, 330, 37, 16);
 
         pack();
         setLocationRelativeTo(null);
@@ -302,5 +307,6 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

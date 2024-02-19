@@ -120,7 +120,7 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
         getContentPane().add(jLabel2);
         jLabel2.setBounds(220, 20, 400, 50);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 2.png"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(-3, -4, 660, 410);
 

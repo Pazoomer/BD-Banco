@@ -64,6 +64,8 @@ public class RetiroRecibo extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         etqTotalDinamico = new javax.swing.JLabel();
         btnTerminar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,141 +73,140 @@ public class RetiroRecibo extends javax.swing.JFrame {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        jLabel1.setText("¡Folia generado!");
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(2, 178, 178));
+        jLabel1.setText("¡Folio generado!");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(240, 20, 310, 50);
 
+        jLabel2.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Creado el:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(10, 100, 86, 25);
 
+        etqFechaHoraCreacionDinamico.setFont(new java.awt.Font("Corbel", 0, 20)); // NOI18N
+        etqFechaHoraCreacionDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqFechaHoraCreacionDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqFechaHoraCreacionDinamico.setText("jLabel3");
+        getContentPane().add(etqFechaHoraCreacionDinamico);
+        etqFechaHoraCreacionDinamico.setBounds(100, 100, 220, 25);
 
+        jLabel4.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Caduca el:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(330, 100, 88, 25);
 
+        etqFechaHoraCaducidadDinamico.setFont(new java.awt.Font("Corbel", 0, 20)); // NOI18N
+        etqFechaHoraCaducidadDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqFechaHoraCaducidadDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqFechaHoraCaducidadDinamico.setText("jLabel5");
+        etqFechaHoraCaducidadDinamico.setPreferredSize(new java.awt.Dimension(61, 25));
+        getContentPane().add(etqFechaHoraCaducidadDinamico);
+        etqFechaHoraCaducidadDinamico.setBounds(420, 100, 220, 25);
 
+        jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Retiro con valor de:");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(240, 130, 147, 23);
 
+        etqMontoDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
+        etqMontoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqMontoDinamico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         etqMontoDinamico.setText("jLabel7");
+        getContentPane().add(etqMontoDinamico);
+        etqMontoDinamico.setBounds(230, 150, 170, 50);
 
+        jLabel8.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Folio de operación:");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(10, 210, 162, 25);
 
+        etqFolioDinamico.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
+        etqFolioDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqFolioDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqFolioDinamico.setText("jLabel9");
+        getContentPane().add(etqFolioDinamico);
+        etqFolioDinamico.setBounds(180, 210, 160, 25);
 
-        jLabel10.setText("Contraseña;");
+        jLabel10.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Contraseña:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(350, 210, 104, 25);
 
+        etqContraseniaDinamico.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
+        etqContraseniaDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqContraseniaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqContraseniaDinamico.setText("jLabel11");
+        getContentPane().add(etqContraseniaDinamico);
+        etqContraseniaDinamico.setBounds(460, 210, 180, 25);
 
+        jLabel12.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Número de cuenta:");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(130, 250, 145, 23);
 
+        etqNumCuentaDinamico.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        etqNumCuentaDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqNumCuentaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqNumCuentaDinamico.setText("jLabel13");
+        getContentPane().add(etqNumCuentaDinamico);
+        etqNumCuentaDinamico.setBounds(320, 250, 200, 17);
 
+        jLabel16.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Motivo:");
+        getContentPane().add(jLabel16);
+        jLabel16.setBounds(130, 280, 60, 23);
 
+        etqMotivoDinamico.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        etqMotivoDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqMotivoDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqMotivoDinamico.setText("jLabel17");
+        getContentPane().add(etqMotivoDinamico);
+        etqMotivoDinamico.setBounds(320, 280, 200, 17);
 
+        jLabel18.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Cantidad Total:");
+        getContentPane().add(jLabel18);
+        jLabel18.setBounds(130, 310, 120, 23);
 
+        etqTotalDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        etqTotalDinamico.setForeground(new java.awt.Color(255, 255, 255));
+        etqTotalDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         etqTotalDinamico.setText("jLabel19");
+        getContentPane().add(etqTotalDinamico);
+        etqTotalDinamico.setBounds(380, 310, 140, 17);
 
+        btnTerminar.setBackground(new java.awt.Color(238, 107, 107));
+        btnTerminar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnTerminar.setForeground(new java.awt.Color(255, 255, 255));
         btnTerminar.setText("Terminar");
         btnTerminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTerminarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnTerminar);
+        btnTerminar.setBounds(250, 347, 130, 40);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(etqFolioDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etqContraseniaDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel18))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
-                                .addComponent(etqTotalDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(93, 93, 93)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(etqMotivoDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(etqNumCuentaDinamico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(144, 144, 144))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(271, 271, 271)
-                .addComponent(btnTerminar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(etqMontoDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6))
-                        .addGap(279, 279, 279))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(etqFechaHoraCreacionDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(etqFechaHoraCaducidadDinamico, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(238, 238, 238))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(etqFechaHoraCreacionDinamico)
-                    .addComponent(jLabel4)
-                    .addComponent(etqFechaHoraCaducidadDinamico))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(12, 12, 12)
-                .addComponent(etqMontoDinamico)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(etqFolioDinamico)
-                    .addComponent(jLabel10)
-                    .addComponent(etqContraseniaDinamico))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(etqNumCuentaDinamico))
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(etqMotivoDinamico))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(etqTotalDinamico))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(btnTerminar)
-                .addGap(19, 19, 19))
-        );
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(90, 20, 140, 60);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 5.png"))); // NOI18N
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(-3, -4, 660, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -259,8 +260,10 @@ public class RetiroRecibo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }

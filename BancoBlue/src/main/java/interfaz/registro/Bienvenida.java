@@ -136,7 +136,7 @@ public class Bienvenida extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Bienvenido");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(240, 210, 180, 40);
+        jLabel4.setBounds(240, 230, 180, 40);
 
         jLabel5.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
