@@ -9,7 +9,7 @@ import bancoBluePersistencia.daos.cuentas.CuentasDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.daos.operaciones.OperacionesDAO;
-import interfazCobrarRetiro.CobrarRetiro;
+import interfaz.cobrarRetiro.CobrarRetiro;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;

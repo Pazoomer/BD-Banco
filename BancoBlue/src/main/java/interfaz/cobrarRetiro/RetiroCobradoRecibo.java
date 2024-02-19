@@ -1,5 +1,5 @@
 
-package interfazCobrarRetiro;
+package interfaz.cobrarRetiro;
 
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
