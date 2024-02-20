@@ -10,6 +10,8 @@ import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.cuenta.MenuCuenta;
+import interfaz.errores.ErrorLlenarInformacion;
+import interfaz.errores.ErrorSaldoInsuficiente;
 import javax.swing.JOptionPane;
 
 /**
@@ -200,7 +202,8 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
         String montoTexto=this.cmpMonto.getText();
         
         if (montoTexto.isBlank()) {
-            JOptionPane.showMessageDialog(this, "No puede dejar el campo vacio");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
             return;
         }
 
@@ -219,7 +222,8 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
         }
         
         if (monto>cuentaOrigen.getSaldo()) {
-            JOptionPane.showMessageDialog(this, "No tiene suficiente saldo en la cuenta");
+           ErrorSaldoInsuficiente error=new ErrorSaldoInsuficiente();
+           error.setVisible(true);
             return;
         }
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de realizar la transferencia?, esta accion no se puede revertir", "Confirmacion final", JOptionPane.YES_NO_OPTION);

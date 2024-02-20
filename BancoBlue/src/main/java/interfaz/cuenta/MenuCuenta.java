@@ -77,18 +77,18 @@ public class MenuCuenta extends javax.swing.JFrame {
 
         etqNumeroTarjetaDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         etqNumeroTarjetaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqNumeroTarjetaDinamico.setText("jLabel1");
+        etqNumeroTarjetaDinamico.setText("Numero de cuenta");
         getContentPane().add(etqNumeroTarjetaDinamico);
         etqNumeroTarjetaDinamico.setBounds(130, 20, 398, 43);
 
         etqFechaApertura.setFont(new java.awt.Font("Lucida Sans", 1, 18)); // NOI18N
         etqFechaApertura.setText("Fecha de apertura:");
         getContentPane().add(etqFechaApertura);
-        etqFechaApertura.setBounds(170, 130, 173, 22);
+        etqFechaApertura.setBounds(170, 130, 172, 22);
 
         etqFechaAperturaDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         etqFechaAperturaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqFechaAperturaDinamico.setText("jLabel3");
+        etqFechaAperturaDinamico.setText("Fecha");
         getContentPane().add(etqFechaAperturaDinamico);
         etqFechaAperturaDinamico.setBounds(360, 120, 170, 30);
 
@@ -101,7 +101,7 @@ public class MenuCuenta extends javax.swing.JFrame {
         etqSaldoActualDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         etqSaldoActualDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqSaldoActualDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqSaldoActualDinamico.setText("jLabel5");
+        etqSaldoActualDinamico.setText("Saldo");
         getContentPane().add(etqSaldoActualDinamico);
         etqSaldoActualDinamico.setBounds(300, 200, 229, 30);
 
@@ -151,7 +151,7 @@ public class MenuCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 96, 37);
+        btnVolver.setBounds(6, 6, 97, 37);
 
         btnDesactivarCuenta.setBackground(new java.awt.Color(0, 2, 20));
         btnDesactivarCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -214,7 +214,7 @@ public class MenuCuenta extends javax.swing.JFrame {
      * Inicia un retiro sin cuenta
      */
     private void retiroSinCuenta() {
-        RetiroMonto registrar=new RetiroMonto(this,cuenta,  clientesDAO,  cuentasDAO, operacionesDAO);
+        RetiroMonto registrar=new RetiroMonto(this,cuenta, operacionesDAO);
         this.setVisible(false);
         registrar.setVisible(true);
     }

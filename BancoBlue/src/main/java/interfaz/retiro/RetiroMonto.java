@@ -1,8 +1,6 @@
 
 package interfaz.retiro;
 
-import bancoBluePersistencia.daos.clientes.IClientesDAO;
-import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
@@ -10,6 +8,8 @@ import bancoBluePersistencia.herramientas.FormatoPesos;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.cuenta.MenuCuenta;
+import interfaz.errores.ErrorLlenarInformacion;
+import interfaz.errores.ErrorSaldoInsuficiente;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,27 +21,21 @@ public class RetiroMonto extends javax.swing.JFrame {
 
     MenuCuenta menuCuenta;
     Cuenta cuenta;
-    IClientesDAO clientesDAO;
-    ICuentasDAO cuentasDAO;
     IOperacionesDAO operacionesDAO;
 
     /**
      * Constructor que usa los datos de la cuenta para obtener su saldo
      * @param menuCuenta Pantalla a mostrar cuando se cierra esta
      * @param cuenta Cuenta a usar
-     * @param clientesDAO Opera clientes
-     * @param cuentasDAO Opera cuentas
      * @param operacionesDAO Opera operaciones
      */
-    public RetiroMonto(MenuCuenta menuCuenta, Cuenta cuenta, IClientesDAO clientesDAO, ICuentasDAO cuentasDAO, IOperacionesDAO operacionesDAO) {
+    public RetiroMonto(MenuCuenta menuCuenta, Cuenta cuenta, IOperacionesDAO operacionesDAO) {
         this.setUndecorated(true);
         initComponents();
         this.setLocation(400, 200);
         this.setSize(660, 410);
         this.menuCuenta = menuCuenta;
         this.cuenta = cuenta;
-        this.clientesDAO = clientesDAO;
-        this.cuentasDAO = cuentasDAO;
         this.operacionesDAO = operacionesDAO;
         actualizarInformacion();
     }
@@ -84,20 +78,20 @@ public class RetiroMonto extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ingrese el monto total del retiro:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(126, 163, 400, 30);
+        jLabel3.setBounds(130, 190, 400, 30);
 
         jLabel4.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Saldo disponible:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(201, 205, 140, 23);
+        jLabel4.setBounds(200, 160, 140, 23);
 
         etqSaldoDisponibleDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqSaldoDisponibleDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqSaldoDisponibleDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         etqSaldoDisponibleDinamico.setText("Saldo");
         getContentPane().add(etqSaldoDisponibleDinamico);
-        etqSaldoDisponibleDinamico.setBounds(347, 205, 154, 23);
+        etqSaldoDisponibleDinamico.setBounds(350, 160, 154, 23);
 
         cmpMonto.setBackground(new java.awt.Color(17, 20, 44));
         cmpMonto.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
@@ -175,7 +169,8 @@ public class RetiroMonto extends javax.swing.JFrame {
         String motivo = this.cmpMotivo.getText();
         
         if (montoTexto.isBlank()) {
-            JOptionPane.showMessageDialog(this, "No puede dejar el monto vacio");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
             return;
         }
 
@@ -185,6 +180,12 @@ public class RetiroMonto extends javax.swing.JFrame {
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "El monto debe ser un numero");
+            return;
+        }
+        
+        if (monto > cuenta.getSaldo()) {
+            ErrorSaldoInsuficiente error = new ErrorSaldoInsuficiente();
+            error.setVisible(true);
             return;
         }
         

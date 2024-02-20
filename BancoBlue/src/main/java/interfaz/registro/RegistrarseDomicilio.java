@@ -3,6 +3,7 @@ package interfaz.registro;
 
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
+import interfaz.errores.ErrorLlenarInformacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,37 +75,37 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
         EtqCalle.setForeground(new java.awt.Color(2, 178, 178));
         EtqCalle.setText("CALLE");
         getContentPane().add(EtqCalle);
-        EtqCalle.setBounds(20, 80, 84, 25);
+        EtqCalle.setBounds(20, 80, 90, 32);
 
         jLabel2.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(2, 178, 178));
         jLabel2.setText("NÚM. exterior");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(260, 70, 206, 36);
+        jLabel2.setBounds(260, 70, 160, 36);
 
         EtqCP.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqCP.setForeground(new java.awt.Color(2, 178, 178));
         EtqCP.setText("C.P.");
         getContentPane().add(EtqCP);
-        EtqCP.setBounds(480, 70, 48, 30);
+        EtqCP.setBounds(480, 70, 46, 30);
 
         EtqColonia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqColonia.setForeground(new java.awt.Color(2, 178, 178));
         EtqColonia.setText("COLONIA");
         getContentPane().add(EtqColonia);
-        EtqColonia.setBounds(20, 170, 121, 25);
+        EtqColonia.setBounds(20, 170, 106, 32);
 
         EtqMunicipio.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqMunicipio.setForeground(new java.awt.Color(2, 178, 178));
         EtqMunicipio.setText("MUNICIPIO");
         getContentPane().add(EtqMunicipio);
-        EtqMunicipio.setBounds(260, 170, 143, 25);
+        EtqMunicipio.setBounds(260, 170, 140, 32);
 
         EtqEstado.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqEstado.setForeground(new java.awt.Color(2, 178, 178));
         EtqEstado.setText("ESTADO");
         getContentPane().add(EtqEstado);
-        EtqEstado.setBounds(450, 170, 105, 25);
+        EtqEstado.setBounds(450, 170, 110, 32);
 
         CmpCalle.setBackground(new java.awt.Color(17, 20, 44));
         CmpCalle.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -299,9 +300,8 @@ public class RegistrarseDomicilio extends javax.swing.JFrame {
                 registrar.setVisible(true);
             }
         } else {
-            // Mostrar un mensaje de error o realizar alguna otra acción
-            // porque algunos campos son null o están vacíos
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
         }
 
     }

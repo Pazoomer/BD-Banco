@@ -7,6 +7,7 @@ import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cuenta;
 import interfaz.cuenta.MenuCuenta;
+import interfaz.errores.ErrorLlenarInformacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -191,7 +192,8 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         String motivo=this.cmpMotivo.getText();
         
         if (motivo.isBlank()) {
-            JOptionPane.showMessageDialog(this, "No puede dejar vacio el motivo");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
             return;
         }
         

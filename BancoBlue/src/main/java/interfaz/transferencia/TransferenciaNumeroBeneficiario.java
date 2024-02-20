@@ -8,6 +8,8 @@ import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cuenta;
+import interfaz.errores.ErrorLlenarInformacion;
+import interfaz.errores.ErrorNumCuenta;
 import javax.swing.JOptionPane;
 
 /**
@@ -155,7 +157,8 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
 
         String textoBenficiario = this.cmpNumeroBeneficiario.getText();
         if (textoBenficiario.isBlank()) {
-            JOptionPane.showMessageDialog(this, "No puede dejar el campo vacio");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
             return;
         }
 
@@ -189,7 +192,8 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
             this.setVisible(false);
             registrar.setVisible(true);
         }else{
-           JOptionPane.showMessageDialog(this, "El numero no pertenece a ninguna cuenta");
+           ErrorNumCuenta error=new ErrorNumCuenta();
+           error.setVisible(true);
         }
     }
     

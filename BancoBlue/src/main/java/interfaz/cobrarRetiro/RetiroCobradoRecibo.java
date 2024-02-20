@@ -27,6 +27,10 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
     ICuentasDAO cuentasDAO;
     /**
      * Creates new form RetiroCobradoRecibo
+     * @param retiro
+     * @param bienvenida
+     * @param operacionesDAO
+     * @param cuentasDAO
      */
     public RetiroCobradoRecibo(Operacion retiro,Bienvenida bienvenida,IOperacionesDAO operacionesDAO,ICuentasDAO cuentasDAO) {
         this.setUndecorated(true);
@@ -40,7 +44,6 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
         this.setSize(660, 410);
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -178,9 +181,11 @@ public class RetiroCobradoRecibo extends javax.swing.JFrame {
        bienvenida.setVisible(true);
     }//GEN-LAST:event_formWindowClosed
 
+    /**
+     * Actualiza los datos de la pantalla
+     */
     private void actualizarInformacion() {
-        
-
+       
         OperacionConsultableDTO operacionConsultable = new OperacionConsultableDTO();
         operacionConsultable.setCodigo(retiro.getCodigoCuenta());
 
