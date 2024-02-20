@@ -8,7 +8,7 @@ import bancoBluePersistencia.dtos.operacion.OperacionConsultableRetiroDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Operacion;
-import interfaz.registro.Bienvenida;
+import ejecutable.Bienvenida;
 import javax.swing.JOptionPane;
 
 /**

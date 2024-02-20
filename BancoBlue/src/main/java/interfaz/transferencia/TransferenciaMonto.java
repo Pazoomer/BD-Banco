@@ -82,18 +82,18 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ingrese el monto total de la transferencia:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(68, 151, 501, 30);
+        jLabel1.setBounds(68, 151, 499, 30);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Saldo disponible:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(186, 208, 133, 23);
+        jLabel2.setBounds(169, 208, 150, 23);
 
         etqSaldoDisponibleDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqSaldoDisponibleDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqSaldoDisponibleDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqSaldoDisponibleDinamico.setText("jLabel3");
+        etqSaldoDisponibleDinamico.setText("saldo");
         getContentPane().add(etqSaldoDisponibleDinamico);
         etqSaldoDisponibleDinamico.setBounds(325, 208, 116, 23);
 
@@ -114,7 +114,7 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnConfirmar);
-        btnConfirmar.setBounds(249, 338, 132, 37);
+        btnConfirmar.setBounds(249, 338, 134, 37);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -126,7 +126,7 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 96, 37);
+        btnVolver.setBounds(6, 6, 97, 37);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 3.png"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -142,7 +142,7 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Confirmación");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(278, 86, 103, 23);
+        jLabel5.setBounds(278, 86, 102, 23);
 
         jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));

@@ -6,6 +6,7 @@ import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.operacion.OperacionNuevaDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.herramientas.FormatoPesos;
 import bancoblueDominio.Cuenta;
 import bancoblueDominio.Operacion;
 import interfaz.cuenta.MenuCuenta;
@@ -71,30 +72,30 @@ public class RetiroMonto extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("Retiro sin cuenta");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(120, 50, 416, 58);
+        jLabel1.setBounds(120, 50, 422, 58);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nota: El folio tiene que aplicarse máximo a los 10 minutos de ser creado.");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(50, 120, 541, 23);
+        jLabel2.setBounds(50, 120, 539, 23);
 
         jLabel3.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Ingrese el monto total del retiro:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(126, 163, 387, 30);
+        jLabel3.setBounds(126, 163, 400, 30);
 
         jLabel4.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Saldo disponible:");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(208, 205, 133, 23);
+        jLabel4.setBounds(201, 205, 140, 23);
 
         etqSaldoDisponibleDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqSaldoDisponibleDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqSaldoDisponibleDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqSaldoDisponibleDinamico.setText("jLabel5");
+        etqSaldoDisponibleDinamico.setText("Saldo");
         getContentPane().add(etqSaldoDisponibleDinamico);
         etqSaldoDisponibleDinamico.setBounds(347, 205, 154, 23);
 
@@ -128,7 +129,7 @@ public class RetiroMonto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnConfirmar);
-        btnConfirmar.setBounds(243, 349, 132, 37);
+        btnConfirmar.setBounds(243, 349, 134, 37);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -140,7 +141,7 @@ public class RetiroMonto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 96, 37);
+        btnVolver.setBounds(6, 6, 97, 37);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 4.png"))); // NOI18N
         getContentPane().add(jLabel5);
@@ -166,7 +167,7 @@ public class RetiroMonto extends javax.swing.JFrame {
      * Actualiza la informacion de la pantalla
      */
     private void actualizarInformacion(){
-        this.etqSaldoDisponibleDinamico.setText(String.valueOf(cuenta.getSaldo()));
+        this.etqSaldoDisponibleDinamico.setText(FormatoPesos.convertidorPesos(cuenta.getSaldo()));
     }
     
     private void confirmar(){

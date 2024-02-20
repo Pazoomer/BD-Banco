@@ -7,7 +7,9 @@ import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteConsultableDTO;
 import bancoBluePersistencia.dtos.cuenta.CuentaNuevaDTO;
+import bancoBluePersistencia.dtos.cuenta.CuentaSaldoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import interfaz.cuenta.MenuCuenta;
@@ -15,6 +17,8 @@ import interfaz.tablas.TablaCuentas;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -220,24 +224,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
         menuCuenta.setVisible(true);
         actualizarTabla();
     }
-    
+
     /**
      * Genera una cuenta y la agrega al cliente en la base de datos
      */
-    private void agregarCuenta(){
+    private void agregarCuenta() {
         int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas seguro de crear una nueva cuenta?, esta accion no se puede revertir", "Crear nueva cuenta", JOptionPane.YES_NO_OPTION);
         if (respuesta == JOptionPane.YES_OPTION) {
             CuentaNuevaDTO cuentaNueva = new CuentaNuevaDTO();
             cuentaNueva.setIdCliente(this.cliente.getId());
+
             try {
-                cuentasDAO.agregar(cuentaNueva);
+                Cuenta cuenta = cuentasDAO.agregar(cuentaNueva);
+
+                //ESTE CODIGO SERA ELIMINADO ANTES DE SU SALIDA AL PUBLICO
+                CuentaSaldoDTO cuentaSaldo = new CuentaSaldoDTO();
+                cuentaSaldo.setSaldo(100);
+                cuentaSaldo.setCodigo(cuenta.getCodigo());
+                cuentasDAO.cambiarMonto(cuentaSaldo);
+                //ESTE CODIGO SERA ELIMINADO ANTES DE SU SALIDA AL PUBLICO
+
             } catch (PersistenciaException ex) {
                 JOptionPane.showMessageDialog(this, "No se pudo agregar la cuenta debido a un error en la base de datos");
                 return;
+            } catch (ValidacionDTOException ex) {
+                Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         actualizarTabla();
         JOptionPane.showMessageDialog(this, "Su nueva cuenta ha sido creada con exito");
+        
+        //ESTE CODIGO SERA ELIMINADO ANTES DE SU SALIDA AL PUBLICO
+        JOptionPane.showMessageDialog(this, "ADVERTENCIA: su cuenta iniciaria con un monto de $100.00 pesos mexicanos para fines de prueba, esto no se hara cuando salga al publico");
+        //ESTE CODIGO SERA ELIMINADO ANTES DE SU SALIDA AL PUBLICO
     }
     
     /**

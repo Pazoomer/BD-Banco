@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 public class TablaCuentas extends AbstractTableModel {
 
     private final List<Cuenta> listaCuentas;
-    private final String[] columnNames = {"Numero de cuenta", "Fecha de apertura", "Saldo actual", "estado"};
+    private final String[] columnNames = {"Numero de cuenta", "Fecha de apertura", "Saldo actual", "Estado"};
 
     public TablaCuentas(List<Cuenta> listaCuentas) {
         this.listaCuentas = listaCuentas;

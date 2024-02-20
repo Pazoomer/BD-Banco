@@ -78,18 +78,18 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("Datos del beneficiario");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(119, 132, 410, 43);
+        jLabel1.setBounds(119, 132, 430, 43);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nombre del beneficiario:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(47, 193, 250, 30);
+        jLabel2.setBounds(47, 193, 246, 30);
 
         etqNombreBeneficiarioDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         etqNombreBeneficiarioDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqNombreBeneficiarioDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etqNombreBeneficiarioDinamico.setText("jLabel3");
+        etqNombreBeneficiarioDinamico.setText("Nombre");
         getContentPane().add(etqNombreBeneficiarioDinamico);
         etqNombreBeneficiarioDinamico.setBounds(303, 193, 294, 30);
 
@@ -102,7 +102,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         etqNumeroCuentaBeneficiarioDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
         etqNumeroCuentaBeneficiarioDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqNumeroCuentaBeneficiarioDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etqNumeroCuentaBeneficiarioDinamico.setText("jLabel5");
+        etqNumeroCuentaBeneficiarioDinamico.setText("Numero de cuenta");
         getContentPane().add(etqNumeroCuentaBeneficiarioDinamico);
         etqNumeroCuentaBeneficiarioDinamico.setBounds(303, 235, 294, 30);
 
@@ -128,7 +128,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnConfirmar);
-        btnConfirmar.setBounds(264, 350, 132, 37);
+        btnConfirmar.setBounds(264, 350, 140, 37);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -140,7 +140,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 96, 37);
+        btnVolver.setBounds(6, 6, 97, 37);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 2.png"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -156,7 +156,7 @@ public class TransferenciaConfirmacion extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Confirmación");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(278, 86, 103, 23);
+        jLabel7.setBounds(278, 86, 102, 23);
 
         jLabel8.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));

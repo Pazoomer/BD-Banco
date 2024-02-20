@@ -1,6 +1,7 @@
 
 package interfaz.registro;
 
+import ejecutable.Bienvenida;
 import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.daos.cuentas.ICuentasDAO;
 import bancoBluePersistencia.daos.operaciones.IOperacionesDAO;
