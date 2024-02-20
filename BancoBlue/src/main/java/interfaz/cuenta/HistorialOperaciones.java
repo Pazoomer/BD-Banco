@@ -294,6 +294,7 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         CuentaConsultableDTO cuentaConsultable = new CuentaConsultableDTO();
 
         cuentaConsultable.setCodigo(cuenta.getCodigo());
+        cuentaConsultable.setNumCuentaDestino(cuenta.getNumeroCuenta());
 
         try {
             List<Operacion> listaCuentas = operacionesDAO.consultar(cuentaConsultable);

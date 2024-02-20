@@ -143,7 +143,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         etqCuentas.setForeground(new java.awt.Color(2, 178, 178));
         etqCuentas.setText("CUENTAS");
         getContentPane().add(etqCuentas);
-        etqCuentas.setBounds(10, 60, 80, 23);
+        etqCuentas.setBounds(10, 60, 100, 23);
 
         btnAgregarCuenta.setBackground(new java.awt.Color(238, 107, 107));
         btnAgregarCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N

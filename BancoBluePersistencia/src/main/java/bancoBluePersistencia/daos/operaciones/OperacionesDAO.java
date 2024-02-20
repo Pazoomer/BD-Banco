@@ -259,13 +259,14 @@ public class OperacionesDAO implements IOperacionesDAO {
         FROM Operaciones O
         LEFT JOIN Transferencias T ON O.codigo = T.codigo
         LEFT JOIN Retiros_sin_cuenta R ON O.codigo = R.codigo
-        WHERE O.codigo_cuenta = ?;
+        WHERE O.codigo_cuenta = ? OR T.numero_cuenta_destino=?;
                               """;
         try (
                 Connection conexion = this.conexionBD.obtenerConexion(); 
                 PreparedStatement comando = conexion.prepareStatement(sentenciaSQL);) {
             
             comando.setLong(1, cuentaConsultable.getCodigo());
+            comando.setLong(2, cuentaConsultable.getNumCuentaDestino());
             ResultSet resultados = comando.executeQuery();
 
             List<Operacion> listaOperaciones = new LinkedList<>();

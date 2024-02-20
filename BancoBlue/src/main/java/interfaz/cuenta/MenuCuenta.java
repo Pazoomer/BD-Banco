@@ -151,7 +151,7 @@ public class MenuCuenta extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 97, 37);
+        btnVolver.setBounds(6, 6, 100, 37);
 
         btnDesactivarCuenta.setBackground(new java.awt.Color(0, 2, 20));
         btnDesactivarCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N

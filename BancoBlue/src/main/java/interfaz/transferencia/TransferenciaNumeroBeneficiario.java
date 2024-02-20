@@ -106,7 +106,7 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 97, 37);
+        btnVolver.setBounds(6, 6, 110, 37);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 1.png"))); // NOI18N
         getContentPane().add(jLabel3);

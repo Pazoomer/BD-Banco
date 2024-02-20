@@ -135,7 +135,7 @@ public class RetiroMonto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 97, 37);
+        btnVolver.setBounds(6, 6, 110, 37);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 4.png"))); // NOI18N
         getContentPane().add(jLabel5);

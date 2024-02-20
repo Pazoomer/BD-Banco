@@ -162,7 +162,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnTerminar);
-        btnTerminar.setBounds(256, 350, 124, 37);
+        btnTerminar.setBounds(256, 350, 130, 37);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N

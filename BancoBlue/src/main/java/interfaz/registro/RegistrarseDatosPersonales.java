@@ -89,13 +89,13 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         EtqApellidoPaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoPaterno.setText("APELLIDO PATERNO");
         getContentPane().add(EtqApellidoPaterno);
-        EtqApellidoPaterno.setBounds(310, 80, 238, 32);
+        EtqApellidoPaterno.setBounds(310, 80, 250, 32);
 
         EtqApellidoMaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoMaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoMaterno.setText("APELLIDO MATERNO");
         getContentPane().add(EtqApellidoMaterno);
-        EtqApellidoMaterno.setBounds(20, 170, 242, 32);
+        EtqApellidoMaterno.setBounds(20, 170, 260, 32);
 
         EtqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));

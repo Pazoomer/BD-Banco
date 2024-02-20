@@ -2,7 +2,6 @@
 package bancoblueDominio;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 /**
  * La clase Operacion representa una operación financiera en un banco.

@@ -108,6 +108,6 @@ public class TablaOperaciones extends AbstractTableModel {
             Logger.getLogger(TablaOperaciones.class.getName()).log(Level.SEVERE, "Error al acceder a la base de datos en la tabla", ex);
             return "No encontrado";
         }
-        return "No encontrado";
+        return "Tu recibiste";
     }
 }

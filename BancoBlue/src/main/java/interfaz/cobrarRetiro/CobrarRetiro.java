@@ -106,7 +106,7 @@ public class CobrarRetiro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 12, 97, 37);
+        btnVolver.setBounds(6, 12, 110, 37);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         getContentPane().add(jLabel4);

@@ -128,7 +128,7 @@ public final class TransferenciaMonto extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 97, 37);
+        btnVolver.setBounds(6, 6, 100, 37);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 3.png"))); // NOI18N
         getContentPane().add(jLabel3);

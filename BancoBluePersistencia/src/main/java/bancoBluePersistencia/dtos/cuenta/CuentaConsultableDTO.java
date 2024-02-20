@@ -9,6 +9,7 @@ package bancoBluePersistencia.dtos.cuenta;
  */
 public class CuentaConsultableDTO {
     private long codigo;
+    private long numCuentaDestino;
 
     /**
      * Método getter para obtener el código de la cuenta a consultar.
@@ -17,6 +18,14 @@ public class CuentaConsultableDTO {
      */
     public long getCodigo() {
         return codigo;
+    }
+
+    public long getNumCuentaDestino() {
+        return numCuentaDestino;
+    }
+
+    public void setNumCuentaDestino(long numCuentaDestino) {
+        this.numCuentaDestino = numCuentaDestino;
     }
 
     /**
@@ -59,20 +68,6 @@ public class CuentaConsultableDTO {
         }
         final CuentaConsultableDTO other = (CuentaConsultableDTO) obj;
         return this.codigo == other.codigo;
-    }
-
-    /**
-     * Método toString que devuelve una representación en cadena del objeto CuentaConsultableDTO.
-     * 
-     * @return La representación en cadena del objeto.
-     */
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("CuentaConsultableDTO{");
-        sb.append("codigo=").append(codigo);
-        sb.append('}');
-        return sb.toString();
     }
     
     
