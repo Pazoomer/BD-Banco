@@ -35,6 +35,17 @@ public final class PerfilCliente extends javax.swing.JFrame {
         actualizarInformacion();
         this.setSize(660, 430);
         this.setLocation(400, 200);
+        this.etqCPDinamico.setEnabled(false);
+        this.etqCalleDinamico.setEnabled(false);
+        this.etqColoniaDinamico.setEnabled(false);
+        this.etqEstadoDinamico.setEnabled(false);
+        this.etqEstadoDinamico.setEnabled(false);
+        this.etqFechaNacimiento.setEnabled(false);
+        this.etqMunicipioDinamico.setEnabled(false);
+        this.etqNombreCompletoDinamico.setEnabled(false);
+        this.etqNombreUsuarioDinamico.setEnabled(false);
+        this.etqNumExteriorDinamico.setEnabled(false);
+        this.etqFechaNacimientoDinamico.setEnabled(false);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

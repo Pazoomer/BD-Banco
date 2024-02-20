@@ -72,7 +72,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="126" y="163" width="-1" height="-1"/>
+          <AbsoluteConstraints x="126" y="163" width="400" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -88,7 +88,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="208" y="205" width="-1" height="-1"/>
+          <AbsoluteConstraints x="201" y="205" width="140" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -101,7 +101,7 @@
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="text" type="java.lang.String" value="jLabel5"/>
+        <Property name="text" type="java.lang.String" value="Saldo"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

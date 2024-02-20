@@ -67,13 +67,13 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("Realizar transferencia");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(52, 127, 542, 58);
+        jLabel1.setBounds(52, 127, 560, 58);
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese el número de cuenta del beneficiario:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(52, 203, 536, 30);
+        jLabel2.setBounds(52, 203, 550, 30);
 
         cmpNumeroBeneficiario.setBackground(new java.awt.Color(17, 20, 44));
         cmpNumeroBeneficiario.setFont(new java.awt.Font("Lucida Sans", 0, 36)); // NOI18N
@@ -92,7 +92,7 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnConfirmar);
-        btnConfirmar.setBounds(259, 349, 132, 37);
+        btnConfirmar.setBounds(259, 349, 134, 37);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -104,7 +104,7 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 96, 37);
+        btnVolver.setBounds(6, 6, 97, 37);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 1.png"))); // NOI18N
         getContentPane().add(jLabel3);
@@ -120,7 +120,7 @@ public class TransferenciaNumeroBeneficiario extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Confirmación");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(278, 86, 103, 23);
+        jLabel5.setBounds(278, 86, 102, 23);
 
         jLabel6.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));

@@ -299,13 +299,16 @@ public class HistorialOperaciones extends javax.swing.JFrame {
 
             listaOperaciones = new ArrayList<>();
 
-            // Filtrar las operaciones según la fecha y el tipo seleccionado
-            for (Operacion operacion : listaCuentas) {
-                if (operacion.getFechaCreacion().after(timestampDesde) && operacion.getFechaCreacion().before(timestampHasta)) {
-                    if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
-                        listaOperaciones.add(operacion);
-                    } else if (this.radiobtnTransferencia.isSelected() && operacion.getTipo().equalsIgnoreCase("transferencia")) {
-                        listaOperaciones.add(operacion);
+            if (listaCuentas != null) {
+
+                // Filtrar las operaciones según la fecha y el tipo seleccionado
+                for (Operacion operacion : listaCuentas) {
+                    if (operacion.getFechaCreacion().after(timestampDesde) && operacion.getFechaCreacion().before(timestampHasta)) {
+                        if (this.radiobtnRetiroSinCuenta.isSelected() && operacion.getTipo().equalsIgnoreCase("retiro sin cuenta")) {
+                            listaOperaciones.add(operacion);
+                        } else if (this.radiobtnTransferencia.isSelected() && operacion.getTipo().equalsIgnoreCase("transferencia")) {
+                            listaOperaciones.add(operacion);
+                        }
                     }
                 }
             }

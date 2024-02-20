@@ -9,13 +9,13 @@ import bancoBluePersistencia.dtos.cuenta.CuentaConsultableUsuarioDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import bancoBluePersistencia.herramientas.FormatoPesos;
-import bancoblueDominio.Cliente;
 import bancoblueDominio.Cuenta;
 import interfaz.cliente.MenuPrincipal;
 import interfaz.retiro.RetiroMonto;
 import interfaz.transferencia.TransferenciaNumeroBeneficiario;
 import java.time.LocalDateTime;
 import javax.swing.JOptionPane;
+import java.time.LocalDate;
 
 /**
  * Permite operar las opciones de una cuenta
@@ -274,12 +274,15 @@ public class MenuCuenta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Esta cuenta esta cancelada, no se pueden realizar operaciones");
                 this.btnRetiroSinCuenta.setEnabled(false);
                 this.btnTransferir.setEnabled(false);
+                this.btnDesactivarCuenta.setEnabled(false);
             }
         
         LocalDateTime fechaApertura=cuenta.getFechaApertura();
+        
+        LocalDate fechaAperturaSimple = fechaApertura.toLocalDate();
         double saldo=cuenta.getSaldo();
         
-        this.etqFechaAperturaDinamico.setText(fechaApertura.toString());
+        this.etqFechaAperturaDinamico.setText(fechaAperturaSimple.toString());
         this.etqNumeroTarjetaDinamico.setText(String.valueOf(numCuenta));
         this.etqSaldoActualDinamico.setText(FormatoPesos.convertidorPesos(saldo));
     }

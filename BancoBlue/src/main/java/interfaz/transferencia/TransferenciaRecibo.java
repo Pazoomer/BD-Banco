@@ -70,7 +70,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         etqFechaHoraDinamico.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
         etqFechaHoraDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqFechaHoraDinamico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etqFechaHoraDinamico.setText("jLabel2");
+        etqFechaHoraDinamico.setText("Fecha actual");
         getContentPane().add(etqFechaHoraDinamico);
         etqFechaHoraDinamico.setBounds(192, 87, 258, 25);
 
@@ -78,12 +78,12 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Enviaste");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(293, 118, 55, 17);
+        jLabel3.setBounds(293, 118, 80, 17);
 
         etqMontoDinamico.setFont(new java.awt.Font("Lucida Sans", 1, 36)); // NOI18N
         etqMontoDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqMontoDinamico.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        etqMontoDinamico.setText("jLabel4");
+        etqMontoDinamico.setText("monto");
         getContentPane().add(etqMontoDinamico);
         etqMontoDinamico.setBounds(206, 141, 226, 43);
 
@@ -96,7 +96,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         etqNombreBeneficiarioDinamico.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
         etqNombreBeneficiarioDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqNombreBeneficiarioDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqNombreBeneficiarioDinamico.setText("jLabel6");
+        etqNombreBeneficiarioDinamico.setText("Nombre del dueño");
         getContentPane().add(etqNombreBeneficiarioDinamico);
         etqNombreBeneficiarioDinamico.setBounds(37, 190, 269, 25);
 
@@ -104,12 +104,12 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("-");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(318, 190, 7, 25);
+        jLabel7.setBounds(318, 190, 6, 25);
 
         etqNumTarjetaBeneficiarioDinamico.setFont(new java.awt.Font("Corbel", 1, 20)); // NOI18N
         etqNumTarjetaBeneficiarioDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqNumTarjetaBeneficiarioDinamico.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        etqNumTarjetaBeneficiarioDinamico.setText("jLabel8");
+        etqNumTarjetaBeneficiarioDinamico.setText("Numero de la cuenta destino");
         getContentPane().add(etqNumTarjetaBeneficiarioDinamico);
         etqNumTarjetaBeneficiarioDinamico.setBounds(337, 190, 302, 25);
 
@@ -129,26 +129,26 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Cantidad Total:");
         getContentPane().add(jLabel12);
-        jLabel12.setBounds(114, 309, 120, 23);
+        jLabel12.setBounds(114, 309, 140, 23);
 
         etqNumCuentaDinamico.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         etqNumCuentaDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqNumCuentaDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etqNumCuentaDinamico.setText("jLabel2");
+        etqNumCuentaDinamico.setText("numero de cuenta origen");
         getContentPane().add(etqNumCuentaDinamico);
         etqNumCuentaDinamico.setBounds(265, 227, 260, 23);
 
         etqMotivoDinamico.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         etqMotivoDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqMotivoDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etqMotivoDinamico.setText("jLabel6");
+        etqMotivoDinamico.setText("motivo");
         getContentPane().add(etqMotivoDinamico);
         etqMotivoDinamico.setBounds(293, 268, 232, 23);
 
         etqCantidadTotalDinamico.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqCantidadTotalDinamico.setForeground(new java.awt.Color(255, 255, 255));
         etqCantidadTotalDinamico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        etqCantidadTotalDinamico.setText("jLabel8");
+        etqCantidadTotalDinamico.setText("monto");
         getContentPane().add(etqCantidadTotalDinamico);
         etqCantidadTotalDinamico.setBounds(322, 309, 203, 23);
 
@@ -162,7 +162,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnTerminar);
-        btnTerminar.setBounds(256, 350, 123, 37);
+        btnTerminar.setBounds(256, 350, 124, 37);
 
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
@@ -174,7 +174,7 @@ public class TransferenciaRecibo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(2, 178, 178));
         jLabel1.setText("¡Transferencia realizada!");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(160, 20, 460, 50);
+        jLabel1.setBounds(160, 20, 470, 50);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 5.png"))); // NOI18N
         getContentPane().add(jLabel2);
