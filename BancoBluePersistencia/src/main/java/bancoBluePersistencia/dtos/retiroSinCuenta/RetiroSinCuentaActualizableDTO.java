@@ -79,7 +79,7 @@ public class RetiroSinCuentaActualizableDTO {
     /**
      * Método getter para obtener el código de cuenta asociado al retiro sin cuenta.
      * 
-     * @return El código de cuenta asociado al retiro sin cuenta.
+     * @return El codigo de cuenta asociado al retiro sin cuenta.
      */
     public long getCodigoCuenta() {
         return codigoCuenta;
@@ -88,7 +88,7 @@ public class RetiroSinCuentaActualizableDTO {
     /**
      * Método setter para establecer el código de cuenta asociado al retiro sin cuenta.
      * 
-     * @param codigoCuenta El nuevo código de cuenta asociado al retiro sin cuenta.
+     * @param codigoCuenta El nuevo codigo de cuenta asociado al retiro sin cuenta.
      */
     public void setCodigoCuenta(long codigoCuenta) {
         this.codigoCuenta = codigoCuenta;
@@ -97,7 +97,7 @@ public class RetiroSinCuentaActualizableDTO {
     /**
      * Método getter para obtener el código del retiro sin cuenta.
      * 
-     * @return El código del retiro sin cuenta.
+     * @return El codigo del retiro sin cuenta.
      */
     public long getCodigo() {
         return codigo;
@@ -106,7 +106,7 @@ public class RetiroSinCuentaActualizableDTO {
     /**
      * Método getter para obtener el código del retiro sin cuenta.
      * 
-     * @return El código del retiro sin cuenta.
+     * @param codigo
      */
     public void setCodigo(long codigo) {
         this.codigo = codigo;
