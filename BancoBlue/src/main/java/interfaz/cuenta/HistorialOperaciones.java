@@ -76,39 +76,89 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         cmbxAnioDesde = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
+        btnVolver.setBackground(new java.awt.Color(238, 107, 107));
+        btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
         btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
             }
         });
+        getContentPane().add(btnVolver);
+        btnVolver.setBounds(6, 6, 96, 37);
 
+        etqTitulo.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
+        etqTitulo.setForeground(new java.awt.Color(2, 178, 178));
         etqTitulo.setText("Historial de operaciones");
+        getContentPane().add(etqTitulo);
+        etqTitulo.setBounds(167, 13, 295, 30);
 
+        jLabel2.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Filtrar por:");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(12, 61, 79, 23);
 
+        jLabel3.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo de operación:");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(141, 61, 142, 23);
 
+        radiobtnTransferencia.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        radiobtnTransferencia.setForeground(new java.awt.Color(255, 255, 255));
         radiobtnTransferencia.setText("Transferencia");
+        getContentPane().add(radiobtnTransferencia);
+        radiobtnTransferencia.setBounds(16, 96, 113, 22);
 
+        radiobtnRetiroSinCuenta.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        radiobtnRetiroSinCuenta.setForeground(new java.awt.Color(255, 255, 255));
         radiobtnRetiroSinCuenta.setText("Retiro sin cuenta");
+        getContentPane().add(radiobtnRetiroSinCuenta);
+        radiobtnRetiroSinCuenta.setBounds(141, 96, 133, 22);
 
+        jLabel4.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(322, 65, 50, 23);
 
+        cmbxDiaHasta.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxDiaHasta.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        cmbxDiaHasta.setForeground(new java.awt.Color(255, 255, 255));
         cmbxDiaHasta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        getContentPane().add(cmbxDiaHasta);
+        cmbxDiaHasta.setBounds(436, 100, 57, 23);
 
+        cmbxFechaHasta.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxFechaHasta.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        cmbxFechaHasta.setForeground(new java.awt.Color(255, 255, 255));
         cmbxFechaHasta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        getContentPane().add(cmbxFechaHasta);
+        cmbxFechaHasta.setBounds(499, 100, 53, 23);
 
+        cmbxAnioHasta.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxAnioHasta.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        cmbxAnioHasta.setForeground(new java.awt.Color(255, 255, 255));
         cmbxAnioHasta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        getContentPane().add(cmbxAnioHasta);
+        cmbxAnioHasta.setBounds(558, 100, 78, 23);
 
+        cmbxOperaciones.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxOperaciones.setFont(new java.awt.Font("Lucida Sans", 1, 14)); // NOI18N
+        cmbxOperaciones.setForeground(new java.awt.Color(255, 255, 255));
         cmbxOperaciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -122,105 +172,57 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(cmbxOperaciones);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 140, 651, 202);
+
+        btnActualizar.setBackground(new java.awt.Color(238, 107, 107));
+        btnActualizar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnActualizar);
+        btnActualizar.setBounds(250, 350, 134, 37);
 
+        cmbxDiaDesde.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxDiaDesde.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        cmbxDiaDesde.setForeground(new java.awt.Color(255, 255, 255));
         cmbxDiaDesde.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        getContentPane().add(cmbxDiaDesde);
+        cmbxDiaDesde.setBounds(436, 62, 57, 23);
 
+        cmbxFechaDesde.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxFechaDesde.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        cmbxFechaDesde.setForeground(new java.awt.Color(255, 255, 255));
         cmbxFechaDesde.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" }));
+        getContentPane().add(cmbxFechaDesde);
+        cmbxFechaDesde.setBounds(499, 62, 53, 23);
 
+        cmbxAnioDesde.setBackground(new java.awt.Color(17, 20, 44));
+        cmbxAnioDesde.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        cmbxAnioDesde.setForeground(new java.awt.Color(255, 255, 255));
         cmbxAnioDesde.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1924", "1925", "1926", "1927", "1928", "1929", "1930", "1931", "1932", "1933", "1934", "1935", "1936", "1937", "1938", "1939", "1940", "1941", "1942", "1943", "1944", "1945", "1946", "1947", "1948", "1949", "1950", "1951", "1952", "1953", "1954", "1955", "1956", "1957", "1958", "1959", "1960", "1961", "1962", "1963", "1964", "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        getContentPane().add(cmbxAnioDesde);
+        cmbxAnioDesde.setBounds(558, 62, 72, 23);
 
+        jLabel1.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Desde:");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(384, 65, 46, 17);
 
+        jLabel5.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hasta:");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(384, 103, 42, 17);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(btnVolver))
-                .addGap(184, 184, 184)
-                .addComponent(etqTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(radiobtnTransferencia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(radiobtnRetiroSinCuenta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbxDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbxFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxAnioHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(cmbxDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxAnioDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 59, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnActualizar)
-                .addGap(278, 278, 278))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVolver)
-                    .addComponent(etqTitulo))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(cmbxDiaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbxFechaDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbxAnioDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radiobtnTransferencia)
-                    .addComponent(radiobtnRetiroSinCuenta)
-                    .addComponent(cmbxDiaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbxFechaHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbxAnioHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnActualizar)
-                .addContainerGap(17, Short.MAX_VALUE))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 8.png"))); // NOI18N
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, -4, 650, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -332,6 +334,7 @@ public class HistorialOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JRadioButton radiobtnRetiroSinCuenta;
     private javax.swing.JRadioButton radiobtnTransferencia;

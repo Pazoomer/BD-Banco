@@ -74,13 +74,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnAgregarCuenta = new javax.swing.JButton();
         btnActualizar = new javax.swing.JToggleButton();
         lblInformacion = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         tablaCuentas.setBackground(new java.awt.Color(17, 20, 44));
         tablaCuentas.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -106,89 +109,73 @@ public class MenuPrincipal extends javax.swing.JFrame {
             tablaCuentas.getColumnModel().getColumn(2).setHeaderValue("Estado");
         }
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(0, 89, 651, 265);
+
+        btnPerfil.setBackground(new java.awt.Color(238, 107, 107));
+        btnPerfil.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnPerfil.setForeground(new java.awt.Color(255, 255, 255));
         btnPerfil.setText("Perfil");
         btnPerfil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPerfilActionPerformed(evt);
             }
         });
+        getContentPane().add(btnPerfil);
+        btnPerfil.setBounds(6, 6, 84, 37);
 
+        btnCerrarSesion.setBackground(new java.awt.Color(238, 107, 107));
+        btnCerrarSesion.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnCerrarSesion.setForeground(new java.awt.Color(255, 255, 255));
         btnCerrarSesion.setText("Cerrar sesión");
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCerrarSesionActionPerformed(evt);
             }
         });
+        getContentPane().add(btnCerrarSesion);
+        btnCerrarSesion.setBounds(484, 6, 161, 37);
 
         etqCuentas.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqCuentas.setForeground(new java.awt.Color(2, 178, 178));
         etqCuentas.setText("CUENTAS");
+        getContentPane().add(etqCuentas);
+        etqCuentas.setBounds(10, 60, 79, 23);
 
+        btnAgregarCuenta.setBackground(new java.awt.Color(238, 107, 107));
+        btnAgregarCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnAgregarCuenta.setForeground(new java.awt.Color(255, 255, 255));
         btnAgregarCuenta.setText("Agregar cuenta");
         btnAgregarCuenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarCuentaActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAgregarCuenta);
+        btnAgregarCuenta.setBounds(458, 360, 187, 37);
 
+        btnActualizar.setBackground(new java.awt.Color(238, 107, 107));
+        btnActualizar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnActualizar);
+        btnActualizar.setBounds(6, 360, 134, 37);
 
         lblInformacion.setBackground(new java.awt.Color(255, 255, 255));
         lblInformacion.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         lblInformacion.setForeground(new java.awt.Color(255, 255, 255));
         lblInformacion.setText("Haga clic en una cuenta para usarla");
+        getContentPane().add(lblInformacion);
+        lblInformacion.setBounds(154, 49, 321, 22);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnPerfil)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblInformacion)
-                        .addGap(68, 68, 68)
-                        .addComponent(btnCerrarSesion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etqCuentas)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(151, 151, 151)
-                                .addComponent(btnAgregarCuenta)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnPerfil)
-                            .addComponent(btnCerrarSesion)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(lblInformacion)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(etqCuentas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAgregarCuenta)
-                    .addComponent(btnActualizar))
-                .addGap(23, 23, 23))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 9.png"))); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, -4, 650, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -279,6 +266,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnPerfil;
     private javax.swing.JLabel etqCuentas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblInformacion;
     private javax.swing.JTable tablaCuentas;
