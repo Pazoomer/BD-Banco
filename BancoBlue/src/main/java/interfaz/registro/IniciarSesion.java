@@ -9,6 +9,8 @@ import bancoBluePersistencia.dtos.cliente.ClienteInicioSesionDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
 import bancoblueDominio.Cliente;
 import interfaz.cliente.MenuPrincipal;
+import interfaz.errores.ErrorIniciarSesion;
+import interfaz.errores.ErrorLlenarInformacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -68,7 +70,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         EtqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombreUsuario.setText("NOMBRE DE USUARIO");
         getContentPane().add(EtqNombreUsuario);
-        EtqNombreUsuario.setBounds(183, 140, 285, 25);
+        EtqNombreUsuario.setBounds(183, 140, 280, 32);
 
         CmpNombreUsuario.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombreUsuario.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -80,7 +82,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         EtqContrasenia.setForeground(new java.awt.Color(2, 178, 178));
         EtqContrasenia.setText("CONTRASEÑA");
         getContentPane().add(EtqContrasenia);
-        EtqContrasenia.setBounds(183, 225, 182, 40);
+        EtqContrasenia.setBounds(183, 225, 180, 40);
 
         CmpContrasenia.setBackground(new java.awt.Color(17, 20, 44));
         CmpContrasenia.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -118,7 +120,7 @@ public class IniciarSesion extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Bienvenido de nuevo");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(195, 93, 258, 26);
+        jLabel1.setBounds(195, 93, 257, 26);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logo.png"))); // NOI18N
         getContentPane().add(jLabel2);
@@ -166,14 +168,16 @@ public class IniciarSesion extends javax.swing.JFrame {
                     this.setVisible(false);
                     registrar.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "No existe el socio");
+                    ErrorIniciarSesion error=new ErrorIniciarSesion();
+                    error.setVisible(true);
                 }
             } catch (PersistenciaException ex) {
                 JOptionPane.showMessageDialog(this, "No se pudo agregar el socio debido a un error en la base de datos");
             }
             
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
         } 
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables

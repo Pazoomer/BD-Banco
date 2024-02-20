@@ -5,6 +5,8 @@ import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteActualizableDTO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.PersistenciaException;
+import interfaz.errores.ErrorLlenarInformacion;
+import interfaz.errores.ErrorNombreUsuario;
 import javax.swing.JOptionPane;
 
 /**
@@ -179,7 +181,8 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
                 if (clientesDAO.validarNombreUsuarios(nombreUsuario)) {
 
                 } else {
-                    JOptionPane.showMessageDialog(this, "Nombre de usuario en uso");
+                    ErrorNombreUsuario error=new ErrorNombreUsuario();
+                    error.setVisible(true);
                     return;
                 }
 
@@ -239,7 +242,8 @@ public class RegistrarseUsuario extends javax.swing.JFrame {
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
         }
     }
 

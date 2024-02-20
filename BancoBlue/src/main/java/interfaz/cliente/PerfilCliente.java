@@ -87,61 +87,61 @@ public final class PerfilCliente extends javax.swing.JFrame {
         etqInformacionUsuario.setForeground(new java.awt.Color(255, 255, 255));
         etqInformacionUsuario.setText("Información del Usuario");
         getContentPane().add(etqInformacionUsuario);
-        etqInformacionUsuario.setBounds(20, 10, 420, 43);
+        etqInformacionUsuario.setBounds(20, 10, 419, 43);
 
         jLabel2.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(2, 178, 178));
         jLabel2.setText("Nombre ");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(6, 67, 123, 25);
+        jLabel2.setBounds(6, 67, 91, 32);
 
         etqNombreUsuario.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqNombreUsuario.setForeground(new java.awt.Color(2, 178, 178));
         etqNombreUsuario.setText("Nombre de usuario");
         getContentPane().add(etqNombreUsuario);
-        etqNombreUsuario.setBounds(331, 67, 285, 25);
+        etqNombreUsuario.setBounds(331, 67, 202, 32);
 
         etqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         etqFechaNacimiento.setText("Fecha de nacimiento");
         getContentPane().add(etqFechaNacimiento);
-        etqFechaNacimiento.setBounds(6, 146, 309, 25);
+        etqFechaNacimiento.setBounds(6, 146, 220, 32);
 
         etqCalle.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqCalle.setForeground(new java.awt.Color(2, 178, 178));
         etqCalle.setText("Calle");
         getContentPane().add(etqCalle);
-        etqCalle.setBounds(6, 217, 84, 25);
+        etqCalle.setBounds(6, 217, 54, 32);
 
         etqNumExterior.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqNumExterior.setForeground(new java.awt.Color(2, 178, 178));
         etqNumExterior.setText("Núm. Exterior");
         getContentPane().add(etqNumExterior);
-        etqNumExterior.setBounds(207, 217, 206, 25);
+        etqNumExterior.setBounds(207, 217, 145, 32);
 
         etqCP.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqCP.setForeground(new java.awt.Color(2, 178, 178));
         etqCP.setText("C.P.");
         getContentPane().add(etqCP);
-        etqCP.setBounds(431, 217, 48, 25);
+        etqCP.setBounds(431, 217, 46, 32);
 
         etqColonia.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqColonia.setForeground(new java.awt.Color(2, 178, 178));
         etqColonia.setText("Colonia");
         getContentPane().add(etqColonia);
-        etqColonia.setBounds(6, 288, 121, 25);
+        etqColonia.setBounds(6, 288, 81, 32);
 
         etqMunicipio.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqMunicipio.setForeground(new java.awt.Color(2, 178, 178));
         etqMunicipio.setText("Municipio");
         getContentPane().add(etqMunicipio);
-        etqMunicipio.setBounds(207, 288, 143, 25);
+        etqMunicipio.setBounds(207, 288, 102, 32);
 
         etqEstado.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         etqEstado.setForeground(new java.awt.Color(2, 178, 178));
         etqEstado.setText("Estado");
         getContentPane().add(etqEstado);
-        etqEstado.setBounds(431, 288, 105, 25);
+        etqEstado.setBounds(431, 288, 74, 32);
 
         btnVolver.setBackground(new java.awt.Color(238, 107, 107));
         btnVolver.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -153,7 +153,7 @@ public final class PerfilCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(549, 6, 96, 37);
+        btnVolver.setBounds(535, 6, 110, 37);
 
         btnCambiar.setBackground(new java.awt.Color(238, 107, 107));
         btnCambiar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -165,7 +165,7 @@ public final class PerfilCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCambiar);
-        btnCambiar.setBounds(383, 360, 262, 37);
+        btnCambiar.setBounds(375, 360, 270, 37);
 
         etqNombreUsuarioDinamico.setBackground(new java.awt.Color(17, 20, 44));
         etqNombreUsuarioDinamico.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -231,7 +231,7 @@ public final class PerfilCliente extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnRecargar);
-        btnRecargar.setBounds(10, 360, 249, 37);
+        btnRecargar.setBounds(10, 360, 260, 37);
 
         jLabel1.setForeground(new java.awt.Color(17, 20, 44));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 3.png"))); // NOI18N

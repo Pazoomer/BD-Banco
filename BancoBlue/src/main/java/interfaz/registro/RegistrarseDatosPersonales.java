@@ -6,6 +6,7 @@ import bancoBluePersistencia.daos.clientes.IClientesDAO;
 import bancoBluePersistencia.dtos.cliente.ClienteNuevoDTO;
 import bancoBluePersistencia.excepciones.ValidacionDTOException;
 import interfaz.cliente.PerfilCliente;
+import interfaz.errores.ErrorLlenarInformacion;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 
@@ -82,25 +83,25 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         EtqNombre.setForeground(new java.awt.Color(2, 178, 178));
         EtqNombre.setText("NOMBRE(S)");
         getContentPane().add(EtqNombre);
-        EtqNombre.setBounds(20, 80, 150, 25);
+        EtqNombre.setBounds(20, 80, 150, 32);
 
         EtqApellidoPaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoPaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoPaterno.setText("APELLIDO PATERNO");
         getContentPane().add(EtqApellidoPaterno);
-        EtqApellidoPaterno.setBounds(310, 80, 262, 25);
+        EtqApellidoPaterno.setBounds(310, 80, 238, 32);
 
         EtqApellidoMaterno.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqApellidoMaterno.setForeground(new java.awt.Color(2, 178, 178));
         EtqApellidoMaterno.setText("APELLIDO MATERNO");
         getContentPane().add(EtqApellidoMaterno);
-        EtqApellidoMaterno.setBounds(20, 170, 269, 25);
+        EtqApellidoMaterno.setBounds(20, 170, 242, 32);
 
         EtqFechaNacimiento.setFont(new java.awt.Font("Heavitas", 0, 24)); // NOI18N
         EtqFechaNacimiento.setForeground(new java.awt.Color(2, 178, 178));
         EtqFechaNacimiento.setText("FECHA DE NACIMIENTO");
         getContentPane().add(EtqFechaNacimiento);
-        EtqFechaNacimiento.setBounds(310, 170, 309, 25);
+        EtqFechaNacimiento.setBounds(310, 170, 290, 32);
 
         CmpNombre.setBackground(new java.awt.Color(17, 20, 44));
         CmpNombre.setFont(new java.awt.Font("Corbel", 0, 24)); // NOI18N
@@ -209,7 +210,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Datos personales");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(40, 320, 129, 20);
+        jLabel3.setBounds(40, 320, 128, 20);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Secuencia 1.png"))); // NOI18N
         getContentPane().add(jLabel4);
@@ -227,7 +228,7 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
 
         jLabel5.setText("jLabel5");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(80, 330, 37, 16);
+        jLabel5.setBounds(80, 330, 38, 16);
 
         pack();
         setLocationRelativeTo(null);
@@ -318,7 +319,8 @@ public class RegistrarseDatosPersonales extends javax.swing.JFrame {
             }
 
         } else {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.");
+            ErrorLlenarInformacion error=new ErrorLlenarInformacion();
+            error.setVisible(true);
         }
     }
 

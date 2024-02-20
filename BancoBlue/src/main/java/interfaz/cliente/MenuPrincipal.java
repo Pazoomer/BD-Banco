@@ -81,7 +81,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -138,13 +137,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCerrarSesion);
-        btnCerrarSesion.setBounds(484, 6, 161, 37);
+        btnCerrarSesion.setBounds(475, 6, 170, 37);
 
         etqCuentas.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         etqCuentas.setForeground(new java.awt.Color(2, 178, 178));
         etqCuentas.setText("CUENTAS");
         getContentPane().add(etqCuentas);
-        etqCuentas.setBounds(10, 60, 79, 23);
+        etqCuentas.setBounds(10, 60, 80, 23);
 
         btnAgregarCuenta.setBackground(new java.awt.Color(238, 107, 107));
         btnAgregarCuenta.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -156,7 +155,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAgregarCuenta);
-        btnAgregarCuenta.setBounds(458, 360, 187, 37);
+        btnAgregarCuenta.setBounds(445, 360, 200, 37);
 
         btnActualizar.setBackground(new java.awt.Color(238, 107, 107));
         btnActualizar.setFont(new java.awt.Font("Corbel", 1, 24)); // NOI18N
@@ -168,14 +167,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(6, 360, 134, 37);
+        btnActualizar.setBounds(6, 360, 133, 37);
 
         lblInformacion.setBackground(new java.awt.Color(255, 255, 255));
         lblInformacion.setFont(new java.awt.Font("Lucida Sans", 0, 18)); // NOI18N
         lblInformacion.setForeground(new java.awt.Color(255, 255, 255));
         lblInformacion.setText("Haga clic en una cuenta para usarla");
         getContentPane().add(lblInformacion);
-        lblInformacion.setBounds(154, 49, 321, 22);
+        lblInformacion.setBounds(154, 49, 324, 22);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 9.png"))); // NOI18N
         getContentPane().add(jLabel1);

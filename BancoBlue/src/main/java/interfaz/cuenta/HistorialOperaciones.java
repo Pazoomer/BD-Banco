@@ -79,7 +79,6 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -97,37 +96,37 @@ public class HistorialOperaciones extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVolver);
-        btnVolver.setBounds(6, 6, 96, 37);
+        btnVolver.setBounds(6, 6, 110, 37);
 
         etqTitulo.setFont(new java.awt.Font("Lucida Sans", 1, 24)); // NOI18N
         etqTitulo.setForeground(new java.awt.Color(2, 178, 178));
         etqTitulo.setText("Historial de operaciones");
         getContentPane().add(etqTitulo);
-        etqTitulo.setBounds(167, 13, 295, 30);
+        etqTitulo.setBounds(167, 13, 300, 30);
 
         jLabel2.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Filtrar por:");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(12, 61, 79, 23);
+        jLabel2.setBounds(12, 61, 100, 23);
 
         jLabel3.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Tipo de operación:");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(141, 61, 142, 23);
+        jLabel3.setBounds(141, 61, 139, 23);
 
         radiobtnTransferencia.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         radiobtnTransferencia.setForeground(new java.awt.Color(255, 255, 255));
         radiobtnTransferencia.setText("Transferencia");
         getContentPane().add(radiobtnTransferencia);
-        radiobtnTransferencia.setBounds(16, 96, 113, 22);
+        radiobtnTransferencia.setBounds(16, 96, 120, 22);
 
         radiobtnRetiroSinCuenta.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         radiobtnRetiroSinCuenta.setForeground(new java.awt.Color(255, 255, 255));
         radiobtnRetiroSinCuenta.setText("Retiro sin cuenta");
         getContentPane().add(radiobtnRetiroSinCuenta);
-        radiobtnRetiroSinCuenta.setBounds(141, 96, 133, 22);
+        radiobtnRetiroSinCuenta.setBounds(141, 96, 150, 22);
 
         jLabel4.setFont(new java.awt.Font("Corbel", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -185,7 +184,7 @@ public class HistorialOperaciones extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnActualizar);
-        btnActualizar.setBounds(250, 350, 134, 37);
+        btnActualizar.setBounds(250, 350, 133, 37);
 
         cmbxDiaDesde.setBackground(new java.awt.Color(17, 20, 44));
         cmbxDiaDesde.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
@@ -212,13 +211,13 @@ public class HistorialOperaciones extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Desde:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(384, 65, 46, 17);
+        jLabel1.setBounds(380, 65, 50, 17);
 
         jLabel5.setFont(new java.awt.Font("Lucida Sans", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Hasta:");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(384, 103, 42, 17);
+        jLabel5.setBounds(380, 100, 50, 17);
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo 8.png"))); // NOI18N
         getContentPane().add(jLabel6);

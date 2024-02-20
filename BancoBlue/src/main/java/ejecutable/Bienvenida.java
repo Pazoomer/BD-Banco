@@ -184,7 +184,7 @@ public class Bienvenida extends javax.swing.JFrame {
      * Abre una nueva ventana para cobrar retiro
      */
     private void cobrarRetiro(){
-        CobrarRetiro registrar=new CobrarRetiro(clientesDAO, cuentasDAO, operacionesDAO, this);
+        CobrarRetiro registrar=new CobrarRetiro(cuentasDAO, operacionesDAO, this);
        this.setVisible(false);
        registrar.setVisible(true);
     }
